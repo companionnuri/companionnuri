@@ -8,7 +8,7 @@ import com.companionnuri.nuri.map.domain.StoreCategory;
 
 public interface PetStoreService {
 
-	void savePetStore(PetStore petStore);
+	Long savePetStore(PetStore petStore);
 
 	List<PetStore> searchStores(String name);
 

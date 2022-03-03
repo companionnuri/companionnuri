@@ -21,8 +21,9 @@ public class PetStoreServiceImpl implements PetStoreService{
 
 	@Transactional
 	@Override
-	public void savePetStore(PetStore petStore) {
+	public Long savePetStore(PetStore petStore) {
 		petStoreRepository.save(petStore);
+		return petStore.getId();
 	}
 
 	@Override
