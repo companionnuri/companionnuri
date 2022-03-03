@@ -10,7 +10,7 @@ public interface PetStoreRepository {
 
 	Optional<PetStore> findById(Long id);
 
-	Optional<PetStore> findByName(String name);
+	List<PetStore> findByName(String name);
 
 	List<PetStore> findAll();
 }
