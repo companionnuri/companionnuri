@@ -14,24 +14,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = PROTECTED)
 public class Address {
 	private String street;
-	private String zipcode;
+	private String floor;
 
 	private Address(Builder builder) {
 		street = builder.street;
-		zipcode = builder.zipcode;
+		floor = builder.floor;
 	}
 
 	public static class Builder {
 		private String street;
-		private String zipcode;
+		private String floor;
 
 		public Builder street(String street) {
 			this.street = street;
 			return this;
 		}
 
-		public Builder zipcode(String zipcode) {
-			this.zipcode = zipcode;
+		public Builder zipcode(String floor) {
+			this.floor = floor;
 			return this;
 		}
 
@@ -47,12 +47,12 @@ public class Address {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Address address = (Address)o;
-		return Objects.equals(getStreet(), address.getStreet()) && Objects.equals(getZipcode(),
-			address.getZipcode());
+		return Objects.equals(getStreet(), address.getStreet()) && Objects.equals(this.getFloor(),
+			address.getFloor());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getStreet(), getZipcode());
+		return Objects.hash(getStreet(), this.getFloor());
 	}
 }
