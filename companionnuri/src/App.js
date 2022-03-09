@@ -1,10 +1,11 @@
 import './App.css';
-import Map from "./Map";
+import Main from './Main';
+import Region from './Region';
 
 function App() {
   return (
     <div>
-      <Map/>
+      <Main/>
     </div>
   );
 }
