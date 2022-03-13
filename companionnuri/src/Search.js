@@ -1,7 +1,10 @@
+import Searchbar from "./Searchbar";
+
 function Search() {
     return (
         <div>
-            <h1>123</h1>
+            <Searchbar />
+            <h1>검색 결과는 다음과 같습니다.</h1>
         </div>
     );
 }
