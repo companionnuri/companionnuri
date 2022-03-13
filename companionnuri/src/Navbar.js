@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Menubar from "./Menubar";
 
 function Navbar() {
-    return (
-        <ul>
-            <li>카테고리별</li>
-            <li>지역별</li>
-        </ul>
-    );
+    const [value, setValue] = useState(false)
+
+    const buttonClick = () => {
+        setValue(!value);
+    }
+
+  return(
+      <div>
+          <button onClick={buttonClick}>햄버거버튼{value ? <Menubar /> : null} 
+          
+          </button>
+    </div>
+  )
 }
 
 export default Navbar;

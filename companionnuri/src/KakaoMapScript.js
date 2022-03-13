@@ -7,5 +7,5 @@ export default function KakaoMapScript() {
         level: 1
     };
     const map = new kakao.maps.Map(container, options);
-
+    map.panBy(100, 50)
 }
