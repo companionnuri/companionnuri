@@ -7,7 +7,7 @@ import Info from './Info'
 function App() {
   return (
     <div>
-      <Main />
+      <Region />
     </div>
   );
 }
