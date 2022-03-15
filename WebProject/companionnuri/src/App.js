@@ -1,10 +1,13 @@
 import './App.css';
-import Map from "./Map";
+import Main from './Main';
+import Region from './Region';
+import Search from './Search';
+import Info from './Info'
 
 function App() {
   return (
     <div>
-      <Map/>
+      <Region />
     </div>
   );
 }
