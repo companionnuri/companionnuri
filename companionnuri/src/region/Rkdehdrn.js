@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Rhksdkrrn() {
+function Rkdehdrn() {
     return (
         <div>
-            <h1>123동</h1>
-            <h1>456동</h1>
+            <h1>강동구</h1>
+            <h1>강도구</h1>
             <h1>789동</h1>
             <h1>100동</h1>
 
@@ -12,4 +12,4 @@ function Rhksdkrrn() {
   );
 }
 
-export default Rhksdkrrn;
+export default Rkdehdrn;
