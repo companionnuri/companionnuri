@@ -1,6 +1,5 @@
 import Top from "./Top";
 import styles from "./css/Region.module.css";
-import { Route, Link } from 'react-router-dom'
 
 import React, { useState, useEffect } from 'react';
 
@@ -38,6 +37,10 @@ function Region(props, {match}) {
         return <No />
       }
     }
+  }
+
+  const searchClick = () => {
+    console.log(123);
   }
 
   const Busanmenus = ["가상구", "강서구", "금정구", "기장군", "남구", "동구", "부산진구", "북구", "사하구", "서구", "수영구", "언제구", "영도구", "중구", "해운대구",]
@@ -91,7 +94,7 @@ function Region(props, {match}) {
       </div>
 
       <div>
-        <buton>검색</buton>
+        <buton className={styles.searchButton} onClick={searchClick}>검색</buton>
       </div>
 
     </div>

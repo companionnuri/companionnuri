@@ -10,9 +10,7 @@ function Navbar() {
 
   return(
       <div>
-          <button onClick={buttonClick}>햄버거버튼{value ? <Menubar /> : null} 
-          
-          </button>
+          <button onClick={buttonClick}>햄버거버튼{value ? <Menubar /> : null} </button>
     </div>
   )
 }
