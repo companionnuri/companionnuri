@@ -2,8 +2,13 @@ import React from 'react';
 import image from './logo.png';
 
 function Logo() {
+
+    const logoClick = () => {
+        window.location.href = "/";
+    }
+
     return (
-        <img src={image} />
+        <img onClick={logoClick} src={image} />
     );
 }
 
