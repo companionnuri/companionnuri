@@ -1,7 +1,11 @@
+import Top from "./Top";
+import styles from "./css/Category.module.css";
+
 function Category() {
     return (
         <div>
-            <h1>123</h1>
+            <Top />
+            <h1>12311</h1>
         </div>
     );
 }
