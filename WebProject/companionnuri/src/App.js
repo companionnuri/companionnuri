@@ -6,8 +6,8 @@ import Info from './Info'
 
 function App() {
   return (
-    <div>
-      <Region />
+    <div className='container'>
+      <Main />
     </div>
   );
 }

@@ -8,8 +8,8 @@ import React, {useState,useContext,useRef, useEffect} from 'react';
 function Top() {
 
   return (
-    <div>
-      <div className={styles.top}>
+    <div className={styles.hd}>
+      <div className='d-flex justify-contene-between h-100'>
         <button>
           <Navbar />
         </button>

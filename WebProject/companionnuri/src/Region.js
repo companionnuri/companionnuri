@@ -1,10 +1,10 @@
 import Map from "./Map";
 import Top from "./Top";
 import styles from "./css/Region.module.css";
-import Menubar from "./Menubar";
+// import Menubar from "./Menubar";
 
 import React, { useState, useEffect } from 'react';
-import scrollbar from 'smooth-scrollbar';
+// import scrollbar from 'smooth-scrollbar';
 
 import Seoul from "./region/Seoul";
 import Busan from "./region/Busan";
