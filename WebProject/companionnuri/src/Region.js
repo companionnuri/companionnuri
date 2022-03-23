@@ -1,6 +1,5 @@
 import Top from "./Top";
 import styles from "./css/Region.module.css";
-
 import React, { useState, useEffect } from 'react';
 
 import Seoul from "./region/Seoul";

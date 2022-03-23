@@ -10,7 +10,9 @@ function Map() {
 
     return (
         <div>
-            <div id='myMap' className={styles.mymap} ></div>
+            <div id='myMap' className={styles.mymap} >
+                
+            </div>
         </div>
     );
 }

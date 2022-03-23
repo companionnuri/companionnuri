@@ -4,7 +4,7 @@ import styles from "./css/Main.module.css";
 
 function Main() {
   return (
-      <div>
+      <div className="d-flex flex-column align-items-center">
           <Top />
           <Map />
     </div>

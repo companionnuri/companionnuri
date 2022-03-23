@@ -58,9 +58,12 @@
 .third .child{
     width: 100px;
     height: 200px;
+<<<<<<< HEAD
 }
 
 .searchButton {
     width: 50px;
     border: 1px solid grey;
+=======
+>>>>>>> 6338c7e77066b5e7fcee66d8cfe927692c34b47b
 }
