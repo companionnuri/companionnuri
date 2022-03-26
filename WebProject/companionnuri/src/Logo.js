@@ -1,6 +1,6 @@
 import { Space } from 'antd';
 import React from 'react';
-import styles from "./css/font.module.css";
+import "./css/font.module.css";
 
 const logo = {
     fontFamily: 'GmarketSansLight',
