@@ -1,9 +1,19 @@
+import { Space } from 'antd';
 import React from 'react';
-import image from './logo.png';
+import styles from "./css/font.module.css";
+
+const logo = {
+    fontFamily: 'GmarketSansLight',
+    marginBottom: 0,
+    fontSize: '42px',
+    color:'#fff',
+    textAlign:'center',
+    letterSpacing: '9px',
+}
 
 function Logo() {
     return (
-        <img src={image} />
+        <p style={logo} className='col-6'>NURI</p>
     );
 }
 

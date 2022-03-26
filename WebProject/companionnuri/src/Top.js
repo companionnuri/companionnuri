@@ -9,13 +9,14 @@ function Top() {
 
   return (
     <div className={styles.hd}>
-      <div className='d-flex justify-contene-between h-100'>
-        <button>
-          <Navbar />
-        </button>
-        <Logo />
-        <Searchbar />
-        
+      <div className='w-100 d-flex justify-content-between align-items-center h-100'>
+        <div className='row hd_wrap w-100 align-items-center'>
+          <div className='col-3'>
+            <Navbar />
+          </div>
+          <Logo />
+          <Searchbar />
+        </div>
       </div>
     </div>
   );

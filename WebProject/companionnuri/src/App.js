@@ -10,7 +10,7 @@ import Category from './Category';
 
 function App() {
   return (
-    <div className='container'>
+    <div>
       <Main />
     </div>
   );
