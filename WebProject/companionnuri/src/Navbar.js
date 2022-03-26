@@ -20,7 +20,13 @@ function Navbar() {
 
   return(
       <nav className='col-3' >
-          <button onClick={buttonClick} style={hd_burger_btn}><i class="fa-solid fa-bars"></i>{value ? <Menubar /> : null} </button>
+          {value ? 
+            <button onClick={buttonClick} style={hd_burger_btn}><i class="fa-solid fa-x"></i></button> :
+            <button onClick={buttonClick} style={hd_burger_btn}><i class="fa-solid fa-bars"></i></button>
+          }
+          <div>
+              {value ? <Menubar /> : null}
+          </div>
       </nav>
   )
 }
