@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Main from './Main';
 import Region from './Region';
@@ -10,9 +10,18 @@ import Category from './Category';
 
 function App() {
   return (
-    <div>
-      <Main />
-    </div>
+    <Router>
+    <Routes>
+        {/* <div> */}
+        <Route path="/" element={<Main />} />
+        <Route path="/Region" element={<Region />} />
+        <Route path="/Detail" element={<Detail />} />
+        <Route path="/Info" element={<Info />} />
+      <Route path="/Category" element={<Category />} />
+      {/* <Main /> */}
+  {/* </div> */ }
+  </Routes>
+    </Router>
   );
 }
 

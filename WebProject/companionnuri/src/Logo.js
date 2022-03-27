@@ -1,6 +1,7 @@
 import { Space } from 'antd';
 import React from 'react';
 import "./css/font.module.css";
+import { Link } from 'react-router-dom' //****
 
 const logo = {
     fontFamily: 'GmarketSansLight',
@@ -13,7 +14,7 @@ const logo = {
 
 function Logo() {
     return (
-        <p style={logo} className='col-6'>NURI</p>
+        <a href='/'style={logo} className='col-6'>NURI</a>
     );
 }
 

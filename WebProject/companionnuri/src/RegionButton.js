@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Seoul(props) {
+function RegionButton(props) {
 
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+   
+    const clickHandler = (params) => {
+        
+        const v = params.target.value;
+
+        if (v === "서울특별시") {
+            props.setRegion("Seoul")
+            props.setData("no")
+        }
+
+        if (v === "부산광역시") {
+            props.setRegion("Busan")
+            props.setData("no")
+        }
+
+    }
 
 
   useEffect(() => {
@@ -17,7 +33,7 @@ function Seoul(props) {
         // loading 상태를 true 로 바꿉니다.
         setLoading(true);
         const response = await axios.get(
-          'https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=11*000000'
+          'https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=*00000000'
         );
           setUsers(response.data.regcodes); // 데이터는 response.data 안에 들어있습니다.
       } catch (e) {
@@ -35,10 +51,10 @@ function Seoul(props) {
   return (
     <div>
       {users.map(user => (
-        <button onClick={() => props.setData(user.name)}>{user.name}</button>
+        <button value={user.name} onClick={(e)=>{clickHandler(e)}}>{user.name}</button>
       ))}
     </div>
   );
 }
 
-export default Seoul;
+export default RegionButton;
