@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Seoul(props) {
+function SeoulRegion(props) {
 
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ function Seoul(props) {
         // loading 상태를 true 로 바꿉니다.
         setLoading(true);
         const response = await axios.get(
-          'https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=11*000000'
+          'https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=1111*'
         );
           setUsers(response.data.regcodes); // 데이터는 response.data 안에 들어있습니다.
       } catch (e) {
@@ -35,10 +35,10 @@ function Seoul(props) {
   return (
     <div>
       {users.map(user => (
-        <button onClick={() => props.setData(user.name)}>{user.name}</button>
+        <button>{user.name}</button>
       ))}
     </div>
   );
 }
 
-export default Seoul;
+export default SeoulRegion;

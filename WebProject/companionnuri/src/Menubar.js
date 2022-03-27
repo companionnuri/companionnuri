@@ -1,5 +1,4 @@
 import React from 'react';
-
 const hd_nav_wrap = {
   width: '400px',
   height: '100vh',
@@ -17,10 +16,10 @@ function Menubar() {
   return (
     <div style={hd_nav_wrap}>
       <div>
-        <h3 style={hd_nav_title}>카테고리별</h3>
+        <a href='/Category' style={hd_nav_title}>카테고리별</a>
       </div>
       <h3>
-        <a href='#' style={hd_nav_title}>지역별</a>
+        <a href='/Region' style={hd_nav_title}>지역별</a>
       </h3>
     </div>
   );
