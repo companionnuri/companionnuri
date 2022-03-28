@@ -3,26 +3,16 @@ import axios from 'axios';
 
 function RegionButton(props) {
 
-    const [users, setUsers] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
    
-    const clickHandler = (params) => {
-        
-        const v = params.target.value;
-
-        if (v === "서울특별시") {
-            props.setRegion("Seoul")
-            props.setData("no")
-        }
-
-        if (v === "부산광역시") {
-            props.setRegion("Busan")
-            props.setData("no")
-        }
-
-    }
-
+  const clickHandler = (params) => {
+      
+    const v = params.target.value;
+    props.setRegion(v)
+    props.setData("no")
+  }
 
   useEffect(() => {
     const fetchUsers = async () => {
