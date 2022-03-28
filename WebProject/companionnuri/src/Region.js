@@ -17,6 +17,23 @@ import SJunggu from "./region/Seoul/SJunggu";
 import SYongsan from "./region/Seoul/SYongsan";
 import SSeongdong from "./region/Seoul/SSeongdong";
 import SDongdaemun from "./region/Seoul/SDongdaemun";
+import SJungnang from "./region/Seoul/SJungnang";
+import SSeongbuk from "./region/Seoul/SSeongbuk";
+import SDobong from "./region/Seoul/SDobong";
+import SNowon from "./region/Seoul/SNowon";
+import SEunpyeong from "./region/Seoul/SEunpyeong";
+import SSeodaemun from "./region/Seoul/SSeodaemun";
+import SMapo from "./region/Seoul/SMapo";
+import SYangcheon from "./region/Seoul/SYangcheon";
+import SGangseo from "./region/Seoul/SGangseo";
+import SGuro from "./region/Seoul/SGuro";
+import SYeongdeungpo from "./region/Seoul/SYeongdeungpo";
+import SDongjak from "./region/Seoul/SDongjak";
+import SGwanak from "./region/Seoul/SGwanak";
+import SSeocho from "./region/Seoul/SSeocho";
+import SGangnam from "./region/Seoul/SGangnam";
+import SSongpa from "./region/Seoul/SSongpa";
+import SGandong from "./region/Seoul/SGandong";
 
 import No from "./region/No";
 
@@ -26,23 +43,32 @@ function Region(props, { match }) {
 
   const [secondstylename, setSecondStylename] = useState('no');
 
-  const SeoulMenus = [{ name: "서울특별시 종로구", comp: <SJongno /> }, { name: "서울특별시 중구", comp: <SJunggu /> },
-    { name: "서울특별시 용산구", comp: <SYongsan /> }, { name: "서울특별시 성동구", comp: <SSeongdong /> }, { name: "서울특별시 동대문구", comp: <SDongdaemun /> },
-    { name: "서울특별시 중랑구", comp: <SJunggu /> }, { name: "서울특별시 성북구", comp: <SJunggu /> }, { name: "서울특별시 도봉구", comp: <SJunggu /> },
-    { name: "서울특별시 노원구", comp: <SJunggu /> }, { name: "서울특별시 은평구", comp: <SJunggu /> }, { name: "서울특별시 서대문구", comp: <SJunggu /> },
-    { name: "서울특별시 마포구", comp: <SJunggu /> }, { name: "서울특별시 양천구", comp: <SJunggu /> }, { name: "서울특별시 강서구", comp: <SJunggu /> },
-    { name: "서울특별시 구로구", comp: <SJunggu /> }, { name: "서울특별시 영등포구", comp: <SJunggu /> }, { name: "서울특별시 동작구", comp: <SJunggu /> },
-    { name: "서울특별시 관악구", comp: <SJunggu /> }, { name: "서울특별시 서초구", comp: <SJunggu /> }, { name: "서울특별시 강남구", comp: <SJunggu /> },
-    { name: "서울특별시 송파구", comp: <SJunggu /> }, { name: "서울특별시 강동구", comp: <SJunggu /> },]
-
-  console.log(data)
   const chooseSeoulPage = () => {
-    for (let i = 0; i < 25; i++) {
-      switch (data) {
-        case SeoulMenus[i].name : return SeoulMenus[i].comp
-      default:
-        return <No />
-      }
+    switch (data) {
+      case '서울특별시 종로구' : return <SJongno />
+      case '서울특별시 중구': return <SJunggu />
+      case '서울특별시 용산구': return <SYongsan />
+      case '서울특별시 성동구': return <SSeongdong />
+      case '서울특별시 동대문구': return <SDongdaemun />
+      case '서울특별시 중랑구': return <SJungnang />
+      case '서울특별시 성북구': return <SSeongbuk />
+      case '서울특별시 도봉구': return <SDobong />
+      case '서울특별시 노원구': return <SNowon />
+      case '서울특별시 은평구': return <SEunpyeong />
+      case '서울특별시 서대문구': return <SSeodaemun />
+      case '서울특별시 마포구': return <SMapo />
+      case '서울특별시 양천구': return <SYangcheon />
+      case '서울특별시 강서구': return <SGangseo />
+      case '서울특별시 구로구': return <SGuro />
+      case '서울특별시 영등포구': return <SYeongdeungpo />
+      case '서울특별시 동작구': return <SDongjak />
+      case '서울특별시 관악구': return <SGwanak />
+      case '서울특별시 서초구': return <SSeocho />
+      case '서울특별시 강남구': return <SGangnam />
+      case '서울특별시 송파구': return <SSongpa />
+      case '서울특별시 강동구': return <SGandong />
+      
+      default : return <No />
     }
   }
 
@@ -83,7 +109,6 @@ function Region(props, { match }) {
 
         {/* 동 */}
               <div className={secondstylename}>
-          {/* {region === "서울특별시" && data === "서울특별시 종로구" ? <Jongno /> : null} */}
           {region === "서울특별시" ? chooseSeoulPage() : null}
           {/* {region === "Busan" ? chooseBusanPage() : null} */}
           {/* {region === "Daegu" ? choosePage() : null} */}
