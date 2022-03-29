@@ -11,16 +11,14 @@ import Category from './Category';
 function App() {
   return (
     <Router>
-    <Routes>
-        {/* <div> */}
+      <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Region" element={<Region />} />
         <Route path="/Detail" element={<Detail />} />
         <Route path="/Info" element={<Info />} />
-      <Route path="/Category" element={<Category />} />
-      {/* <Main /> */}
-  {/* </div> */ }
-  </Routes>
+        <Route path="/Category" element={<Category />} />
+        <Route path="/Search" element={<Search />} />
+      </Routes>
     </Router>
   );
 }
