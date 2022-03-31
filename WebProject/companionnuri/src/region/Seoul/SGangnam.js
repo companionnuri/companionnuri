@@ -3,6 +3,11 @@ import axios from 'axios';
 
 function SGangnam(props) {
 
+  const clickHandler = (params) => {
+    const v = params.target.value;
+    props.setinputValue(v)
+  }
+
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -34,7 +39,7 @@ function SGangnam(props) {
   return (
     <div>
       {users.map(user => (
-        <button>{user.name}</button>
+        <button value={user.name} onClick={(e)=>{clickHandler(e)}}>{user.name}</button>
       ))}
     </div>
   );
