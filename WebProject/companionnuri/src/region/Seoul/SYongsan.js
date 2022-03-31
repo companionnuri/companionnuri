@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function SYongsan (props) {
+function SYongsan(props) {
+  
+  const clickHandler = (params) => {
+    const v = params.target.value;
+    props.setinputValue(v)
+  }
 
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -34,7 +39,7 @@ function SYongsan (props) {
   return (
     <div>
       {users.map(user => (
-        <button>{user.name}</button>
+        <button value={user.name} onClick={(e)=>{clickHandler(e)}}>{user.name}</button>
       ))}
     </div>
   );
