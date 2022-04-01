@@ -5,7 +5,9 @@ function Category() {
     return (
         <div>
             <Top />
-            <h1>12311</h1>
+            <div>
+                <h1>123</h1>
+            </div>
         </div>
     );
 }

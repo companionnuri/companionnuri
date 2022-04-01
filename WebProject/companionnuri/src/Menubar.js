@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styles from "./css/Menubar.module.css";
+
 const hd_nav_wrap = {
   width: '400px',
   height: '100vh',
@@ -13,10 +15,18 @@ const hd_nav_title = {
 }
 
 function Menubar() {
+
+  const [data, setData] = useState(true);
+
+  const categoryClick = (e) => {
+    console.log(123)
+    setData(!data)
+  }
+
   return (
     <div style={hd_nav_wrap}>
       <div>
-        <a href='/Category' style={hd_nav_title}>카테고리별</a>
+        <a onClick={categoryClick} style={hd_nav_title}>카테고리별</a>
       </div>
       <h3>
         <a href='/Region' style={hd_nav_title}>지역별</a>
