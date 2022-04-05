@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const regionSidoBtn = {
+  display:'block',
+  width: '140px',
+  fontSize: '20px',
+}
+
 function RegionButton(props) {
 
   const [users, setUsers] = useState(null);
@@ -41,7 +47,7 @@ function RegionButton(props) {
   return (
     <div>
       {users.map(user => (
-        <button value={user.name} onClick={(e)=>{clickHandler(e)}}>{user.name}</button>
+        <button value={user.name} onClick={(e)=>{clickHandler(e)}} style={regionSidoBtn}>{user.name}</button>
       ))}
     </div>
   );

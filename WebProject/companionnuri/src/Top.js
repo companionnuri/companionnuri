@@ -1,4 +1,5 @@
 import Navbar from './Navbar';
+import SubsideMenu from './SubsideMenu';
 import Logo from './Logo';
 import Searchbar from "./Searchbar";
 import styles from "./css/Top.module.css";
@@ -9,13 +10,15 @@ function Top() {
 
   return (
     <div className={styles.hd}>
-      <div className='w-100 d-flex justify-content-between align-items-center h-100'>
-        <div className='row hd_wrap w-100 align-items-center'>
-          <div className='col-3'>
+      <div className='w-100'>
+        <div className='hd_wrap w-100'>
+          {/* <div>
             <Navbar />
-          </div>
+          </div> */}
           <Logo />
-          <Searchbar />
+          <SubsideMenu />
+          {/* <Searchbar /> */}
+
         </div>
       </div>
     </div>

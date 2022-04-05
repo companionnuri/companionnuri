@@ -38,6 +38,11 @@ import SGandong from "./region/Seoul/SGandong";
 
 import No from "./region/No";
 
+const regionPage = {
+  paddingTop:'100px',
+  minHeight: '100vh',
+}
+
 function Region(props, { match }) {
   const [region, setRegion] = useState('noregion');
   const [data, setData] = useState("noregion");
@@ -86,47 +91,46 @@ function Region(props, { match }) {
 
   return (
       <div>
-          
-      <Top />
-      
-      <div className={styles.name}>
-        <h1>도 / 특별시</h1>
-        <h1>시 / 군 / 구</h1>
-        <h1>동</h1>
-      </div>
+        <Top />
+        <div style={regionPage}>
+          {/* <div className={styles.name}>
+            <h1>도 / 특별시</h1>
+            <h1>시 / 군 / 구</h1>
+            <h1>동</h1>
+          </div> */}
 
-      <div className={styles.whole}>
-        {/* 도 / 특별시 */}
-        <div className={styles.first}>
-          <RegionButton setRegion={setRegion} setData={setData}></RegionButton>
+          <div className="row w-100 justify-content-evenly">
+            {/* 도 / 특별시 */}
+            <div className="col-4">
+              <RegionButton setRegion={setRegion} setData={setData}></RegionButton>
+            </div>
+            
+            {/* 시 / 군 / 구 */}
+            <div className="col-4">
+              <h1>
+                {region === 'noregion' ? null : null}
+                {region === "서울특별시" ? <Seoul setData={setData} /> : null}
+                {region === "부산광역시" ? <Busan setData={setData} /> : null}
+                {region === "대구광역시" ? <Daegu setData={setData} /> : null}
+                {region === "인천광역시" ? <Incheon setData={setData} /> : null}
+                {region === "광주광역시" ? <Gwangju setData={setData} /> : null}
+                {region === "대전광역시" ? <Daejeon setData={setData} /> : null}
+                {region === "울산광역시" ? <Ulsan setData={setData} /> : null}
+              </h1>
+            </div>
+
+            {/* 동 */}
+            <div className="col-4">
+              {region === "서울특별시" ? chooseSeoulPage() : null}
+              {/* {region === "Busan" ? chooseBusanPage() : null} */}
+              {/* {region === "Daegu" ? choosePage() : null} */}
+            </div>
+          </div>
+
+          <div>
+            <buton className={styles.searchButton} onClick={clickButton}>검색</buton>
+          </div>
         </div>
-        
-        {/* 시 / 군 / 구 */}
-        <div className={secondstylename}>
-          <h1>
-            {region === 'noregion' ? null : null}
-            {region === "서울특별시" ? <Seoul setData={setData} /> : null}
-            {region === "부산광역시" ? <Busan setData={setData} /> : null}
-            {region === "대구광역시" ? <Daegu setData={setData} /> : null}
-            {region === "인천광역시" ? <Incheon setData={setData} /> : null}
-            {region === "광주광역시" ? <Gwangju setData={setData} /> : null}
-            {region === "대전광역시" ? <Daejeon setData={setData} /> : null}
-            {region === "울산광역시" ? <Ulsan setData={setData} /> : null}
-          </h1>
-        </div>
-
-        {/* 동 */}
-              <div className={secondstylename}>
-          {region === "서울특별시" ? chooseSeoulPage() : null}
-          {/* {region === "Busan" ? chooseBusanPage() : null} */}
-          {/* {region === "Daegu" ? choosePage() : null} */}
-        </div>
-      </div>
-
-      <div>
-        <buton className={styles.searchButton} onClick={clickButton}>검색</buton>
-      </div>
-
     </div>
   );
 }

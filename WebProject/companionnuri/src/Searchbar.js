@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const hd_search_box = {
-    marginRight:'30px',
     width: '400px',
     borderRadius:'20px',
     backgroundColor: '#fff',
