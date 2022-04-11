@@ -5,7 +5,7 @@ import Searchbar from "./Searchbar";
 import styles from "./css/Top.module.css";
 import CategoryFloating from "./CategoryFloating";
 import Open from "./Open";
-// import Search from "./Search";
+import Topsearchbar from "./Topsearchbar";
 
 import React, { useState, useContext, useRef, useEffect } from "react";
 
@@ -29,9 +29,9 @@ const searchFloatingBox = {
   borderRadius: "20px",
 };
 
-function Top() {
+function Top(props) {
   const [open, setOpen] = useState(false);
-  const [inputValue, setinputValue] = useState(null);
+  const [topinputValue, settopinputValue] = useState(null);
 
   return (
     <div>
@@ -48,10 +48,10 @@ function Top() {
       <div style={CategoryFloatingBox}>
         <CategoryFloating />
       </div>
-      <div style={searchFloatingBox} setOpen={setOpen}>
-        <Searchbar setinputValue={setinputValue} />
+      <div style={searchFloatingBox}>
+        <Topsearchbar settopinputValue={settopinputValue} setOpen={setOpen} />
       </div>
-      {open ? <Open /> : null}
+      {open ? <Open topValue={topinputValue} /> : null}
     </div>
   );
 }
