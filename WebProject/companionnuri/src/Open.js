@@ -1,6 +1,31 @@
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import styles from "./css/Open.module.css";
+import { AutoComplete } from "antd";
+
+const searchBox = {
+  boxShadow: '0px 2px 10px rgb(0 0 0 / 15%)',
+  zIndex: '110',
+  height: '44px',
+  border: '2px solid #5f27cd',
+  borderRadius: '5px',
+  width: '475px',
+  marginLeft: '103px',
+}
+const searchInput ={
+  width: '100% !important',
+}
+const resultBox = {
+  width: '475px',
+  marginLeft: '103px',
+  marginTop: '25px',
+  borderTop: '1px solid #DBDEE0',
+  borderBottom: '1px solid #DBDEE0'
+}
+const searchResultP = {
+  fontSize: '16px',
+  color: '#424242',
+}
 
 function Open(props) {
   const [inputValue, setinputValue] = useState(null);
@@ -9,19 +34,26 @@ function Open(props) {
   const [open, setOpen] = useState(false);
 
   let result;
+  let message;
 
   if (props.topValue) {
-    result = <h1>{props.topValue}의 검색 결과는 다음과 같다</h1>;
+    result = <h1 style={searchResultP}><b>{props.topValue}</b>의 검색 결과는 다음과 같다</h1>;
   }
 
   if (inputValue) {
-    result = <h1>{inputValue}의 검색 결과는 다음과 같다</h1>;
+    result = <h1 style={searchResultP} className="my-2"><b>{inputValue}</b>의 검색 결과는 다음과 같다</h1>;
   }
 
   return (
     <div className={styles.searchDiv}>
-      <Searchbar setinputValue={setinputValue} setOpen={setOpen} />
-      {result}
+      <div >
+        <div style={searchBox}>
+          <Searchbar setinputValue={setinputValue} setOpen={setOpen} style={searchInput}/>
+        </div>
+        <div style={resultBox}>
+          {result}
+        </div>
+      </div>
     </div>
   );
 }

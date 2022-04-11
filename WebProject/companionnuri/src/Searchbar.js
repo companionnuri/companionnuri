@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./css/Floating.module.css";
 
 const hd_search_box = {
-  width: "400px",
+  width: "100%",
   borderRadius: "20px",
   backgroundColor: "#fff",
   height: "40px",
