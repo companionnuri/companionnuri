@@ -29,12 +29,12 @@ const hd_search_input = {
   width: "calc(100% - 45px)",
 };
 
-function Searchbar(props) {
+function TopSearchbar(props) {
   const [keyword, setKeyword] = useState(null);
 
   const clickButton = (e) => {
     console.log(keyword);
-    props.setinputValue(keyword);
+    props.settopinputValue(keyword);
     props.setOpen(true);
   };
 
@@ -69,4 +69,4 @@ function Searchbar(props) {
   );
 }
 
-export default Searchbar;
+export default TopSearchbar;
