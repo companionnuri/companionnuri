@@ -42,6 +42,9 @@ const regionPage = {
   paddingTop:'100px',
   minHeight: '100vh',
 }
+const regionSelectWrap ={
+  width: 'calc(100% - 133px)',
+}
 
 function Region(props, { match }) {
   const [region, setRegion] = useState('noregion');
@@ -99,14 +102,14 @@ function Region(props, { match }) {
             <h1>동</h1>
           </div> */}
 
-          <div className="row w-100 justify-content-evenly">
+          <div className="row w-100 justify-content-center mt-4 mx-0" style={regionSelectWrap}>
             {/* 도 / 특별시 */}
-            <div className="col-4">
+            <div className={styles.regionSelectBox}>
               <RegionButton setRegion={setRegion} setData={setData}></RegionButton>
             </div>
             
             {/* 시 / 군 / 구 */}
-            <div className="col-4">
+            <div className={styles.regionSelectBox}>
               <h1>
                 {region === 'noregion' ? null : null}
                 {region === "서울특별시" ? <Seoul setData={setData} /> : null}
@@ -120,14 +123,14 @@ function Region(props, { match }) {
             </div>
 
             {/* 동 */}
-            <div className="col-4">
+            <div className={styles.regionSelectBox}>
               {region === "서울특별시" ? chooseSeoulPage() : null}
               {/* {region === "Busan" ? chooseBusanPage() : null} */}
               {/* {region === "Daegu" ? choosePage() : null} */}
             </div>
           </div>
 
-          <div>
+          <div style={regionSelectWrap}>
             <buton className={styles.searchButton} onClick={clickButton}>검색</buton>
           </div>
         </div>

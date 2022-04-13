@@ -57,7 +57,6 @@ function SubsideMenu(props) {
           </button>
         </li>
       </ul>
-
       {/* {value ? 
             <button onClick={buttonClick} style={hd_burger_btn}><i class="fa-solid fa-x"></i></button> :
             <button onClick={buttonClick} style={hd_burger_btn}><i class="fa-solid fa-bars"></i></button>

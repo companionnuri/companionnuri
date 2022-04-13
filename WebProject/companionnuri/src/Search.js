@@ -2,7 +2,6 @@ import Top from "./Top";
 
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-
 const hd_search_icon = {
   backgroundColor: "transparent",
   border: "none",

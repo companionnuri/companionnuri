@@ -3,8 +3,13 @@ import axios from 'axios';
 
 const regionSidoBtn = {
   display:'block',
-  width: '140px',
-  fontSize: '20px',
+  width: '100%',
+  padding: '10px 0',
+  fontSize: '18px',
+  border : 'none',
+  background: '#fff',
+  color:'#494949',
+  borderBottom: '1px solid rgb(226, 226, 226)',
 }
 
 function RegionButton(props) {

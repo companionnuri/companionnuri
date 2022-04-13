@@ -1,0 +1,36 @@
+.regionSelectBox {
+  max-width:calc(30% - 36px);
+  width:400px;
+  height: 500px;
+  overflow-y: scroll;
+  border: 1px solid #494949;
+  border-radius: 5px;
+  margin: 0 20px;
+  padding: 0;
+}
+
+.regionSelectBox button {
+  display:block;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+  border : none;
+  background: #fff;
+  color:#494949;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.searchButton {
+  display: block;
+  font-size: 20px;
+  width: 200px;
+  margin-left: auto;
+  margin-top: 15px;
+  text-align: center;
+  background: #8835CD;
+  border-radius: 5px;
+  padding: 8px 0;
+  color: #fff;
+  letter-spacing: -1px;
+  font-weight: 600;
+}

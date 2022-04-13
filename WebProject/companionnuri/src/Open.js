@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import styles from "./css/Open.module.css";
 import { AutoComplete } from "antd";
+import SearchContent from "./SearchContent";
+
 
 const searchBox = {
   boxShadow: '0px 2px 10px rgb(0 0 0 / 15%)',
@@ -44,6 +46,8 @@ function Open(props) {
     result = <h1 style={searchResultP} className="my-2"><b>{inputValue}</b>의 검색 결과는 다음과 같다</h1>;
   }
 
+
+
   return (
     <div className={styles.searchDiv}>
       <div >
@@ -53,7 +57,17 @@ function Open(props) {
         <div style={resultBox}>
           {result}
         </div>
+        <div>
+          <div>
+            <SearchContent/>
+          </div>
+        </div>
       </div>
+      <button>
+        <span className="mt-1">
+          검색별
+        </span>
+      </button>
     </div>
   );
 }
