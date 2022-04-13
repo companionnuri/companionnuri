@@ -31,7 +31,7 @@ const searchFloatingBox = {
 
 function Top(props) {
   const [open, setOpen] = useState(false);
-  const [topinputValue, settopinputValue] = useState(null);
+  const [topinputValue, settopinputValue] = useState(props.regionValue);
 
   return (
     <div>
