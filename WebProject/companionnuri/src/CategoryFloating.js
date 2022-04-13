@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const categoryItemList = {
   padding: "13px 11px 11px",
@@ -27,11 +27,42 @@ const categoryItemLastList = {
 };
 
 function CategoryFloating() {
+  const [categoryValue, setcategoryValueValue] = useState(null);
+
+  const foodButton = () => {
+    console.log("음식점");
+    setcategoryValueValue("음식점");
+  };
+
+  const cafeButton = () => {
+    console.log("카페");
+    setcategoryValueValue("카페");
+  };
+
+  const parkButton = () => {
+    console.log("공원");
+    setcategoryValueValue("공원");
+  };
+
+  const hotelButton = () => {
+    console.log("펜션");
+    setcategoryValueValue("펜션");
+  };
+
+  const hospitalButton = () => {
+    console.log("병원");
+    setcategoryValueValue("병원");
+  };
+
   return (
     <div>
       <ul className="list-unstyled m-0 d-flex align-items-center">
         <li className="" style={categoryItemList}>
-          <button className="d-flex align-items-center" style={categoryItemBtn}>
+          <button
+            className="d-flex align-items-center"
+            style={categoryItemBtn}
+            onClick={foodButton}
+          >
             <i class="fa-solid fa-utensils" style={categoryItemFoodIcon}></i>
             <span className="fw-bolder" style={categoryItemTitle}>
               음식점
@@ -39,7 +70,11 @@ function CategoryFloating() {
           </button>
         </li>
         <li style={categoryItemList}>
-          <button className="d-flex align-items-center" style={categoryItemBtn}>
+          <button
+            className="d-flex align-items-center"
+            style={categoryItemBtn}
+            onClick={cafeButton}
+          >
             <i class="fa-solid fa-mug-saucer" style={categoryItemFoodIcon}></i>
             <span className="fw-bolder" style={categoryItemTitle}>
               카페
@@ -47,7 +82,11 @@ function CategoryFloating() {
           </button>
         </li>
         <li style={categoryItemList}>
-          <button className="d-flex align-items-center" style={categoryItemBtn}>
+          <button
+            className="d-flex align-items-center"
+            style={categoryItemBtn}
+            onClick={parkButton}
+          >
             <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
             <span className="fw-bolder" style={categoryItemTitle}>
               공원
@@ -55,7 +94,11 @@ function CategoryFloating() {
           </button>
         </li>
         <li style={categoryItemList}>
-          <button className="d-flex align-items-center" style={categoryItemBtn}>
+          <button
+            className="d-flex align-items-center"
+            style={categoryItemBtn}
+            onClick={hotelButton}
+          >
             <i class="fa-solid fa-hotel" style={categoryItemPlaceIcon}></i>
             <span className="fw-bolder" style={categoryItemTitle}>
               펜션
@@ -63,7 +106,11 @@ function CategoryFloating() {
           </button>
         </li>
         <li style={categoryItemList}>
-          <button className="d-flex align-items-center" style={categoryItemBtn}>
+          <button
+            className="d-flex align-items-center"
+            style={categoryItemBtn}
+            onClick={hospitalButton}
+          >
             <i
               class="fa-solid fa-briefcase-medical"
               style={categoryItemPlaceIcon2}
