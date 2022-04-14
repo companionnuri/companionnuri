@@ -48,6 +48,18 @@ const regionSelectWrap = {
   width: "calc(100% - 133px)",
   paddingLeft: '83px',
 };
+const resultCommentBoxP = {
+  textAlign: 'center',
+  fontSize: ' 18px',
+  wordBreak: 'keep-all',
+}
+const searchResultBoxIn = {
+  boxShadow : '0 2px 3px 0 rgb(0 1 3 / 12%)',
+  backgroundColor : '#fff',
+  borderRadius: '7px',
+  width: 'calc(100% - 1px)',
+  height: 'calc(100% - 1px)',
+}
 
 function Region(props, { match }) {
   const [region, setRegion] = useState("noregion");
@@ -161,9 +173,14 @@ function Region(props, { match }) {
             {/* {region === "Daegu" ? choosePage() : null} */}
           </div>
           <div className={styles.searchResultBox}>
-            <buton className={styles.searchButton} onClick={clickButton}>
-              검색
-            </buton>
+            <div style={searchResultBoxIn}>
+              <div class={styles.resultCommentBox}>
+                <p className="pt-4 py-3" style={resultCommentBoxP}>서울특별시 종로구 청운동</p>
+              </div>
+              <buton className={styles.searchButton} onClick={clickButton}>
+                검색
+              </buton>
+            </div>
           </div>
         </div>
 

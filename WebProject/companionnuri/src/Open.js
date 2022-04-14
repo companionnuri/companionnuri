@@ -39,7 +39,7 @@ function Open(props) {
   let message;
 
   if (props.topValue) {
-    result = <h1 style={searchResultP}><b>{props.topValue}</b>의 검색 결과는 다음과 같다</h1>;
+    result = <h1 style={searchResultP} className="my-2"><b>{props.topValue}</b>의 검색 결과는 다음과 같다</h1>;
   }
 
   if (inputValue) {

@@ -33,16 +33,28 @@
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 10px;
 }
 
+.resultCommentBox {
+  height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 .searchButton {
   display: block;
   font-size: 20px;
-  width: 200px;
-  margin-top: 15px;
+  height: 69px;
+  line-height: 58px;
+  width: 100%;
   text-align: center;
   background: #8835CD;
-  border-radius: 5px;
+  border-radius: 7px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   padding: 8px 0;
   color: #fff;
   letter-spacing: -1px;
   font-weight: 600;
+  margin: 0;
+  cursor:pointer
 }

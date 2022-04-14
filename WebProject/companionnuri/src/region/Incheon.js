@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const loadingMessage = {
+  color: 'rgb(95, 39, 205)',
+  fontSize:'38px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height:'500px',
+}
 function Incheon(props) {
 
     const [users, setUsers] = useState(null);
@@ -29,8 +37,8 @@ function Incheon(props) {
     fetchUsers();
   }, []);
 
-  if (loading) return <div>로딩중..</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
+  if (loading) return <div><p style={loadingMessage}><i class="fa-solid fa-spinner"></i></p></div>;
+  if (error) return <div><p style={loadingMessage}><i class="fa-solid fa-triangle-exclamation"></i></p></div>;
   if (!users) return null;
   return (
     <div>
