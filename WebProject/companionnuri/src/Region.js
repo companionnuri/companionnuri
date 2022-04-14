@@ -39,11 +39,14 @@ import SGandong from "./region/Seoul/SGandong";
 import No from "./region/No";
 
 const regionPage = {
-  paddingTop: "100px",
+  display: 'flex',
+  alignItems:'center',
   minHeight: "100vh",
+  backgroundColor : "#FAFBFC",
 };
 const regionSelectWrap = {
   width: "calc(100% - 133px)",
+  paddingLeft: '83px',
 };
 
 function Region(props, { match }) {
@@ -118,7 +121,7 @@ function Region(props, { match }) {
   return (
     <div>
       <Top />
-      <div style={regionPage}>
+      <div style={regionPage} >
         {/* <div className={styles.name}>
             <h1>도 / 특별시</h1>
             <h1>시 / 군 / 구</h1>
@@ -126,7 +129,7 @@ function Region(props, { match }) {
           </div> */}
 
         <div
-          className="row w-100 justify-content-center mt-4 mx-0"
+          className="row w-100 justify-content-center mt-4 mx-0 "
           style={regionSelectWrap}
         >
           {/* 도 / 특별시 */}
@@ -157,13 +160,14 @@ function Region(props, { match }) {
             {/* {region === "Busan" ? chooseBusanPage() : null} */}
             {/* {region === "Daegu" ? choosePage() : null} */}
           </div>
+          <div className={styles.searchResultBox}>
+            <buton className={styles.searchButton} onClick={clickButton}>
+              검색
+            </buton>
+          </div>
         </div>
 
-        <div style={regionSelectWrap}>
-          <buton className={styles.searchButton} onClick={clickButton}>
-            검색
-          </buton>
-        </div>
+        
       </div>
     </div>
   );

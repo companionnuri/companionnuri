@@ -11,6 +11,14 @@ const regionSidoBtn = {
   color:'#494949',
   borderBottom: '1px solid rgb(226, 226, 226)',
 }
+const loadingMessage = {
+  color: 'rgb(95, 39, 205)',
+  fontSize:'38px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height:'500px',
+}
 
 function RegionButton(props) {
 
@@ -46,7 +54,7 @@ function RegionButton(props) {
     fetchUsers();
   }, []);
 
-  if (loading) return <div>로딩중..</div>;
+  if (loading) return <div><p style={loadingMessage}><i class="fa-solid fa-spinner"></i></p></div>;
   if (error) return <div>에러가 발생했습니다</div>;
   if (!users) return null;
   return (
