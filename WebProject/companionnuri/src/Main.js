@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 
 function Main() {
   const value = useLocation();
-  const searchKeyword = value.state.inputValue;
+  const searchKeyword = value.state?.inputValue;
+  console.log(searchKeyword);
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <Top regionValue={searchKeyword} />
-      <Top />
+      {{ searchKeyword } ? <Top regionValue={searchKeyword} /> : <Top />}
       <Map />
     </div>
   );

@@ -39,27 +39,27 @@ import SGandong from "./region/Seoul/SGandong";
 import No from "./region/No";
 
 const regionPage = {
-  display: 'flex',
-  alignItems:'center',
+  display: "flex",
+  alignItems: "center",
   minHeight: "100vh",
-  backgroundColor : "#FAFBFC",
+  backgroundColor: "#FAFBFC",
 };
 const regionSelectWrap = {
   width: "calc(100% - 133px)",
-  paddingLeft: '83px',
+  paddingLeft: "83px",
 };
 const resultCommentBoxP = {
-  textAlign: 'center',
-  fontSize: ' 18px',
-  wordBreak: 'keep-all',
-}
+  textAlign: "center",
+  fontSize: " 18px",
+  wordBreak: "keep-all",
+};
 const searchResultBoxIn = {
-  boxShadow : '0 2px 3px 0 rgb(0 1 3 / 12%)',
-  backgroundColor : '#fff',
-  borderRadius: '7px',
-  width: 'calc(100% - 1px)',
-  height: 'calc(100% - 1px)',
-}
+  boxShadow: "0 2px 3px 0 rgb(0 1 3 / 12%)",
+  backgroundColor: "#fff",
+  borderRadius: "7px",
+  width: "calc(100% - 1px)",
+  height: "calc(100% - 1px)",
+};
 
 function Region(props, { match }) {
   const [region, setRegion] = useState("noregion");
@@ -133,7 +133,7 @@ function Region(props, { match }) {
   return (
     <div>
       <Top />
-      <div style={regionPage} >
+      <div style={regionPage}>
         {/* <div className={styles.name}>
             <h1>도 / 특별시</h1>
             <h1>시 / 군 / 구</h1>
@@ -175,7 +175,9 @@ function Region(props, { match }) {
           <div className={styles.searchResultBox}>
             <div style={searchResultBoxIn}>
               <div class={styles.resultCommentBox}>
-                <p className="pt-4 py-3" style={resultCommentBoxP}>서울특별시 종로구 청운동</p>
+                <p className="pt-4 py-3" style={resultCommentBoxP}>
+                  {inputValue}
+                </p>
               </div>
               <buton className={styles.searchButton} onClick={clickButton}>
                 검색
@@ -183,8 +185,6 @@ function Region(props, { match }) {
             </div>
           </div>
         </div>
-
-        
       </div>
     </div>
   );
