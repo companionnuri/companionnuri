@@ -55,7 +55,7 @@ const resultCommentBoxP = {
 };
 const searchResultBoxIn = {
   boxShadow: "0 2px 3px 0 rgb(0 1 3 / 12%)",
-  backgroundColor: "#fff",
+  backgroundColor: "#FAFBFC",
   borderRadius: "7px",
   width: "calc(100% - 1px)",
   height: "calc(100% - 1px)",

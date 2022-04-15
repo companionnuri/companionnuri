@@ -7,7 +7,7 @@ const regionSidoBtn = {
   padding: '10px 0',
   fontSize: '18px',
   border : 'none',
-  background: '#fff',
+  background: '#FAFBFC',
   color:'#494949',
   borderBottom: '1px solid rgb(226, 226, 226)',
 }
