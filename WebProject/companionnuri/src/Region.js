@@ -10,6 +10,7 @@ import Incheon from "./region/Incheon";
 import Gwangju from "./region/Gwangju";
 import Daejeon from "./region/Daejeon";
 import Ulsan from "./region/Ulsan";
+import Gangwon from "./region/Gangwon";
 
 import RegionButton from "./RegionButton";
 
@@ -35,6 +36,26 @@ import SSeocho from "./region/Seoul/SSeocho";
 import SGangnam from "./region/Seoul/SGangnam";
 import SSongpa from "./region/Seoul/SSongpa";
 import SGandong from "./region/Seoul/SGandong";
+
+import Gcheorwon from "./region/Gangwon/Gcheorwon";
+import Gchuncheon from "./region/Gangwon/Gchuncheon";
+import Gdonghae from "./region/Gangwon/Gdonghae";
+import Ggangneoung from "./region/Gangwon/Ggangneoung";
+import Ggoseong from "./region/Gangwon/Ggoseong";
+import Ghoengseong from "./region/Gangwon/Ghoengseong";
+import Ghongcheon from "./region/Gangwon/Ghongcheon";
+import Ghwacheon from "./region/Gangwon/Ghwacheon";
+import Ginje from "./region/Gangwon/Ginge";
+import Gjeongseong from "./region/Gangwon/Gjeongseon";
+import Gpyeongchang from "./region/Gangwon/Gpyeongchang";
+import Gsamcheok from "./region/Gangwon/Gsamcheok";
+import Gsokcho from "./region/Gangwon/Gsokcho";
+import Gtaebaek from "./region/Gangwon/Gtaebaek";
+import Gwonju from "./region/Gangwon/Gwonju";
+import Gyanggu from "./region/Gangwon/Gyanggu";
+import Gyangyang from "./region/Gangwon/Gyangyang";
+import Gyeongwol from "./region/Gangwon/Gyeongwol";
+
 
 import No from "./region/No";
 
@@ -113,12 +134,59 @@ function Region(props, { match }) {
         return <SSongpa setinputValue={setinputValue} />;
       case "서울특별시 강동구":
         return <SGandong setinputValue={setinputValue} />;
+      case "강원도 철원군":
+        return <Gcheorwon setinputValue={setinputValue} />;
 
       default:
         return <No />;
     }
   };
+  const chooseGangwonPage = () => {
+    switch (data) {
+      case "강원도 철원군":
+        return <Gcheorwon setinputValue={setinputValue} />;
+      case "강원도 춘천시":
+        return <Gchuncheon setinputValue={setinputValue} />;
+      case "강원도 원주시":
+        return <Gwonju setinputValue={setinputValue} />;
+      case "강원도 강릉시":
+        return <Ggangneoung setinputValue={setinputValue} />;
+      case "강원도 동해시":
+        return <Gdonghae setinputValue={setinputValue} />;
+      case "강원도 태백시":
+        return <Gtaebaek setinputValue={setinputValue} />;
+      case "강원도 속초시":
+        return <Gsokcho setinputValue={setinputValue} />;
+      case "강원도 삼척시":
+        return <Gsamcheok setinputValue={setinputValue} />;
+      case "강원도 홍천군":
+        return <Ghongcheon setinputValue={setinputValue} />;
+      case "강원도 횡성군":
+        return <Ghoengseong setinputValue={setinputValue} />;
+      case "강원도 영월군":
+        return <Gyeongwol setinputValue={setinputValue} />;
+      case "강원도 평창군":
+        return <Gpyeongchang setinputValue={setinputValue} />;
+      case "강원도 정선군":
+        return <Gjeongseong setinputValue={setinputValue} />;
+      case "강원도 화천군":
+        return <Ghwacheon setinputValue={setinputValue} />;
+      case "강원도 양구군":
+        return <Gyanggu setinputValue={setinputValue} />;
+      case "강원도 인제군":
+        return <Ginje setinputValue={setinputValue} />;
+      case "강원도 고성군":
+        return <Ggoseong setinputValue={setinputValue} />;
+      case "강원도 양양군":
+        return <Gyangyang setinputValue={setinputValue} />;
+  
+        
 
+
+      default:
+        return <No />;
+    }
+  };
   const [inputValue, setinputValue] = useState(null);
 
   const navigate = useNavigate();
@@ -163,12 +231,14 @@ function Region(props, { match }) {
               {region === "광주광역시" ? <Gwangju setData={setData} /> : null}
               {region === "대전광역시" ? <Daejeon setData={setData} /> : null}
               {region === "울산광역시" ? <Ulsan setData={setData} /> : null}
+              {region === "강원도" ? <Gangwon setData={setData} /> : null}
             </h1>
           </div>
 
           {/* 동 */}
           <div className={styles.regionSelectBox}>
             {region === "서울특별시" ? chooseSeoulPage() : null}
+            {region === "강원도" ? chooseGangwonPage() : null}
             {/* {region === "Busan" ? chooseBusanPage() : null} */}
             {/* {region === "Daegu" ? choosePage() : null} */}
           </div>
