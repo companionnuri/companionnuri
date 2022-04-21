@@ -23,6 +23,10 @@ function SubsideMenu(props) {
     window.location.href = "/Region";
   };
 
+  const infoButtonClick = () => {
+    window.location.href = "/Info";
+  };
+
   const searchButtonClick = () => {
     setValue(!value);
     console.log(value);
@@ -32,6 +36,18 @@ function SubsideMenu(props) {
   return (
     <nav>
       <ul className="m-0 p-0">
+        <li className="list-unstyled" style={submenuItem}>
+          <button
+            onClick={infoButtonClick}
+            className="d-flex flex-column align-items-center justify-content-center w-100 h-100 "
+            style={subMenuItemBtn}
+          >
+            <i class="fa-solid fa-arrow-pointer" style={submenuItemIcon}></i>
+            <span className="mt-1" style={submenuItemTitle}>
+              궁금해
+            </span>
+          </button>
+        </li>
         <li className="list-unstyled" style={submenuItem}>
           <button
             onClick={searchButtonClick}
