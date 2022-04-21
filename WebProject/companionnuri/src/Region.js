@@ -56,7 +56,6 @@ import Gyanggu from "./region/Gangwon/Gyanggu";
 import Gyangyang from "./region/Gangwon/Gyangyang";
 import Gyeongwol from "./region/Gangwon/Gyeongwol";
 
-
 import No from "./region/No";
 
 const regionPage = {
@@ -179,9 +178,6 @@ function Region(props, { match }) {
         return <Ggoseong setinputValue={setinputValue} />;
       case "강원도 양양군":
         return <Gyangyang setinputValue={setinputValue} />;
-  
-        
-
 
       default:
         return <No />;
@@ -191,7 +187,7 @@ function Region(props, { match }) {
 
   const navigate = useNavigate();
   const clickButton = (e) => {
-    navigate("/", {
+    navigate("/Main", {
       state: {
         inputValue,
       },
