@@ -2,15 +2,15 @@ package com.companionnuri.nuri.map.domain;
 
 import static lombok.AccessLevel.*;
 
-import java.util.Objects;
-
 import javax.persistence.Embeddable;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @Getter
+@EqualsAndHashCode
 @NoArgsConstructor(access = PROTECTED)
 public class Address {
 	private String street;
@@ -38,21 +38,5 @@ public class Address {
 		public Address build() {
 			return new Address(this);
 		}
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Address address = (Address)o;
-		return Objects.equals(getStreet(), address.getStreet()) && Objects.equals(this.getFloor(),
-			address.getFloor());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getStreet(), this.getFloor());
 	}
 }
