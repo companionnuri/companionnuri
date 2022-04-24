@@ -5,13 +5,12 @@ import lombok.Getter;
 @Getter
 public class ApiQuery {
 
-	private String API_KEY;
-
+	private final String OPEN_KEY = "lA29%2FannvhdQHnNE4mon7ZoyNq0ue6P%2FPnYQuFsfaZ7D8YedR6DOISotomyacj0u15iLaCeruqZUsGe%2F79DpRA%3D%3D";
 	private final StringBuilder queryString;
 	private OpenApiAddress apiAddress;
 
 	private ApiQuery(Builder builder) {
-		queryString = builder.queryString.append("serviceKey=").append(API_KEY);
+		queryString = builder.queryString.append("serviceKey=").append(OPEN_KEY);
 	}
 
 	public ApiQuery(StringBuilder queryString, OpenApiAddress openApiAddress) {
@@ -36,4 +35,5 @@ public class ApiQuery {
 			return new ApiQuery(this);
 		}
 	}
+
 }

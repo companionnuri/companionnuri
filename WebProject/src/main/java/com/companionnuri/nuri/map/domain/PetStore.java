@@ -2,20 +2,20 @@ package com.companionnuri.nuri.map.domain;
 
 import static lombok.AccessLevel.*;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = PROTECTED)
+@EqualsAndHashCode
 public class PetStore {
 
 	@Id
@@ -34,22 +34,6 @@ public class PetStore {
 		name = builder.name;
 		category = builder.category;
 		address = builder.address;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		PetStore petStore = (PetStore)o;
-		return Objects.equals(getId(), petStore.getId()) && Objects.equals(getName(),
-			petStore.getName());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getId(), getName());
 	}
 
 	public static class Builder {
