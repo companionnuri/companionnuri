@@ -2,17 +2,9 @@ package com.companionnuri.nuri.map.service;
 
 import java.util.List;
 
-import com.companionnuri.nuri.map.domain.Address;
-import com.companionnuri.nuri.map.domain.PetStore;
-import com.companionnuri.nuri.map.domain.StoreCategory;
+import com.companionnuri.nuri.map.domain.Store;
+import com.companionnuri.nuri.map.service.openapi.ApiQuery;
 
 public interface PetStoreService {
-
-	Long savePetStore(PetStore petStore);
-
-	List<PetStore> searchStores(String name);
-
-	List<PetStore> searchStores(Address address);
-
-	List<PetStore> searchStores(StoreCategory category);
+	List<Store> searchStores(ApiQuery apiQuery);
 }
