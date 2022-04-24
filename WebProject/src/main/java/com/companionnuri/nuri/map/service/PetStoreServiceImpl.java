@@ -1,45 +1,58 @@
 package com.companionnuri.nuri.map.service;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.companionnuri.nuri.map.domain.Address;
-import com.companionnuri.nuri.map.domain.PetStore;
-import com.companionnuri.nuri.map.domain.StoreCategory;
-import com.companionnuri.nuri.map.repository.PetStoreRepository;
+import com.companionnuri.nuri.map.domain.Store;
+import com.companionnuri.nuri.map.service.openapi.ApiQuery;
+import com.companionnuri.nuri.map.service.openapi.OpenApi;
+import com.companionnuri.nuri.map.service.openapi.OpenApiAddress;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class PetStoreServiceImpl implements PetStoreService{
 
-	private final PetStoreRepository petStoreRepository;
-
-	@Transactional
-	@Override
-	public Long savePetStore(PetStore petStore) {
-		petStoreRepository.save(petStore);
-		return petStore.getId();
-	}
+	private final OpenApi openApi;
+	private final Executor executor = Executors.newFixedThreadPool(Math.min(OpenApiAddress.values().length, 100), r -> {
+		Thread t = new Thread(r);
+		t.setDaemon(true);
+		return t;
+	});
 
 	@Override
-	public List<PetStore> searchStores(String name) {
-		return petStoreRepository.findByName(name);
+	public List<Store> searchStores(ApiQuery apiQuery) {
+	//	log.info("apiQuery.getAPI_KEY()={}");
+		
+		List<ApiQuery> apiQueries = Arrays.stream(OpenApiAddress.values())
+			.map(openApiAddress -> new ApiQuery(apiQuery.getQueryString(), openApiAddress))
+			.collect(toList());
+
+		List<CompletableFuture<List<Store>>> collect = apiQueries.stream()
+			.map(query -> CompletableFuture.supplyAsync(() -> openApi.getData(query), executor))
+			.collect(toList());
+
+		return collect.stream()
+			.map(CompletableFuture::join)
+			.flatMap(Collection::stream)
+			.collect(toList());
 	}
 
-	@Override
-	public List<PetStore> searchStores(Address address) {
-		// TODO
-		return null;
+	private String getUrl() {
+		return null;//new ApiUrl().url(SEOUL_YONGSAN_API_URL).putQuery(PAGE, 1).putQuery(PER_PAGE, 10).build();
 	}
 
-	@Override
-	public List<PetStore> searchStores(StoreCategory category) {
-		// TODO
-		return null;
-	}
 }

@@ -37,4 +37,4 @@ out/
 .vscode/
 
 # API KEYs
-src/main/resources/API-KEY.properties
+src/main/java/com/companionnuri/nuri/map/service/openapi/ApiQuery.java
