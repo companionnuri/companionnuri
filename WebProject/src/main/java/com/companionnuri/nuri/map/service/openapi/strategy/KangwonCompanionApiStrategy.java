@@ -22,13 +22,17 @@ public class KangwonCompanionApiStrategy implements ApiStrategy {
 		List<Store> stores = new ArrayList<>();
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject object = jsonArray.getJSONObject(i);
-			Store store = new Store.Builder().name(object.getString("업체명"))
-				.category(object.getString("업체구분"))
-				.street(object.getString("도로명 주소"))
-				.latitude(object.getString("위도"))
-				.longitude(object.getString("경도"))
-				.build();
-			stores.add(store);
+			try {
+				Store store = new Store.Builder().name(object.getString("업체명"))
+					.category(object.getString("업체구분"))
+					.street(object.getString("지번 주소"))
+					.latitude(object.getString("위도"))
+					.longitude(object.getString("경도"))
+					.build();
+				stores.add(store);
+			} catch (Exception e) {
+				System.out.println(object.toString());
+			}
 		}
 		return stores;
 	}

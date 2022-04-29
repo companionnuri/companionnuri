@@ -21,14 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class OpenApiTemplate implements OpenApi {
 
-
-
 	private final Map<String, ApiStrategy> apiStrategy;
 
 	@Override
 	public List<Store> getData(ApiQuery apiQuery) {
 		try {
-			URL url = new URL(apiQuery.toString());
+			URL url = new URL(apiQuery.getUrl());
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-type", "application/json");
@@ -48,7 +46,7 @@ public class OpenApiTemplate implements OpenApi {
 			rd.close();
 			conn.disconnect();
 
-			return apiStrategy.get(apiQuery.getApiAddress().getBeanName()).handle(new JSONObject(sb.toString()));
+			return apiStrategy.get(apiQuery.getBeanName()).handle(new JSONObject(sb.toString()));
 
 		} catch (Exception e){
 			// API 오류 핸들러를 추가하자.
