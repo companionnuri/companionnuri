@@ -6,6 +6,6 @@ class CompanionApiTest {
 
 	@Test
 	public void apiTest() {
-
+		System.out.println(35 * 2 / 35);
 	}
 }
