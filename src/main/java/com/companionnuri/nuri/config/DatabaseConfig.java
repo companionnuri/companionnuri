@@ -4,6 +4,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages = "")
+@MapperScan(basePackages = "com.companionnuri.nuri.model.mapper")
 public class DatabaseConfig {
 }

@@ -4,4 +4,22 @@
 
 <mapper namespace="com.companionnuri.nuri.model.mapper.NuriInfoMapper">
 
+    <select id="getLocationCategory" parameterType="int" resultType="LocationListDto">
+        select locId locationId, locListId categoryId, locName locationName, locLat locationLat, locLng locationLng
+        from location
+        where locListId = #{categoryId};
+    </select>
+
+    <select id="getLocationRegion" parameterType="int" resultType="LocationListDto">
+        select locId locationId, locListId categoryId, locName locationName, locLat locationLat, locLng locationLng
+        from location
+        where locRegionCode = #{regionCode};
+    </select>
+    <select id="getLocationDetail" parameterType="int" resultType="LocationDto">
+        select locId locationId, locListId categoryId, locName locationName, locAddr locationAddr, locRoadAddr locationRoadAddr, locTel locationTel
+        from location
+        where locId = #{locationId};
+    </select>
+
+
 </mapper>

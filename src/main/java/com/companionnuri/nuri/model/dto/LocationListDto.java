@@ -1,13 +1,12 @@
 package com.companionnuri.nuri.model.dto;
 
-public class LocationDto {
+public class LocationListDto {
 
     int locationId;
     int categoryId;
     String locationName;
-    String locationAddr;
-    String locationRoadAddr;
-    String locationTel;
+    String locationLng;
+    String locationLat;
 
     public int getLocationId() {
         return locationId;
@@ -33,27 +32,19 @@ public class LocationDto {
         this.locationName = locationName;
     }
 
-    public String getLocationAddr() {
-        return locationAddr;
+    public String getLocationLng() {
+        return locationLng;
     }
 
-    public void setLocationAddr(String locationAddr) {
-        this.locationAddr = locationAddr;
+    public void setLocationLng(String locationLng) {
+        this.locationLng = locationLng;
     }
 
-    public String getLocationRoadAddr() {
-        return locationRoadAddr;
+    public String getLocationLat() {
+        return locationLat;
     }
 
-    public void setLocationRoadAddr(String locationRoadAddr) {
-        this.locationRoadAddr = locationRoadAddr;
-    }
-
-    public String getLocationTel() {
-        return locationTel;
-    }
-
-    public void setLocationTel(String locationTel) {
-        this.locationTel = locationTel;
+    public void setLocationLat(String locationLat) {
+        this.locationLat = locationLat;
     }
 }
