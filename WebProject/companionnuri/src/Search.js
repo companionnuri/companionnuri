@@ -21,7 +21,7 @@ const clickButton = () => {
 
 function Search(props) {
   const value = useLocation();
-  const searchKeyword = value.state.inputValue;
+  const searchKeyword = value.state.data;
 
   return (
     <div>

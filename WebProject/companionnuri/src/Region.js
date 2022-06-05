@@ -82,8 +82,8 @@ const searchResultBoxIn = {
 };
 
 function Region(props, { match }) {
-  const [region, setRegion] = useState("noregion");
-  const [data, setData] = useState("noregion");
+  const [region, setRegion] = useState(null);
+  const [data, setData] = useState(null);
 
   const [secondstylename, setSecondStylename] = useState("no");
 
@@ -189,7 +189,7 @@ function Region(props, { match }) {
   const clickButton = (e) => {
     navigate("/Main", {
       state: {
-        inputValue,
+        data,
       },
     });
   };
@@ -221,28 +221,28 @@ function Region(props, { match }) {
             <h1>
               {region === "noregion" ? null : null}
               {region === "서울특별시" ? <Seoul setData={setData} /> : null}
-              {region === "부산광역시" ? <Busan setData={setData} /> : null}
+              {/* {region === "부산광역시" ? <Busan setData={setData} /> : null}
               {region === "대구광역시" ? <Daegu setData={setData} /> : null}
               {region === "인천광역시" ? <Incheon setData={setData} /> : null}
               {region === "광주광역시" ? <Gwangju setData={setData} /> : null}
               {region === "대전광역시" ? <Daejeon setData={setData} /> : null}
               {region === "울산광역시" ? <Ulsan setData={setData} /> : null}
-              {region === "강원도" ? <Gangwon setData={setData} /> : null}
+              {region === "강원도" ? <Gangwon setData={setData} /> : null} */}
             </h1>
           </div>
 
           {/* 동 */}
-          <div className={styles.regionSelectBox}>
+          {/* <div className={styles.regionSelectBox}>
             {region === "서울특별시" ? chooseSeoulPage() : null}
             {region === "강원도" ? chooseGangwonPage() : null}
-            {/* {region === "Busan" ? chooseBusanPage() : null} */}
-            {/* {region === "Daegu" ? choosePage() : null} */}
-          </div>
+            {region === "Busan" ? chooseBusanPage() : null}
+            {region === "Daegu" ? choosePage() : null}
+          </div> */}
           <div className={styles.searchResultBox}>
             <div style={searchResultBoxIn}>
               <div class={styles.resultCommentBox}>
                 <p className="pt-4 py-3" style={resultCommentBoxP}>
-                  {inputValue}
+                  {data}
                 </p>
               </div>
               <buton className={styles.searchButton} onClick={clickButton}>

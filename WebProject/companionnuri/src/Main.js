@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 function Main() {
   const value = useLocation();
-  const searchKeyword = value.state?.inputValue;
+  const searchKeyword = value.state?.data;
   console.log(searchKeyword);
 
   return (
