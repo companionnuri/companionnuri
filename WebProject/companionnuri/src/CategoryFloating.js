@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const categoryItemList = {
   padding: "13px 11px 11px",
@@ -28,29 +29,36 @@ const categoryItemLastList = {
 
 function CategoryFloating() {
   const [categoryValue, setcategoryValueValue] = useState(null);
+  const navigate = useNavigate();
 
   const foodButton = () => {
-    console.log("음식점");
+    // console.log("음식점");
     setcategoryValueValue("음식점");
   };
 
   const cafeButton = () => {
-    console.log("카페");
+    // console.log("카페");
     setcategoryValueValue("카페");
+    navigate("/Cafemain", {
+      state: {
+        id: 1,
+        job: "카페",
+      },
+    });
   };
 
   const parkButton = () => {
-    console.log("공원");
+    // console.log("공원");
     setcategoryValueValue("공원");
   };
 
   const hotelButton = () => {
-    console.log("펜션");
+    // console.log("펜션");
     setcategoryValueValue("펜션");
   };
 
   const hospitalButton = () => {
-    console.log("병원");
+    // console.log("병원");
     setcategoryValueValue("병원");
   };
 

@@ -1,7 +1,29 @@
+import CafeKakaoMapScript from "./CafeKakaoMapScript";
+import styles from "./css/Map.module.css";
+import React, { useState, useEffect } from "react";
 const { kakao } = window;
 
-export default function KakaoMapScript(props) {
-  const container = document.getElementById("myMap");
+function Cafemap() {
+  const [locName, setLocName] = useState(null);
+  useEffect(() => {
+    fetch(
+      "http://ec2-3-35-16-129.ap-northeast-2.compute.amazonaws.com:8081/nuri/category/1"
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((data) => {
+        console.log(JSON.stringify(data));
+      })
+      .catch((error) => {
+        console.log(`error: ${error}`);
+      });
+  }, []);
+
+  const container = document.getElementById("cafemap");
   const options = {
     center: new kakao.maps.LatLng(37.5642135, 127.0016985),
     level: 1,
@@ -11,7 +33,7 @@ export default function KakaoMapScript(props) {
   var positions = [
     {
       title: "카카오",
-      content: "<div>카카오</div>",
+      content: "<div>11231231231</div>",
       latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
     },
     {
@@ -85,4 +107,12 @@ export default function KakaoMapScript(props) {
 
   marker.setMap(map);
   map.panBy(100, 50);
+
+  return (
+    <div>
+      <div id="cafemap" className={styles.mymap}></div>
+    </div>
+  );
 }
+
+export default Cafemap;
