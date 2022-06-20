@@ -68,7 +68,7 @@ function SubsideMenu(props) {
           >
             <i class="fa-solid fa-map" style={submenuItemIcon}></i>
             <span className="mt-1" style={submenuItemTitle}>
-              지도별
+              지역별
             </span>
           </button>
         </li>
