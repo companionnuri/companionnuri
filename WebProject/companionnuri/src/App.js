@@ -7,6 +7,7 @@ import Search from "./Search";
 import Info from "./Info";
 import Detail from "./Detail";
 import Category from "./Category";
+import Cafemain from "./Cafemain";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Info />} />
         <Route path="/Main" element={<Main />} />
+        <Route path="/Cafemain" element={<Cafemain />} />
         <Route path="/Region" element={<Region />} />
         <Route path="/Detail" element={<Detail />} />
         <Route path="/Info" element={<Info />} />

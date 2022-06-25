@@ -8,10 +8,10 @@ const hd_search_icon = {
   fontSize: "20px",
   marginRight: "5px",
   color: "#101820",
-  width: '100%',
-  height: '100vh',
-  position: 'absolute',
-  left : 0,
+  width: "100%",
+  height: "100vh",
+  position: "absolute",
+  left: 0,
   top: 0,
 };
 

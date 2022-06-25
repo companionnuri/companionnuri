@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class NuriInfoServiceImpl implements NuriInfoService {
@@ -20,9 +21,15 @@ public class NuriInfoServiceImpl implements NuriInfoService {
     }
 
     @Override
-    public List<LocationListDto> getLocationRegion(int regionCode) throws Exception {
-        return nuriInfoMapper.getLocationRegion(regionCode);
+    public List<LocationListDto> getLocationAll() throws Exception {
+        return nuriInfoMapper.getLocationAll();
     }
+
+    @Override
+    public Map<String, String> getRegionProj(int regionCode) throws Exception {
+        return nuriInfoMapper.getRegionProj(regionCode);
+    }
+
 
     @Override
     public LocationDto getLocationDetail(int locationId) throws Exception {
