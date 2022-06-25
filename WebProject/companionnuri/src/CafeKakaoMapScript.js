@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 const { kakao } = window;
 
-function CafeKakaoMapScript(props) {
-  useEffect(() => {
-    fetch(
-      "http://ec2-3-35-16-129.ap-northeast-2.compute.amazonaws.com:8081/nuri/category/1"
-    )
-      .then((res) => {
-        // console.log(res);
-        return res.json();
-      })
-      .then((data) => {
-        // console.log(data.locations);
-        props.setLocName(data.locations);
-      });
-  });
+function CafeKakaoMapScript() {
+  // const [locationNames, setlocationNames] = useState(null);
+
+  fetch("http://localhost:8081/nuri/category/1")
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(`${res.locations[0].locationName}`);
+      // setlocationNames(res.locations[0].locationName);
+    });
+
+  // console.log(locationNames);
 
   const container = document.getElementById("cafemap");
   const options = {
