@@ -39,12 +39,7 @@ function CategoryFloating() {
   const cafeButton = () => {
     // console.log("카페");
     setcategoryValueValue("카페");
-    navigate("/Cafemain", {
-      state: {
-        id: 1,
-        job: "카페",
-      },
-    });
+    window.location.href = "/Cafemain";
   };
 
   const parkButton = () => {
