@@ -1,9 +1,6 @@
 package com.companionnuri.nuri.controller;
 
-import com.companionnuri.nuri.model.dto.LocationDto;
-import com.companionnuri.nuri.model.dto.LocationListDto;
 import com.companionnuri.nuri.model.service.NuriInfoService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
