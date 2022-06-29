@@ -23,7 +23,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.companionnuri.nuri.controller"))
-                .paths(regex("/nuri/.*"))
+                .paths(regex("/.*"))
                 .build();
     }
 
@@ -31,7 +31,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder().title("CompanionNuri REST API")
                 .description("CompanionNuri API Reference for Front-End Developers")
                 .termsOfServiceUrl("https://github.com/companionnuri")
-                .version("1.1").build();
+                .version("1.2").build();
     }
 
 }
