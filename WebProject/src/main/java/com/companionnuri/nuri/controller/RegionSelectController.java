@@ -5,7 +5,7 @@ import com.companionnuri.nuri.model.dto.SigunguDto;
 import com.companionnuri.nuri.model.service.RegionSelectService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/reg")
 @CrossOrigin("*")
 @RequiredArgsConstructor
+@Slf4j
 public class RegionSelectController {
 
     private final RegionSelectService regionSelectService;

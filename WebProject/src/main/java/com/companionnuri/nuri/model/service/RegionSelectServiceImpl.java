@@ -4,7 +4,6 @@ import com.companionnuri.nuri.model.dto.SidoDto;
 import com.companionnuri.nuri.model.dto.SigunguDto;
 import com.companionnuri.nuri.model.mapper.RegionSelectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

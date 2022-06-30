@@ -4,7 +4,6 @@ import com.companionnuri.nuri.model.dto.LocationDto;
 import com.companionnuri.nuri.model.dto.LocationListDto;
 import com.companionnuri.nuri.model.mapper.NuriInfoMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +17,7 @@ public class NuriInfoServiceImpl implements NuriInfoService {
 
     @Override
     public List<LocationListDto> getLocationCategory(int categoryId) throws Exception {
+        List<LocationListDto> list = nuriInfoMapper.getLocationCategory(categoryId);
         return nuriInfoMapper.getLocationCategory(categoryId);
     }
 
