@@ -4,6 +4,7 @@ import com.companionnuri.nuri.model.dto.SidoDto;
 import com.companionnuri.nuri.model.dto.SigunguDto;
 import com.companionnuri.nuri.model.service.RegionSelectService;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/reg")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class RegionSelectController {
 
-    @Autowired
-    RegionSelectService regionSelectService;
+    private final RegionSelectService regionSelectService;
 
     @ApiOperation(value = "서비스 대상이 되는 모든 시/도의 Code와 Name을 반환한다.",
             notes = "현재는 서울만 존재하기 때문에 다소 무의미하지만 서비스 확장 가능성을 고려해 분리함" + "\n" +
