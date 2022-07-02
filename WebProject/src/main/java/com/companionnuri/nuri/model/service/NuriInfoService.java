@@ -8,9 +8,9 @@ import java.util.Map;
 
 public interface NuriInfoService {
 
-    List<LocationListDto> getLocationCategory(int categoryId) throws Exception;
-    List<LocationListDto> getLocationAll() throws  Exception;
-    Map<String, String> getRegionProj(int regionCode) throws Exception;
-    LocationDto getLocationDetail(int locationId) throws  Exception;
+    List<LocationListDto> getLocationCategory(int categoryId);
+    List<LocationListDto> getLocationAll() ;
+    Map<String, String> getRegionProj(int regionCode) ;
+    LocationDto getLocationDetail(int locationId) ;
 
 }

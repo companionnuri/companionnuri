@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface RegionSelectService {
 
-    List<SidoDto> getSidoList() throws Exception;
-    List<SigunguDto> getSigunguList(int sidoCode) throws Exception;
+    List<SidoDto> getSidoList() ;
+    List<SigunguDto> getSigunguList(int sidoCode) ;
 }
