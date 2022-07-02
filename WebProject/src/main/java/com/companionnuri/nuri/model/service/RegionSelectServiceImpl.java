@@ -15,12 +15,12 @@ public class RegionSelectServiceImpl implements RegionSelectService {
     private final RegionSelectMapper regionSelectMapper;
 
     @Override
-    public List<SidoDto> getSidoList() throws Exception {
+    public List<SidoDto> getSidoList() {
         return regionSelectMapper.getSidoList();
     }
 
     @Override
-    public List<SigunguDto> getSigunguList(int sidoCode) throws Exception {
+    public List<SigunguDto> getSigunguList(int sidoCode) {
         return regionSelectMapper.getSigunguList(sidoCode);
     }
 }

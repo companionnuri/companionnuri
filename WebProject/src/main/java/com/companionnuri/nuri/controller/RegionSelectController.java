@@ -1,5 +1,6 @@
 package com.companionnuri.nuri.controller;
 
+import com.companionnuri.nuri.exception.WrongRegionCodeException;
 import com.companionnuri.nuri.model.dto.SidoDto;
 import com.companionnuri.nuri.model.dto.SigunguDto;
 import com.companionnuri.nuri.model.service.RegionSelectService;
@@ -14,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reg")
-@CrossOrigin("*")
 @RequiredArgsConstructor
 @Slf4j
 public class RegionSelectController {
@@ -26,13 +26,9 @@ public class RegionSelectController {
                     "반환되는 sidoCode는 전체 지역 코드 중 앞 두자리. 서울 = 11")
     @GetMapping("/sido")
     public ResponseEntity<?> getSidoList() {
-        try {
-            List<SidoDto> list = regionSelectService.getSidoList();
-            return new ResponseEntity<List<SidoDto>>(list, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        List<SidoDto> list = regionSelectService.getSidoList();
+        return new ResponseEntity<List<SidoDto>>(list, HttpStatus.OK);
 
     }
 
@@ -41,12 +37,15 @@ public class RegionSelectController {
                     "현재는 서울만 서비스 하므로, /11만 입력하게 될 것")
     @GetMapping("/sigungu/{sidoCode}")
     public ResponseEntity<?> getSigunguList(@PathVariable int sidoCode) {
-        try {
-            List<SigunguDto> list = regionSelectService.getSigunguList(sidoCode);
-            return new ResponseEntity<List<SigunguDto>>(list, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        List<SigunguDto> list = regionSelectService.getSigunguList(sidoCode);
+        validateRegionCode(list);
+        return new ResponseEntity<List<SigunguDto>>(list, HttpStatus.OK);
+    }
+
+    private void validateRegionCode(List<SigunguDto> list) {
+        if (list.isEmpty()) {
+            throw new WrongRegionCodeException();
         }
     }
 
