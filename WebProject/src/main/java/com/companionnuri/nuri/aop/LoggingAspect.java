@@ -1,9 +1,11 @@
 package com.companionnuri.nuri.aop;
 
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
@@ -20,14 +22,18 @@ public class LoggingAspect {
     }
 
     @Around("publicServiceMethods()")
-    public Object serviceMethodLoggingAdvice(ProceedingJoinPoint pjp) throws Throwable {
+    public Object serviceMethodPerformanceAdvice(ProceedingJoinPoint pjp) throws Throwable {
         StopWatch sw = new StopWatch();
         sw.start();
-        log.info("[METHOD call] {}", pjp.getSignature().toShortString());
-        log.info("[Parameters] {}", Arrays.toString(pjp.getArgs()));
         Object result = pjp.proceed();
         sw.stop();
-        log.info("[Completed in] {} ms", sw.getLastTaskTimeMillis());
+        log.info("[COMPLETED in] {} ms", sw.getLastTaskTimeMillis());
         return result;
+    }
+
+    @Before("publicServiceMethods()")
+    public void serviceMethodLoggingAdvice(JoinPoint joinPoint) {
+        log.info("[METHOD call] {}", joinPoint.getSignature().toShortString());
+        log.info("[PARAMETERS] {}", Arrays.toString(joinPoint.getArgs()));
     }
 }
