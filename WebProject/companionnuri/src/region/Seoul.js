@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const loadingMessage = {
-  color: 'rgb(95, 39, 205)',
-  fontSize:'38px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height:'500px',
-}
+  color: "rgb(95, 39, 205)",
+  fontSize: "38px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "500px",
+};
 function Seoul(props) {
+  const [users, setUsers] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    const [users, setUsers] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
+  console.log(users);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -25,9 +25,9 @@ function Seoul(props) {
         // loading 상태를 true 로 바꿉니다.
         setLoading(true);
         const response = await axios.get(
-          'https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=11*000000&is_ignore_zero=true'
+          "http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/reg/sigungu/11"
         );
-          setUsers(response.data.regcodes); // 데이터는 response.data 안에 들어있습니다.
+        setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
       } catch (e) {
         setError(e);
       }
@@ -37,13 +37,29 @@ function Seoul(props) {
     fetchUsers();
   }, []);
 
-  if (loading) return <div><p style={loadingMessage}><i class="fa-solid fa-spinner"></i></p></div>;
-  if (error) return <div><p style={loadingMessage}><i class="fa-solid fa-triangle-exclamation"></i></p></div>;
+  if (loading)
+    return (
+      <div>
+        <p style={loadingMessage}>
+          <i class="fa-solid fa-spinner"></i>
+        </p>
+      </div>
+    );
+  if (error)
+    return (
+      <div>
+        <p style={loadingMessage}>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </p>
+      </div>
+    );
   if (!users) return null;
   return (
     <div>
-      {users.map(user => (
-        <button onClick={() => props.setData(user.name)}>{user.name}</button>
+      {users.map((user) => (
+        <button onClick={() => props.setData(user.regionName)}>
+          {user.regionName}
+        </button>
       ))}
     </div>
   );
