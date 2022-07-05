@@ -34,6 +34,7 @@ function CategoryFloating() {
   const foodButton = () => {
     // console.log("음식점");
     setcategoryValueValue("음식점");
+    window.location.href = "/Foodmain";
   };
 
   const cafeButton = () => {
