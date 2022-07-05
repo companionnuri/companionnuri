@@ -8,6 +8,7 @@ import Info from "./Info";
 import Detail from "./Detail";
 import Category from "./Category";
 import Cafemain from "./Cafemain";
+import Foodmain from "./Foodmain";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Info />} />
         <Route path="/Main" element={<Main />} />
         <Route path="/Cafemain" element={<Cafemain />} />
+        <Route path="/Foodmain" element={<Foodmain />} />
         <Route path="/Region" element={<Region />} />
         <Route path="/Detail" element={<Detail />} />
         <Route path="/Info" element={<Info />} />
