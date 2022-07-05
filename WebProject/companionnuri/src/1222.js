@@ -1,9 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 const { kakao } = window;
 
 export default function Map() {
   const [locName, setlocName] = useState("");
+  console.log(locName);
+
+  useEffect(() => {
+    fetchF();
+    mapscript();
+  }, []);
 
   const fetchF = () => {
     fetch(
@@ -12,47 +17,11 @@ export default function Map() {
       .then((res) => res.json())
       .then((res) => {
         console.log(`${res.locations}`);
-        setlocName(res.locations);
       });
   };
 
-  const start = () => {
-    let contentDiv = [];
-    let contentlng = [];
-    let contentlat = [];
-
-    const keys = Object.keys(locName);
-    for (let i = 0; i < keys.length; i++) {
-      const k = keys[i];
-      const d = locName[k].locationName;
-      const lng = locName[k].locationLng;
-      const lat = locName[k].locationLat;
-      contentDiv.push(d);
-      contentlng.push(lng);
-      contentlat.push(lat);
-    }
-
-    var positions = [
-      {
-        // title: "카카오123",
-        // content: "<div>33333</div>",
-        // latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
-      },
-    ];
-
-    let positionContent = {};
-
-    for (let i = 0; i < keys.length; i++) {
-      console.log(contentDiv[i], contentlat[i], contentlng[i]);
-
-      positionContent = {
-        title: contentDiv[i],
-        content: "<div>" + contentDiv[i] + "</div>",
-        latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
-      };
-      positions.push(positionContent);
-      // setLoading(false);
-    }
+  const mapscript = () => {
+    console.log(locName);
 
     let container = document.getElementById("map");
     let options = {
@@ -62,10 +31,18 @@ export default function Map() {
     //map
     const map = new kakao.maps.Map(container, options);
 
+    // let contentDiv = locName.map((user) => user.locationName);
+
+    let positions = [
+      {
+        title: "카카오123",
+        content: "<div></div>",
+        latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
+      },
+    ];
+
     const imageSrc =
       "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-
-    let marker;
 
     for (let i = 0; i < positions.length; i++) {
       // 마커 이미지의 이미지 크기 입니다
@@ -74,7 +51,8 @@ export default function Map() {
       // 마커 이미지를 생성합니다
       const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-      marker = new kakao.maps.Marker({
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({
         map: map, // 마커를 표시할 지도
         position: positions[i].latlng, // 마커를 표시할 위치
         title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
@@ -116,14 +94,6 @@ export default function Map() {
 
     marker.setMap(map);
   };
-
-  useEffect(() => {
-    fetchF();
-  }, []);
-
-  useEffect(() => {
-    start();
-  }, [fetchF]);
 
   return <div id="map" style={{ width: "100vw", height: "100vh" }}></div>;
 }
