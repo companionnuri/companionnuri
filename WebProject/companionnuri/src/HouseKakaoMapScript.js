@@ -47,7 +47,11 @@ export default function Map() {
 
       positionContent = {
         title: contentDiv[i],
-        content: "<div>" + contentDiv[i] + "</div>",
+        content:
+          "<div>" +
+          '<i class="fa-solid fa-hotel"></i>' +
+          contentDiv[i] +
+          "</div>",
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
       };
       positions.push(positionContent);

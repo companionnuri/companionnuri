@@ -47,7 +47,11 @@ export default function Map() {
 
       positionContent = {
         title: contentDiv[i],
-        content: "<div>" + contentDiv[i] + "</div>",
+        content:
+          "<div>" +
+          '<i class="fa-solid fa-utensils"></i>' +
+          contentDiv[i] +
+          "</div>",
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
       };
       positions.push(positionContent);
@@ -83,6 +87,7 @@ export default function Map() {
       // 마커에 표시할 인포윈도우를 생성합니다
       const infowindow = new kakao.maps.InfoWindow({
         content: positions[i].content, // 인포윈도우에 표시할 내용
+        // content: <i class="fa-solid fa-utensils"></i>,
       });
 
       // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
