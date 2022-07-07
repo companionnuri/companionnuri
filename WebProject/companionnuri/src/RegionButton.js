@@ -28,7 +28,7 @@ function RegionButton(props) {
   const clickHandler = (params) => {
     const v = params.target.value;
     props.setRegion(v);
-    props.setData("no");
+    props.setData("");
   };
 
   useEffect(() => {
