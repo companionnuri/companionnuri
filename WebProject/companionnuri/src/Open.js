@@ -1,72 +1,101 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Searchbar from "./Searchbar";
 import styles from "./css/Open.module.css";
 import { AutoComplete } from "antd";
 import SearchContent from "./SearchContent";
 
-
 const searchBox = {
-  boxShadow: '0px 2px 10px rgb(0 0 0 / 15%)',
-  zIndex: '110',
-  height: '44px',
-  border: '2px solid #5f27cd',
-  borderRadius: '5px',
-  width: '475px',
-  marginLeft: '103px',
-}
-const searchInput ={
-  width: '100% !important',
-}
+  boxShadow: "0px 2px 10px rgb(0 0 0 / 15%)",
+  zIndex: "110",
+  height: "44px",
+  border: "2px solid #5f27cd",
+  borderRadius: "5px",
+  width: "475px",
+  marginLeft: "103px",
+};
+const searchInput = {
+  width: "100% !important",
+};
 const resultBox = {
-  width: '475px',
-  marginLeft: '103px',
-  marginTop: '25px',
-  borderTop: '1px solid #DBDEE0',
-  borderBottom: '1px solid #DBDEE0'
-}
+  width: "475px",
+  marginLeft: "103px",
+  marginTop: "25px",
+  borderTop: "1px solid #DBDEE0",
+  borderBottom: "1px solid #DBDEE0",
+};
 const searchResultP = {
-  fontSize: '16px',
-  color: '#424242',
-}
+  fontSize: "16px",
+  color: "#424242",
+};
 
 function Open(props) {
+  const [locName, setlocName] = useState("");
+  const [items, setItems] = useState([]);
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
   // settopValue(props.topinputValue);
   const [open, setOpen] = useState(false);
+  const [searchRealValue, setsearchRealValue] = useState(null);
 
   let result;
   let message;
 
   if (props.topValue) {
-    result = <h1 style={searchResultP} className="my-2"><b>{props.topValue}</b>의 검색 결과는 다음과 같다</h1>;
+    result = (
+      <h1 style={searchResultP} className="my-2">
+        <b>{props.topValue}</b>의 검색 결과는 다음과 같다
+      </h1>
+    );
   }
 
   if (inputValue) {
-    result = <h1 style={searchResultP} className="my-2"><b>{inputValue}</b>의 검색 결과는 다음과 같다</h1>;
+    result = (
+      <h1 style={searchResultP} className="my-2">
+        <b>{inputValue}</b>의 검색 결과는 다음과 같다
+      </h1>
+    );
   }
 
+  // const fetchF = () => {
+  //   fetch(
+  //     "http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/category/1"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       // console.log(`${res.locations}`);
+  //       setlocName(res.locations);
+  //       // const data = JSON.parse(res.locations);
+  //       // setItems(data);
+  //     });
+  // };
 
+  // useEffect(() => {
+  //   fetchF();
+  // }, []);
+
+  // const resultWord = locName.filter((word) => word.length > 6);
+
+  // console.log(resultWord);
 
   return (
     <div className={styles.searchDiv}>
-      <div >
+      <div>
         <div style={searchBox}>
-          <Searchbar setinputValue={setinputValue} setOpen={setOpen} style={searchInput}/>
+          <Searchbar
+            setinputValue={setinputValue}
+            setOpen={setOpen}
+            style={searchInput}
+          />
         </div>
-        <div style={resultBox}>
-          {result}
-        </div>
+        <div style={resultBox}>{result}</div>
         <div>
           <div>
-            <SearchContent/>
+            <SearchContent />
           </div>
         </div>
       </div>
       <button>
-        <span className="mt-1">
-          검색별
-        </span>
+        <span className="mt-1">검색별</span>
       </button>
     </div>
   );

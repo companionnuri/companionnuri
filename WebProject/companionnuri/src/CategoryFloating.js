@@ -51,6 +51,7 @@ function CategoryFloating() {
   const hotelButton = () => {
     // console.log("펜션");
     setcategoryValueValue("펜션");
+    window.location.href = "/Housemain";
   };
 
   const hospitalButton = () => {
