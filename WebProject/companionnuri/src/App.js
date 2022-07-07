@@ -10,6 +10,7 @@ import Category from "./Category";
 import Cafemain from "./Cafemain";
 import Foodmain from "./Foodmain";
 import Housemain from "./Housemain";
+import Hospitalmain from "./Hospitalmain";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Cafemain" element={<Cafemain />} />
         <Route path="/Foodmain" element={<Foodmain />} />
         <Route path="/Housemain" element={<Housemain />} />
+        <Route path="/Hospitalmain" element={<Hospitalmain />} />
         <Route path="/Region" element={<Region />} />
         <Route path="/Detail" element={<Detail />} />
         <Route path="/Info" element={<Info />} />

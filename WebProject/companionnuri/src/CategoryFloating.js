@@ -57,6 +57,7 @@ function CategoryFloating() {
   const hospitalButton = () => {
     // console.log("병원");
     setcategoryValueValue("병원");
+    window.location.href = "/Hospitalmain";
   };
 
   return (
