@@ -46,6 +46,7 @@ function CategoryFloating() {
   const parkButton = () => {
     // console.log("공원");
     setcategoryValueValue("공원");
+    window.location.href = "/Parkmain";
   };
 
   const hotelButton = () => {
