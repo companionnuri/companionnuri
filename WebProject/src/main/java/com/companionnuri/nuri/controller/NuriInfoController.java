@@ -3,6 +3,7 @@ package com.companionnuri.nuri.controller;
 import com.companionnuri.nuri.exception.CategoryNotFoundException;
 import com.companionnuri.nuri.exception.LocationNotFoundException;
 import com.companionnuri.nuri.exception.RegionNotFoundException;
+import com.companionnuri.nuri.exception.SearchResultNotFoundException;
 import com.companionnuri.nuri.model.dto.LocationDto;
 import com.companionnuri.nuri.model.dto.LocationListDto;
 import com.companionnuri.nuri.model.service.NuriInfoService;
@@ -13,9 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/nuri")
@@ -77,5 +76,58 @@ public class NuriInfoController {
         if (locationDto == null) {
             throw new LocationNotFoundException();
         }
+    }
+
+    @GetMapping("/search/{query}")
+    public ResponseEntity<?> searchByQuery(@PathVariable String query) {
+        List<LocationListDto> list = nuriInfoService.searchByQuery(query);
+        validateSearchList(list);
+        Map<String, Object> resultMap = searchResult(list);
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+    }
+
+    private void validateSearchList(List<LocationListDto> list) {
+        if (list.isEmpty()) {
+            throw new SearchResultNotFoundException();
+        }
+    }
+
+    private Map<String, Object> searchResult(List<LocationListDto> list) {
+        List<LocationListDto> cafes = new ArrayList<>();
+        List<LocationListDto> foods = new ArrayList<>();
+        List<LocationListDto> houses = new ArrayList<>();
+        List<LocationListDto> hospitals = new ArrayList<>();
+        List<LocationListDto> parks = new ArrayList<>();
+
+        for (LocationListDto location : list) {
+            int category = location.getCategoryId();
+
+            switch (category) {
+                case 1:
+                    cafes.add(location);
+                    break;
+                case 2:
+                    foods.add(location);
+                    break;
+                case 3:
+                    houses.add(location);
+                    break;
+                case 4:
+                    hospitals.add(location);
+                    break;
+                case 5:
+                    parks.add(location);
+                    break;
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("cafe", cafes);
+        result.put("restaurant", foods);
+        result.put("house", houses);
+        result.put("hospital", hospitals);
+        result.put("park", parks);
+
+        return result;
     }
 }

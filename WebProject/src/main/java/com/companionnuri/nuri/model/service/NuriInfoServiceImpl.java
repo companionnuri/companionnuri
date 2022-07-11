@@ -28,15 +28,17 @@ public class NuriInfoServiceImpl implements NuriInfoService {
 
     @Override
     public Map<String, String> getRegionProj(int regionCode) {
-//        Map<String, String> map = nuriInfoMapper.getRegionProj(regionCode);
-//        validateRegionCode(map);
         return nuriInfoMapper.getRegionProj(regionCode);
     }
-
 
     @Override
     public LocationDto getLocationDetail(int locationId) {
         return nuriInfoMapper.getLocationDetail(locationId);
+    }
+
+    @Override
+    public List<LocationListDto> searchByQuery(String query) {
+        return nuriInfoMapper.searchByQuery(query);
     }
 
 }

@@ -4,6 +4,12 @@
 
 <mapper namespace="com.companionnuri.nuri.model.mapper.NuriInfoMapper">
 
+    <select id="searchByQuery" parameterType="String" resultType="LocationListDto">
+        select locId locationId, locListId categoryId, locName locationName
+        from location
+        where locName like concat("%", #{query}, "%");
+    </select>
+
     <select id="getLocationCategory" parameterType="int" resultType="LocationListDto">
         select locId locationId, locListId categoryId, locName locationName, locLat locationLat, locLng locationLng
         from location

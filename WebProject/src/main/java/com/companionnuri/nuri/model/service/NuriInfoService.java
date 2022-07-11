@@ -13,4 +13,6 @@ public interface NuriInfoService {
     Map<String, String> getRegionProj(int regionCode) ;
     LocationDto getLocationDetail(int locationId) ;
 
+    List<LocationListDto> searchByQuery(String query);
+
 }
