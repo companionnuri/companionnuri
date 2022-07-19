@@ -31,7 +31,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder().title("CompanionNuri REST API")
                 .description("CompanionNuri API Reference for Front-End Developers")
                 .termsOfServiceUrl("https://github.com/companionnuri")
-                .version("1.2").build();
+                .version("1.3").build();
     }
 
 }
