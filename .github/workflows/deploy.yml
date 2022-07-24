@@ -43,15 +43,16 @@ jobs:
 
     ## maven build 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file ./WebProject/pom.xml
       
     ## docker build & push
     - name: Docker build & push
       if: contains(github.ref, 'master')
       run: |
+          cd ./WebProject
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri .
-          docker push ${{ secrets.DOCKER_REPO }}/companionnuri
+          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest .
+          docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
 
     ## deploy
     - name: Deploy
