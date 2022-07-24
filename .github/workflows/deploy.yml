@@ -50,7 +50,7 @@ jobs:
       if: contains(github.ref, 'master')
       run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f ./WebProject/Dockerfile -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest .
+          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest ./WebProject
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
 
     ## deploy
