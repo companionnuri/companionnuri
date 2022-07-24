@@ -36,7 +36,7 @@ jobs:
     - name: make application.properties
       if: contains(github.ref, 'master')
       run: |
-          cd ./src/main/resources
+          cd ./WebProject/src/main/resources
           touch ./application.properties
           echo "${{ secrets.PROPERTIES }}" > ./application.properties
       shell: bash
@@ -50,7 +50,7 @@ jobs:
       if: contains(github.ref, 'master')
       run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/companionnuri .
+          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri .
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri
 
     ## deploy
@@ -65,7 +65,7 @@ jobs:
           envs: GITHUB_SHA
           script: |
               sudo docker rm -f $(docker ps -qa)
-              sudo docker pull ${{ secrets.DOCKER_REPO }}/companionnuri
+              sudo docker pull ${{ secrets.DOCKER_REPO }}/companionnuri:latest
               docker-compose up -d
               docker image prune -f
 
