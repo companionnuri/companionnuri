@@ -49,9 +49,8 @@ jobs:
     - name: Docker build & push
       if: contains(github.ref, 'master')
       run: |
-          cd ./WebProject
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest .
+          docker build -f ./WebProject -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest .
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
 
     ## deploy
