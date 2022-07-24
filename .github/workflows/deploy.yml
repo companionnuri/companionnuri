@@ -53,21 +53,8 @@ jobs:
           docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest ./WebProject
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
 
-    ## deploy
-    - name: Deploy
-      uses: appleboy/ssh-action@master
-      id: deploy
-      if: contains(github.ref, 'master')
-      with:
-          host: ${{ secrets.HOST_PROD }}
-          username: ec2-user
-          key: ${{ secrets.PRIVATE_KEY }}
-          envs: GITHUB_SHA
-          script: |
-              sudo docker rm -f $(docker ps -qa)
-              sudo docker pull ${{ secrets.DOCKER_REPO }}/companionnuri:latest
-              docker-compose up -d
-              docker image prune -f
-
-
-   
+# 현재는 docker hub에 push까지 구현됨
+# EC2에 직접 접속해서, 
+# docker run docker run -d -p 8081:8081 --name companionnuri letsksy/companionnuri:latest
+# 입력하면 서버가 뜨는 구조
+# 저것까지 자동화할 예정
