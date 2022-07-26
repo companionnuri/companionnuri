@@ -1,12 +1,11 @@
 package com.companionnuri.nuri.aop;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
@@ -16,6 +15,9 @@ import java.util.Arrays;
 @Component
 @Slf4j
 public class LoggingAspect {
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
 
     @Pointcut("execution(public * com.companionnuri.nuri.model.service..*(..))")
     private void publicServiceMethods() {
@@ -35,5 +37,21 @@ public class LoggingAspect {
     public void serviceMethodLoggingAdvice(JoinPoint joinPoint) {
         log.info("[METHOD call] {}", joinPoint.getSignature().toShortString());
         log.info("[PARAMETERS] {}", Arrays.toString(joinPoint.getArgs()));
+    }
+
+    @AfterReturning(value = "publicServiceMethods()", returning = "returnValue")
+    public void serviceMethodResultAdvice(Object returnValue) {
+        try {
+            log.info("[RESULT json] \n {}", objectMapper
+                    .writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(returnValue));
+        } catch (JsonProcessingException e) {
+            log.error("[JSON ERROR]");
+        }
+    }
+
+    @AfterThrowing(value = "publicServiceMethods()", throwing = "exception")
+    public void serviceMethodExceptionAdvice(Exception exception) {
+        log.error("[ERROR] {}", exception.toString());
     }
 }

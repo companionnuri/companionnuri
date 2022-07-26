@@ -1,5 +1,7 @@
 package com.companionnuri.nuri.exception;
 
+import lombok.extern.slf4j.Slf4j;
+
 public class RegionNotFoundException extends BadRequestException {
 
     public RegionNotFoundException() {
