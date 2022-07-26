@@ -29,7 +29,7 @@ const searchResultP = {
 };
 
 function Open(props) {
-  const [locName, setlocName] = useState("");
+  // const [locName, setlocName] = useState("");
   const [items, setItems] = useState([]);
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
@@ -54,20 +54,26 @@ function Open(props) {
         <b>{inputValue}</b>의 검색 결과는 다음과 같다
       </h1>
     );
-  }
 
-  // const fetchF = () => {
-  //   fetch(
-  //     "http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/category/1"
-  //   )
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       // console.log(`${res.locations}`);
-  //       setlocName(res.locations);
-  //       // const data = JSON.parse(res.locations);
-  //       // setItems(data);
-  //     });
-  // };
+    fetch(
+      "http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search?" +
+        { inputValue }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(`${res}`);
+        // setlocName(res.locations);
+        // const data = JSON.parse(res.locations);
+        // setItems(data);
+      });
+    // fetch("https://api.google.com/user?id=3")
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     if (res.success) {
+    //       console.log(`${res.user.name}`);
+    //     }
+    //   });
+  }
 
   // useEffect(() => {
   //   fetchF();

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import styles from "./css/Floating.module.css";
+import SearchContent from "./SearchContent";
 
 const hd_search_box = {
   width: "100%",
@@ -31,6 +32,7 @@ const hd_search_input = {
 
 function Searchbar(props) {
   const [keyword, setKeyword] = useState(null);
+  console.log(keyword);
 
   const clickButton = (e) => {
     console.log(keyword);
