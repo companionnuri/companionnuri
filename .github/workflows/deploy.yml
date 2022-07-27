@@ -42,7 +42,7 @@ jobs:
       if: contains(github.ref, 'master')
       run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest .
+          docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest ./Dockerfile
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
           
     - name: Docker pull & run in AWS EC2
