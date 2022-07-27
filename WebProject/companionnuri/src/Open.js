@@ -30,7 +30,8 @@ const searchResultP = {
 
 function Open(props) {
   // const [locName, setlocName] = useState("");
-  const [items, setItems] = useState([]);
+  const [cafeitems, setCafeitems] = useState("");
+  const [hospitalitems, setHospitalitems] = useState(""); // 최종 아이템
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
   // settopValue(props.topinputValue);
@@ -56,32 +57,19 @@ function Open(props) {
     );
 
     fetch(
-      "http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search?" +
-        { inputValue }
+      `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(`${res}`);
-        // setlocName(res.locations);
-        // const data = JSON.parse(res.locations);
-        // setItems(data);
+        console.log(res);
+        setCafeitems(res["cafe"]);
+
+        setHospitalitems(res["hospital"]);
       });
-    // fetch("https://api.google.com/user?id=3")
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     if (res.success) {
-    //       console.log(`${res.user.name}`);
-    //     }
-    //   });
   }
 
-  // useEffect(() => {
-  //   fetchF();
-  // }, []);
-
-  // const resultWord = locName.filter((word) => word.length > 6);
-
-  // console.log(resultWord);
+  console.log(cafeitems);
+  console.log(hospitalitems);
 
   return (
     <div className={styles.searchDiv}>
