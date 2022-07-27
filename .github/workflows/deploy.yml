@@ -10,8 +10,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  initiate_deploy:
-
+  build:
+    name: Initiate & Build jar
     runs-on: ubuntu-latest
 
     steps:
@@ -22,27 +22,22 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-        
-    # Caching dependencies
+ 
     - name: Cache Maven packages
       uses: actions/cache@v2
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-        
-  build-java:
-    runs-on: ubuntu-latest
-    steps:
-    
-    ## maven build 
+      
     - name: Build with Maven
       run: mvn -B package --file ./WebProject/pom.xml
       
-  build-docker:
+  deploy:
+    name: Deploy by Docker & AWS EC2
+    needs: build
     runs-on: ubuntu-latest
     steps:
-    ## docker build & push
     - name: Docker build & push
       if: contains(github.ref, 'master')
       run: |
@@ -50,16 +45,12 @@ jobs:
           docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest ./WebProject
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
           
-  deploy-aws:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker pull & run in AWS EC2
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USERNAME }}
-          password: ${{ secrets.AWS_PASSWORD }}
-          script: |
-            sh deploy.sh
+    - name: Docker pull & run in AWS EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AWS_HOST }}
+        username: ${{ secrets.AWS_USERNAME }}
+        password: ${{ secrets.AWS_PASSWORD }}
+        script: |
+          sh deploy.sh
   
