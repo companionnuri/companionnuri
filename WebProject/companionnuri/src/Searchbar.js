@@ -32,7 +32,7 @@ const hd_search_input = {
 
 function Searchbar(props) {
   const [keyword, setKeyword] = useState(null);
-  console.log(keyword);
+  // console.log(keyword);
 
   const clickButton = (e) => {
     console.log(keyword);

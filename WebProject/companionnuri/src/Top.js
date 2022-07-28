@@ -49,7 +49,7 @@ function Top(props) {
         <CategoryFloating />
       </div>
       <div style={searchFloatingBox}>
-        <Topsearchbar settopinputValue={settopinputValue} setOpen={setOpen} />
+        {/* <Topsearchbar settopinputValue={settopinputValue} setOpen={setOpen} /> */}
       </div>
       {open ? <Open topValue={topinputValue} /> : null}
     </div>

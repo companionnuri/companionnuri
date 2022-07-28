@@ -30,46 +30,105 @@ const searchResultP = {
 
 function Open(props) {
   // const [locName, setlocName] = useState("");
+  // 최종 아이템
+  const [fooditems, setFooditems] = useState("");
   const [cafeitems, setCafeitems] = useState("");
-  const [hospitalitems, setHospitalitems] = useState(""); // 최종 아이템
+  const [parkitems, setParkitems] = useState("");
+  const [houseitems, setHouseitems] = useState("");
+  const [hospitalitems, setHospitalitems] = useState("");
+
+  let food = [];
+  let cafe = [];
+  let park = [];
+  let house = [];
+  let hospital = [];
+
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
   // settopValue(props.topinputValue);
   const [open, setOpen] = useState(false);
-  const [searchRealValue, setsearchRealValue] = useState(null);
 
   let result;
   let message;
 
-  if (props.topValue) {
-    result = (
-      <h1 style={searchResultP} className="my-2">
-        <b>{props.topValue}</b>의 검색 결과는 다음과 같다
-      </h1>
-    );
-  }
+  // if (props.topValue) {
+  //   result = (
+  //     <h1 style={searchResultP} className="my-2">
+  //       <b>{props.topValue}</b>의 검색 결과는 다음과 같다
+  //     </h1>
+  //   );
+  // }
 
-  if (inputValue) {
-    result = (
-      <h1 style={searchResultP} className="my-2">
-        <b>{inputValue}</b>의 검색 결과는 다음과 같다
-      </h1>
-    );
+  const fetchF = () => {
+    if (inputValue) {
+      result = (
+        <h1 style={searchResultP} className="my-2">
+          <b>{inputValue}</b>의 검색 결과는 다음과 같다
+        </h1>
+      );
+      fetch(
+        `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          // console.log(res);
+          // console.log(typeof res);
 
-    fetch(
-      `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setCafeitems(res["cafe"]);
+          setFooditems(res["restaurant"]);
+          setCafeitems(res["cafe"]);
+          setParkitems(res["park"]);
+          setHospitalitems(res["hospital"]);
+          setHouseitems(res["house"]);
+        });
+    }
+  };
 
-        setHospitalitems(res["hospital"]);
-      });
-  }
-
+  console.log(fooditems);
   console.log(cafeitems);
+  console.log(parkitems);
   console.log(hospitalitems);
+  console.log(houseitems);
+
+  const fooditemsvalues = Object.values(fooditems);
+  for (let i = 0; i < fooditemsvalues.length; i++) {
+    const v = fooditemsvalues[i];
+    food.push(v);
+  }
+
+  const cafeitemsvalues = Object.values(cafeitems);
+  for (let i = 0; i < cafeitemsvalues.length; i++) {
+    const v = cafeitemsvalues[i];
+    cafe.push(v);
+  }
+
+  const houseitemsvalues = Object.values(houseitems);
+  for (let i = 0; i < houseitemsvalues.length; i++) {
+    const v = houseitemsvalues[i];
+    house.push(v);
+  }
+
+  const parkitemsvalues = Object.values(parkitems);
+  for (let i = 0; i < parkitemsvalues.length; i++) {
+    const v = parkitemsvalues[i];
+    park.push(v);
+  }
+
+  const hospitalitemsvalues = Object.values(hospitalitems);
+  for (let i = 0; i < hospitalitemsvalues.length; i++) {
+    const v = hospitalitemsvalues[i];
+    console.log(v);
+    hospital.push(v);
+  }
+
+  console.log(food);
+  console.log(cafe);
+  console.log(house);
+  console.log(park);
+  console.log(Object.values(hospital));
+
+  useEffect(() => {
+    fetchF();
+  }, [inputValue]);
 
   return (
     <div className={styles.searchDiv}>
@@ -84,7 +143,22 @@ function Open(props) {
         <div style={resultBox}>{result}</div>
         <div>
           <div>
-            <SearchContent />
+            {cafe.map((user) => (
+              <h1 value={user.locationId}>{user.locationName}</h1>
+            ))}
+            {food.map((user) => (
+              <h1 value={user.locationId}>{user.locationName}</h1>
+            ))}
+            {park.map((user) => (
+              <h1 value={user.locationId}>{user.locationName}</h1>
+            ))}
+            {house.map((user) => (
+              <h1 value={user.locationId}>{user.locationName}</h1>
+            ))}
+            {hospital.map((user) => (
+              <h1 value={user.locationId}>{user.locationName}</h1>
+            ))}
+            {/* <SearchContent /> */}
           </div>
         </div>
       </div>
