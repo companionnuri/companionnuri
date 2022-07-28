@@ -19,10 +19,15 @@ const contentP = {
 };
 
 function SearchContent(props) {
+  let users = [];
+  users = props.fooditems;
   return (
     <div>
       <div style={SearchContentUl}>
         <div style={SearchContentLi}>
+          {/* {users.map((user) => (
+            <button value={user.locationName}>{user.locationName}</button>
+          ))} */}
           {/* <p className={styles.SearchContentTit}>화미주아티클헤어 구미점</p>
           <p className="mb-0 d-flex" style={contentP}><p className={styles.categoryLabel}>카테고리</p>미용실</p>
           <p className="mb-0 d-flex" style={contentP}><p className={styles.categoryLabel}>위치</p> 구미 원평동</p> */}
