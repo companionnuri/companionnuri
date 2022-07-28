@@ -42,9 +42,9 @@ public class LoggingAspect {
     @AfterReturning(value = "publicServiceMethods()", returning = "returnValue")
     public void serviceMethodResultAdvice(Object returnValue) {
         try {
-            log.info("[RESULT json] \n {}", objectMapper
+            log.info("[RESULT json] \n {} \n ========================================================================", objectMapper
                     .writerWithDefaultPrettyPrinter()
-                    .writeValueAsString(returnValue));
+                    .writeValueAsString(returnValue).substring(0,300));
         } catch (JsonProcessingException e) {
             log.error("[JSON ERROR]");
         }
