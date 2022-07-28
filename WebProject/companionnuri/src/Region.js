@@ -187,7 +187,7 @@ function Region(props, { match }) {
 
   const navigate = useNavigate();
   const clickButton = (e) => {
-    navigate("/Main", {
+    navigate("/Regionmain", {
       state: {
         data,
       },
