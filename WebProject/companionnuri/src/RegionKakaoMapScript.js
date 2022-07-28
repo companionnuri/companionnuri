@@ -4,6 +4,7 @@ const { kakao } = window;
 
 export default function Map(props) {
   const [locName, setlocName] = useState("");
+  const [regionproj, setRegionproj] = useState("");
 
   const fetchF = () => {
     let regionItem = props.kakaoRegion;
@@ -12,8 +13,54 @@ export default function Map(props) {
 
     if (regionItem === "종로구") {
       code = 11110;
-    } else {
-      code = 11110;
+    } else if (regionItem === "중구") {
+      code = 11140;
+    } else if (regionItem === "용산구") {
+      code = 11170;
+    } else if (regionItem === "성동구") {
+      code = 11200;
+    } else if (regionItem === "광진구") {
+      code = 11215;
+    } else if (regionItem === "동대문구") {
+      code = 11230;
+    } else if (regionItem === "중랑구") {
+      code = 11260;
+    } else if (regionItem === "성북구") {
+      code = 11290;
+    } else if (regionItem === "강북구") {
+      code = 11305;
+    } else if (regionItem === "도봉구") {
+      code = 11320;
+    } else if (regionItem === "노원구") {
+      code = 11350;
+    } else if (regionItem === "은평구") {
+      code = 11380;
+    } else if (regionItem === "서대문구") {
+      code = 11410;
+    } else if (regionItem === "마포구") {
+      code = 11440;
+    } else if (regionItem === "양천구") {
+      code = 11470;
+    } else if (regionItem === "강서구") {
+      code = 11500;
+    } else if (regionItem === "구로구") {
+      code = 11530;
+    } else if (regionItem === "금천구") {
+      code = 11545;
+    } else if (regionItem === "영등포구") {
+      code = 11560;
+    } else if (regionItem === "동작구") {
+      code = 11590;
+    } else if (regionItem === "관악구") {
+      code = 11620;
+    } else if (regionItem === "서초구") {
+      code = 11650;
+    } else if (regionItem === "강남구") {
+      code = 11680;
+    } else if (regionItem === "송파구") {
+      code = 11710;
+    } else if (regionItem === "강동구") {
+      code = 11740;
     }
 
     fetch(
@@ -22,6 +69,7 @@ export default function Map(props) {
       .then((res) => res.json())
       .then((res) => {
         console.log(`${res}`);
+        setRegionproj(res.regionProj);
         setlocName(res.locations);
       });
   };
@@ -60,8 +108,8 @@ export default function Map(props) {
     }
     let container = document.getElementById("map");
     let options = {
-      center: new kakao.maps.LatLng(37.551425, 126.988),
-      level: 7,
+      center: new kakao.maps.LatLng(regionproj.regionLat, regionproj.regionLng),
+      level: 6,
     };
     //map
     const map = new kakao.maps.Map(container, options);
