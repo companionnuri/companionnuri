@@ -39,16 +39,16 @@ public class LoggingAspect {
         log.info("[PARAMETERS] {}", Arrays.toString(joinPoint.getArgs()));
     }
 
-    @AfterReturning(value = "publicServiceMethods()", returning = "returnValue")
-    public void serviceMethodResultAdvice(Object returnValue) {
-        try {
-            log.info("[RESULT json] \n {} \n ========================================================================", objectMapper
-                    .writerWithDefaultPrettyPrinter()
-                    .writeValueAsString(returnValue).substring(0,300));
-        } catch (JsonProcessingException e) {
-            log.error("[JSON ERROR]");
-        }
-    }
+//    @AfterReturning(value = "publicServiceMethods()", returning = "returnValue")
+//    public void serviceMethodResultAdvice(Object returnValue) {
+//        try {
+//            log.info("[RESULT json] \n {} \n ========================================================================", objectMapper
+//                    .writerWithDefaultPrettyPrinter()
+//                    .writeValueAsString(returnValue).substring(0,300));
+//        } catch (JsonProcessingException e) {
+//            log.error("[JSON ERROR]");
+//        }
+//    }
 
     @AfterThrowing(value = "publicServiceMethods()", throwing = "exception")
     public void serviceMethodExceptionAdvice(Exception exception) {
