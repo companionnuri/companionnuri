@@ -48,9 +48,9 @@ export default function Map() {
       positionContent = {
         title: contentDiv[i],
         content:
-          "<div>" +
-          '<i class="fa-solid fa-mug-saucer"></i>' +
-          contentDiv[i] +
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
+          "<i class='fa-solid fa-mug-saucer' style='display:block;margin: 5px;color:#F3887C'></i>" +
+          "<p style='margin-bottom:0px'>"+contentDiv[i] +"</p>"+
           "</div>",
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
       };

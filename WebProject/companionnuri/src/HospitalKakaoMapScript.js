@@ -48,8 +48,8 @@ export default function Map() {
       positionContent = {
         title: contentDiv[i],
         content:
-          "<div>" +
-          '<i class="fa-solid fa-briefcase-medical"></i>' +
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-briefcase-medical" style="display:block;margin: 5px;color:rgb(116, 192, 252)"></i>' +
           contentDiv[i] +
           "</div>",
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
