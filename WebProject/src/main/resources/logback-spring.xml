@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{MM-dd HH:mm:ss} %highlight(%-5level) %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <logger name="com.companionnuri.nuri" level="info" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!--    <appender name="EFK" class="ch.qos.logback.core.ConsoleAppender">-->
+    <!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>-->
+    <!--    </appender>-->
+
+    <!--    <appender name="SENTRY" class="io.sentry.logback.SentryAppender">-->
+    <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+    <!--            <level>ERROR</level>-->
+    <!--        </filter>-->
+    <!--    </appender>-->
+
+    <!--    <appender name="CONSOLE_ERROR" class="ch.qos.logback.core.ConsoleAppender">-->
+    <!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+    <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{50} - %msg%n</pattern>-->
+    <!--        </encoder>-->
+    <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+    <!--            <level>ERROR</level>-->
+    <!--        </filter>-->
+    <!--    </appender>-->
+
+    <!--    &lt;!&ndash; TRACE > DEBUG > INFO > WARN > ERROR &ndash;&gt;-->
+
+    <!--    <springProfile name="dev,sandbox,cbt,prod,krane">-->
+    <!--        <logger name="HTTP_CLIENT_LOGGER" additivity="false" level="INFO">-->
+    <!--            <appender-ref ref="EFK"/>-->
+    <!--        </logger>-->
+    <!--        <logger name="ACCESS_LOGGER" additivity="false" level="INFO">-->
+    <!--            <appender-ref ref="EFK"/>-->
+    <!--        </logger>-->
+    <!--        <logger name="MATRIX_LOGGER" additivity="false" level="ERROR">-->
+    <!--            <appender-ref ref="SENTRY"/>-->
+    <!--            <appender-ref ref="CONSOLE_ERROR"/>-->
+    <!--        </logger>-->
+    <!--        <springProfile name="local,dev,sandbox,krane,cbt">-->
+    <!--            <root level="DEBUG">-->
+    <!--                <appender-ref ref="DEFAULT" />-->
+    <!--            </root>-->
+    <!--        </springProfile>-->
+    <!--    </springProfile>-->
+
+    <!--    <springProfile name="local">-->
+    <!--        <logger name="ACCESS_LOGGER" additivity="false" level="INFO">-->
+    <!--            <appender-ref ref="EFK"/>-->
+    <!--        </logger>-->
+    <!--        <logger name="HTTP_CLIENT_LOGGER" additivity="false" level="INFO">-->
+    <!--            <appender-ref ref="EFK"/>-->
+    <!--        </logger>-->
+    <!--        <logger name="MATRIX_LOGGER" additivity="false" level="ERROR">-->
+    <!--            <appender-ref ref="SENTRY"/>-->
+    <!--            <appender-ref ref="CONSOLE_ERROR"/>-->
+    <!--        </logger>-->
+    <!--        <springProfile name="local,dev,sandbox,prod,cbt">-->
+    <!--            <root level="DEBUG">-->
+    <!--                <appender-ref ref="DEFAULT" />-->
+    <!--            </root>-->
+    <!--        </springProfile>-->
+    <!--    </springProfile>-->
+
+</configuration>
