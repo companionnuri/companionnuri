@@ -42,7 +42,7 @@ jobs:
       if: contains(github.ref, 'master')
       run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          cd ~/companionnuri
+          cd ~/work/companionnuri
           ls -al
           docker build -t ${{ secrets.DOCKER_REPO }}/companionnuri:latest .
           docker push ${{ secrets.DOCKER_REPO }}/companionnuri:latest
