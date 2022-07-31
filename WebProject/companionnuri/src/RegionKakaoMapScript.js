@@ -109,7 +109,7 @@ export default function Map(props) {
     let container = document.getElementById("map");
     let options = {
       center: new kakao.maps.LatLng(regionproj.regionLat, regionproj.regionLng),
-      level: 6,
+      level: 4,
     };
     //map
     const map = new kakao.maps.Map(container, options);

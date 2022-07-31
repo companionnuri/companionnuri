@@ -28,15 +28,15 @@ const searchResultP = {
   color: "#424242",
 };
 const searchResultBox = {
-  paddingLeft:"103px",
-}
+  paddingLeft: "103px",
+};
 const contentText = {
   margin: "0",
-  padding:"7.5px 0",
+  padding: "7.5px 0",
   borderBottom: "1px solid rgb(241,241,241)",
-  cursor:"pointer",
+  cursor: "pointer",
   width: "475px",
-}
+};
 
 function Open(props) {
   // const [locName, setlocName] = useState("");
@@ -154,19 +154,29 @@ function Open(props) {
         <div>
           <div style={searchResultBox}>
             {cafe.map((user) => (
-              <p value={user.locationId} style={contentText}>{user.locationName}</p>
+              <p value={user.locationId} style={contentText}>
+                {user.locationName}
+              </p>
             ))}
             {food.map((user) => (
-              <p value={user.locationId} style={contentText}>{user.locationName}</p>
+              <p value={user.locationId} style={contentText}>
+                {user.locationName}
+              </p>
             ))}
             {park.map((user) => (
-              <p value={user.locationId} style={contentText}>{user.locationName}</p>
+              <p value={user.locationId} style={contentText}>
+                {user.locationName}
+              </p>
             ))}
             {house.map((user) => (
-              <p value={user.locationId} style={contentText}>{user.locationName}</p>
+              <p value={user.locationId} style={contentText}>
+                {user.locationName}
+              </p>
             ))}
             {hospital.map((user) => (
-              <p value={user.locationId} style={contentText}>{user.locationName}</p>
+              <p value={user.locationId} style={contentText}>
+                {user.locationName}
+              </p>
             ))}
             {/* <SearchContent /> */}
           </div>
