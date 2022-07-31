@@ -60,7 +60,7 @@ function Searchbar(props) {
         <input
           className={styles.searchInputFloating}
           type="text"
-          placeholder="지역명 또는 카테고리를 입력해주세요"
+          placeholder="검색어를 입력해주세요"
           style={hd_search_input}
           onKeyPress={inputPress}
           onChange={inputChange}
