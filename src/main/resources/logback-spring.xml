@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
-    <property name="LOG_PATTERN" value="%-5level [%d{MM-dd HH:mm:ss:SS}][%thread] [%logger{0}:%line] - %msg%n"></property>
+    <property name="LOG_PATTERN" value="[%d{MM-dd HH:mm:ss:SS, ${logback.timezone:-Asia/Seoul}}][%thread] %highlight(%-5level) [%logger{0}:%line] - %msg%n"></property>
     <springProperty name="LOG_PATH" source="${logging.file.path}" />
     <property name="LOG_FILE_NAME" value="nuri" />
     <property name="ERR_LOG_FILE_NAME" value="err" />
@@ -10,12 +10,12 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 출력패턴 설정-->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <!-- Rolling 정책 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}-%d{yyMMdd}-%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}-%d{yyMMdd, ${logback.timezone:-Asia/Seoul}}-%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>30MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -31,12 +31,12 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <!-- Rolling 정책 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-            <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}-%d{yyMMdd}-%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}-%d{yyMMdd, ${logback.timezone:-Asia/Seoul}}-%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- 파일당 최고 용량 kb, mb, gb -->
                 <maxFileSize>50MB</maxFileSize>
@@ -49,13 +49,13 @@
     <!-- Console Appender -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{MM-dd HH:mm:ss.SS} [%thread] %highlight(%-5level) %logger{36} - %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
     <appender name="SQL" class="ch.qos.logback.core.ConsoleAppender" level="TRACE">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{MM-dd HH:mm:ss.SS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
