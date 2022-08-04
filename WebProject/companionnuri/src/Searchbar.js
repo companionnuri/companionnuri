@@ -33,11 +33,17 @@ const hd_search_input = {
 function Searchbar(props) {
   const [keyword, setKeyword] = useState(null);
   // console.log(keyword);
+  const navigate = useNavigate();
 
   const clickButton = (e) => {
     console.log(keyword);
     props.setinputValue(keyword);
     props.setOpen(true);
+    navigate("/Searchmain", {
+      state: {
+        keyword,
+      },
+    });
   };
 
   const inputPress = (e) => {
