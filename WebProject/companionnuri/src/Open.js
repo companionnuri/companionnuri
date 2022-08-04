@@ -3,6 +3,7 @@ import Searchbar from "./Searchbar";
 import styles from "./css/Open.module.css";
 import { AutoComplete } from "antd";
 import SearchContent from "./SearchContent";
+import Content from "./Content";
 
 const searchBox = {
   boxShadow: "0px 2px 10px rgb(0 0 0 / 15%)",
@@ -23,6 +24,7 @@ const resultBox = {
   borderTop: "1px solid #DBDEE0",
   borderBottom: "1px solid #DBDEE0",
 };
+
 const searchResultP = {
   fontSize: "16px",
   color: "#424242",
@@ -38,6 +40,9 @@ const contentText = {
   width: "475px",
 };
 
+
+
+
 function Open(props) {
   // const [locName, setlocName] = useState("");
   // 최종 아이템
@@ -46,6 +51,9 @@ function Open(props) {
   const [parkitems, setParkitems] = useState("");
   const [houseitems, setHouseitems] = useState("");
   const [hospitalitems, setHospitalitems] = useState("");
+
+  const [resultmessage, setResultmessage] = useState("");
+
 
   let food = [];
   let cafe = [];
@@ -59,7 +67,7 @@ function Open(props) {
   const [open, setOpen] = useState(false);
 
   let result;
-  let message;
+  const [message, setMessage] = useState();
 
   // if (props.topValue) {
   //   result = (
@@ -81,23 +89,36 @@ function Open(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          // console.log(res);
-          // console.log(typeof res);
+          // console.log(res.json());
+          if (
+            res["restaurant"] === undefined &&
+            res["cafe"] === undefined &&
+            res["park"] === undefined &&
+            res["hospital"] === undefined &&
+            res["house"] === undefined
+          ) {
+            setResultmessage("검색 결과가 없습니다.");
+            setMessage(0)
 
-          setFooditems(res["restaurant"]);
-          setCafeitems(res["cafe"]);
-          setParkitems(res["park"]);
-          setHospitalitems(res["hospital"]);
-          setHouseitems(res["house"]);
+          } else {
+            setMessage(1);
+            setFooditems(res["restaurant"]);
+            setCafeitems(res["cafe"]);
+            setParkitems(res["park"]);
+            setHospitalitems(res["hospital"]);
+            setHouseitems(res["house"]);
+          }
+            
         });
     }
   };
 
-  console.log(fooditems);
-  console.log(cafeitems);
-  console.log(parkitems);
-  console.log(hospitalitems);
-  console.log(houseitems);
+  // if (fooditems.prop === undefined) { console.log("undefinend") }
+  // console.log(fooditems);
+  // console.log(cafeitems);
+  // console.log(parkitems);
+  // console.log(hospitalitems);
+  // console.log(houseitems);
 
   const fooditemsvalues = Object.values(fooditems);
   for (let i = 0; i < fooditemsvalues.length; i++) {
@@ -126,19 +147,48 @@ function Open(props) {
   const hospitalitemsvalues = Object.values(hospitalitems);
   for (let i = 0; i < hospitalitemsvalues.length; i++) {
     const v = hospitalitemsvalues[i];
-    console.log(v);
     hospital.push(v);
   }
 
-  console.log(food);
-  console.log(cafe);
-  console.log(house);
-  console.log(park);
-  console.log(Object.values(hospital));
+  // console.log(food);
+  // console.log(cafe);
+  // console.log(house);
+  // console.log(park);
+  // console.log(hospital);
+
+  // console.log(resultmessage)
+  // console.log(message)
 
   useEffect(() => {
     fetchF();
   }, [inputValue]);
+
+  const foodList = food.map((user) => (
+    <p value={user.locationId} style={contentText}>
+      {user.locationName}
+    </p>
+  ));
+
+  const cafeList = cafe.map((user) => (
+    <p value={user.locationId} style={contentText}>
+      {user.locationName}
+    </p>
+  ));
+  const parkList = park.map((user) => (
+    <p value={user.locationId} style={contentText}>
+      {user.locationName}
+    </p>
+  ));
+  const houseList = house.map((user) => (
+    <p value={user.locationId} style={contentText}>
+      {user.locationName}
+    </p>
+  ));
+  const hospitalList = hospital.map((user) => (
+    <p value={user.locationId} style={contentText}>
+      {user.locationName}
+    </p>
+  ));
 
   return (
     <div className={styles.searchDiv}>
@@ -153,32 +203,17 @@ function Open(props) {
         <div style={resultBox}>{result}</div>
         <div>
           <div style={searchResultBox}>
-            {cafe.map((user) => (
-              <p value={user.locationId} style={contentText}>
-                {user.locationName}
-              </p>
-            ))}
-            {food.map((user) => (
-              <p value={user.locationId} style={contentText}>
-                {user.locationName}
-              </p>
-            ))}
-            {park.map((user) => (
-              <p value={user.locationId} style={contentText}>
-                {user.locationName}
-              </p>
-            ))}
-            {house.map((user) => (
-              <p value={user.locationId} style={contentText}>
-                {user.locationName}
-              </p>
-            ))}
-            {hospital.map((user) => (
-              <p value={user.locationId} style={contentText}>
-                {user.locationName}
-              </p>
-            ))}
-            {/* <SearchContent /> */}
+            {message === 0 ? (
+              <p>{resultmessage}</p>
+            ) : (
+              <div>
+                {foodList}
+                {cafeList}
+                {parkList}
+                {houseList}
+                {hospitalList}
+              </div>
+            )}
           </div>
         </div>
       </div>
