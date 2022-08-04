@@ -39,8 +39,18 @@ const contentText = {
   width: "475px",
 };
 
-
-
+const categoryItemFoodIcon = {
+  marginRight : "10px",
+  color: "#F3887C",
+};
+const categoryItemPlaceIcon = {
+  marginRight: "10px",
+  color: "#63AA41",
+};
+const categoryItemPlaceIcon2 = {
+  marginRight: "10px",
+  color: "#74C0FC",
+};
 
 function Open(props) {
   // const [locName, setlocName] = useState("");
@@ -53,12 +63,13 @@ function Open(props) {
 
   const [resultmessage, setResultmessage] = useState("");
 
-
   let food = [];
   let cafe = [];
   let park = [];
   let house = [];
   let hospital = [];
+
+  let cnt = 0
 
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
@@ -76,13 +87,57 @@ function Open(props) {
   //   );
   // }
 
+  // console.log(props.keyword)
+
+  const fetchF2 = () => {
+    if (props.keyword) {
+      cnt++;
+      result = (
+        <h1 style={searchResultP} className="my-2">
+          <b>{props.keyword}</b>의 검색 결과는 다음과 같다
+        </h1>
+      );
+      let k = props.keyword
+      fetch(
+        `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${k}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          // console.log(res.json());
+          if (
+            res["restaurant"] === undefined &&
+            res["cafe"] === undefined &&
+            res["park"] === undefined &&
+            res["hospital"] === undefined &&
+            res["house"] === undefined
+          ) {
+            setResultmessage("검색 결과가 없습니다.");
+            setMessage(0);
+          } else {
+            setMessage(1);
+            setFooditems(res["restaurant"]);
+            setCafeitems(res["cafe"]);
+            setParkitems(res["park"]);
+            setHospitalitems(res["hospital"]);
+            setHouseitems(res["house"]);
+          }
+        });
+    }
+  }
+
   const fetchF = () => {
+
+    // console.log(inputValue)
     if (inputValue) {
+      // console.log(props.keyword);
       result = (
         <h1 style={searchResultP} className="my-2">
           <b>{inputValue}</b>의 검색 결과는 다음과 같다
         </h1>
       );
+
+      // console.log(inputValue);
+
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
       )
@@ -97,8 +152,7 @@ function Open(props) {
             res["house"] === undefined
           ) {
             setResultmessage("검색 결과가 없습니다.");
-            setMessage(0)
-
+            setMessage(0);
           } else {
             setMessage(1);
             setFooditems(res["restaurant"]);
@@ -107,7 +161,6 @@ function Open(props) {
             setHospitalitems(res["hospital"]);
             setHouseitems(res["house"]);
           }
-            
         });
     }
   };
@@ -162,31 +215,43 @@ function Open(props) {
     fetchF();
   }, [inputValue]);
 
+  useEffect(() => {
+    fetchF2();
+  }, []);
+
   const foodList = food.map((user) => (
-    <p value={user.locationId} style={contentText}>
+    <button value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-utensils" style={categoryItemFoodIcon}></i>
       {user.locationName}
-    </p>
+    </button>
   ));
 
   const cafeList = cafe.map((user) => (
-    <p value={user.locationId} style={contentText}>
+    <button value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-mug-saucer" style={categoryItemFoodIcon}></i>
       {user.locationName}
-    </p>
+    </button>
   ));
   const parkList = park.map((user) => (
-    <p value={user.locationId} style={contentText}>
+    <button value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
       {user.locationName}
-    </p>
+    </button>
   ));
   const houseList = house.map((user) => (
-    <p value={user.locationId} style={contentText}>
+    <button value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
       {user.locationName}
-    </p>
+    </button>
   ));
   const hospitalList = hospital.map((user) => (
-    <p value={user.locationId} style={contentText}>
+    <button value={user.locationId} style={contentText}>
+      <i
+        class="fa-solid fa-briefcase-medical"
+        style={categoryItemPlaceIcon2}
+      ></i>
       {user.locationName}
-    </p>
+    </button>
   ));
 
   return (
