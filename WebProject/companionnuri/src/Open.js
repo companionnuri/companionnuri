@@ -39,8 +39,18 @@ const contentText = {
   width: "475px",
 };
 
-
-
+const categoryItemFoodIcon = {
+  marginRight : "10px",
+  color: "#F3887C",
+};
+const categoryItemPlaceIcon = {
+  marginRight: "10px",
+  color: "#63AA41",
+};
+const categoryItemPlaceIcon2 = {
+  marginRight: "10px",
+  color: "#74C0FC",
+};
 
 function Open(props) {
   // const [locName, setlocName] = useState("");
@@ -164,27 +174,35 @@ function Open(props) {
 
   const foodList = food.map((user) => (
     <p value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-utensils" style={categoryItemFoodIcon}></i>
       {user.locationName}
     </p>
   ));
 
   const cafeList = cafe.map((user) => (
     <p value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-mug-saucer" style={categoryItemFoodIcon}></i>
       {user.locationName}
     </p>
   ));
   const parkList = park.map((user) => (
     <p value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
       {user.locationName}
     </p>
   ));
   const houseList = house.map((user) => (
     <p value={user.locationId} style={contentText}>
+      <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
       {user.locationName}
     </p>
   ));
   const hospitalList = hospital.map((user) => (
     <p value={user.locationId} style={contentText}>
+      <i
+        class="fa-solid fa-briefcase-medical"
+        style={categoryItemPlaceIcon2}
+      ></i>
       {user.locationName}
     </p>
   ));
