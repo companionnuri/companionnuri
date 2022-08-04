@@ -31,6 +31,10 @@ const searchResultP = {
 const searchResultBox = {
   paddingLeft: "103px",
 };
+const searchResultBox2 = {
+  paddingLeft: "103px",
+  display:"none"
+};
 const contentText = {
   margin: "0",
   padding: "7.5px 0",
@@ -63,6 +67,8 @@ function Open(props) {
 
   const [resultmessage, setResultmessage] = useState("");
 
+  const [clickValue, setClickValue] = useState("")
+
   let food = [];
   let cafe = [];
   let park = [];
@@ -70,6 +76,7 @@ function Open(props) {
   let hospital = [];
 
   let cnt = 0
+  const [clickCheck, setClickCheck] = useState(0)
 
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
@@ -219,33 +226,79 @@ function Open(props) {
     fetchF2();
   }, []);
 
+  const foodButtonClick = (e) => {
+    setClickCheck(1);
+    console.log(e.target.value);
+    setClickValue(e.target.value);
+  };
+
+  const cafeButtonClick = (e) => {
+    setClickCheck(1);
+    console.log(e.target.value);
+    setClickValue(e.target.value);
+  };
+
+  const parkButtonClick = (e) => {
+    setClickCheck(1);
+    console.log(e.target.value);
+    setClickValue(e.target.value);
+  };
+
+  const houseButtonClick = (e) => {
+    setClickCheck(1);
+    console.log(e.target.value);
+    setClickValue(e.target.value);
+  };
+
+  const hospitalButtonClick = (e) => {
+    setClickCheck(1);
+    console.log(e.target.value);
+    setClickValue(e.target.value);
+  };
+
   const foodList = food.map((user) => (
-    <button value={user.locationId} style={contentText}>
+    <button value={user.locationId} style={contentText} onClick={foodButtonClick}>
       <i class="fa-solid fa-utensils" style={categoryItemFoodIcon}></i>
       {user.locationName}
     </button>
   ));
 
   const cafeList = cafe.map((user) => (
-    <button value={user.locationId} style={contentText}>
+    <button
+      value={user.locationId}
+      style={contentText}
+      onClick={cafeButtonClick}
+    >
       <i class="fa-solid fa-mug-saucer" style={categoryItemFoodIcon}></i>
       {user.locationName}
     </button>
   ));
   const parkList = park.map((user) => (
-    <button value={user.locationId} style={contentText}>
+    <button
+      value={user.locationId}
+      style={contentText}
+      onClick={parkButtonClick}
+    >
       <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
       {user.locationName}
     </button>
   ));
   const houseList = house.map((user) => (
-    <button value={user.locationId} style={contentText}>
+    <button
+      value={user.locationId}
+      style={contentText}
+      onClick={houseButtonClick}
+    >
       <i class="fa-solid fa-tree" style={categoryItemPlaceIcon}></i>
       {user.locationName}
     </button>
   ));
   const hospitalList = hospital.map((user) => (
-    <button value={user.locationId} style={contentText}>
+    <button
+      value={user.locationId}
+      style={contentText}
+      onClick={hospitalButtonClick}
+    >
       <i
         class="fa-solid fa-briefcase-medical"
         style={categoryItemPlaceIcon2}
@@ -267,7 +320,9 @@ function Open(props) {
         <div style={resultBox}>{result}</div>
         <div>
           <div style={searchResultBox}>
-            {message === 0 ? (
+            {clickCheck === 1 ? (
+              <SearchContent ckValue={clickValue}/>
+            ) : message === 0 ? (
               <p>{resultmessage}</p>
             ) : (
               <div>
