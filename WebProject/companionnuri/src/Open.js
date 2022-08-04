@@ -3,7 +3,6 @@ import Searchbar from "./Searchbar";
 import styles from "./css/Open.module.css";
 import { AutoComplete } from "antd";
 import SearchContent from "./SearchContent";
-import Content from "./Content";
 
 const searchBox = {
   boxShadow: "0px 2px 10px rgb(0 0 0 / 15%)",
