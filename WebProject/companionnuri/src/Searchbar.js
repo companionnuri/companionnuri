@@ -1,5 +1,5 @@
 import { calculateNewValue } from "@testing-library/user-event/dist/utils";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import styles from "./css/Floating.module.css";
@@ -36,26 +36,87 @@ function Searchbar(props) {
   const navigate = useNavigate();
 
   const clickButton = (e) => {
-    console.log(keyword);
-    props.setinputValue(keyword);
+    // console.log(keyword)
+    console.log(e.length)
+    props.setinputValue(e);
     props.setOpen(true);
-    navigate("/Searchmain", {
-      state: {
-        keyword,
-      },
-    });
+
+    if (e.length === 0 || e === null || e === "") {
+      console.log("글자가 없쪄용click")
+      setKeyword("글자가 없쪄용click");
+      navigate("/Searchmain", {
+        state: {
+          keyword,
+        },
+      });
+    }
+    else {
+      setKeyword(e)
+      navigate("/Searchmain", {
+        state: {
+          keyword,
+        },
+      });
+    }
+
+    
   };
 
   const inputPress = (e) => {
+    setKeyword(e.target.value);
+    console.log(e.target.value)
+    clickButton(e.target.value);
+    
     if (e.key === "Enter") {
       setKeyword(e.target.value);
-      clickButton();
+      clickButton(e.target.value);
     }
   };
 
   const inputChange = (e) => {
-    setKeyword(e.target.value);
+    console.log(e.target.value)
+    if (e.target.value.length === 0 || e.target.value === null || e.target.value === "") {
+      console.log("글자가 없쪄용input")
+      setKeyword("글자가 없쪄용input");
+    } else {
+      setKeyword(e.target.value)
+    }
+    clickButton(e.target.value)
   };
+
+  console.log(keyword);
+  
+  const start = () => {
+    if (keyword === null) {
+      navigate("/Searchmain", {
+        state: {
+          keyword,
+        },
+      });
+    }
+    else {
+      navigate("/Searchmain", {
+        state: {
+          keyword,
+        },
+      });
+    }
+  }
+
+  useEffect(() => {
+    start();
+  }, []);
+
+  // if (keyword === "" && cnt === 1) {
+  //   cnt = cnt + 1
+  //   navigate("/Searchmain", {
+  //     state: {
+  //       keyword,
+  //     },
+  //   });
+  // }
+
+  
 
   return (
     <div className="d-flex justify-content-end">
