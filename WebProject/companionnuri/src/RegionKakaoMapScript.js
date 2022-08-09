@@ -70,6 +70,7 @@ export default function Map(props) {
       .then((res) => {
         console.log(`${res}`);
         setRegionproj(res.regionProj);
+        // console.log(res.locations)
         setlocName(res.locations);
       });
   };

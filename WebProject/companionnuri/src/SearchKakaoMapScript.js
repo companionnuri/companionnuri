@@ -4,6 +4,7 @@ const { kakao } = window;
 
 export default function Map(props) {
   const inputValue = props.kakaovalue;
+  console.log(inputValue)
   const [locName, setlocName] = useState("");
     const [fooditems, setFooditems] = useState("");
     const [cafeitems, setCafeitems] = useState("");
@@ -23,7 +24,6 @@ export default function Map(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (
           res["restaurant"] === undefined &&
           res["cafe"] === undefined &&
@@ -49,17 +49,6 @@ export default function Map(props) {
     let contentlng = [];
     let contentlat = [];
 
-    const keys = Object.keys(fooditems);
-    for (let i = 0; i < keys.length; i++) {
-      const k = keys[i];
-      const d = fooditems[k].locationName;
-      const lng = fooditems[k].locationLng;
-      const lat = fooditems[k].locationLat;
-      contentDiv.push(d);
-      contentlng.push(lng);
-      contentlat.push(lat);
-    }
-
     var positions = [
       {
         // title: "카카오123",
@@ -70,7 +59,53 @@ export default function Map(props) {
 
     let positionContent = {};
 
-    for (let i = 0; i < keys.length; i++) {
+    // 음식점
+
+    const foodkeys = Object.keys(fooditems);
+    for (let i = 0; i < foodkeys.length; i++) {
+      const k = foodkeys[i];
+      const d = fooditems[k].locationName;
+      const lng = fooditems[k].locationLng;
+      const lat = fooditems[k].locationLat;
+      contentDiv.push(d);
+      contentlng.push(lng);
+      contentlat.push(lat);
+    }
+
+    for (let i = 0; i < foodkeys.length; i++) {
+      // console.log(contentDiv[i], contentlat[i], contentlng[i]);
+
+      positionContent = {
+        title: contentDiv[i],
+        content:
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
+          "<i class='fa-solid fa-utensils' style='display:block;margin: 5px;color:#F3887C'></i>" +
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
+          "</div>",
+        latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+      };
+      positions.push(positionContent);
+      // setLoading(false);
+    }
+
+    // 카페
+
+    const cafekeys = Object.keys(cafeitems);
+    for (let i = 0; i < cafekeys.length; i++) {
+      const k = cafekeys[i];
+      const d = cafeitems[k].locationName;
+      const lng = cafeitems[k].locationLng;
+      const lat = cafeitems[k].locationLat;
+      contentDiv.push(d);
+      contentlng.push(lng);
+      contentlat.push(lat);
+    }
+
+    const foodlen = foodkeys.length;
+
+    for (let i = foodlen; i < contentDiv.length; i++) {
       // console.log(contentDiv[i], contentlat[i], contentlng[i]);
 
       positionContent = {
@@ -78,7 +113,108 @@ export default function Map(props) {
         content:
           "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
           "<i class='fa-solid fa-mug-saucer' style='display:block;margin: 5px;color:#F3887C'></i>" +
-          "<p style='margin-bottom:0px'>"+contentDiv[i] +"</p>"+
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
+          "</div>",
+        latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+      };
+      positions.push(positionContent);
+      // setLoading(false);
+    }
+
+    // 공원
+
+    const parkkeys = Object.keys(parkitems);
+    for (let i = 0; i < parkkeys.length; i++) {
+      const k = parkkeys[i];
+      const d = parkitems[k].locationName;
+      const lng = parkitems[k].locationLng;
+      const lat = parkitems[k].locationLat;
+      contentDiv.push(d);
+      contentlng.push(lng);
+      contentlat.push(lat);
+    }
+
+    const cafelen = cafekeys.length;
+
+    for (let i = foodlen + cafelen; i < contentDiv.length; i++) {
+      // console.log(contentDiv[i], contentlat[i], contentlng[i]);
+
+      positionContent = {
+        title: contentDiv[i],
+        content:
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-tree" style="display:block;margin: 5px;color:#77B559"></i>' +
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
+          "</div>",
+        latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+      };
+      positions.push(positionContent);
+      // setLoading(false);
+    }
+
+    // 펜션
+
+    const housekeys = Object.keys(houseitems);
+    for (let i = 0; i < housekeys.length; i++) {
+      const k = housekeys[i];
+      const d = houseitems[k].locationName;
+      const lng = houseitems[k].locationLng;
+      const lat = houseitems[k].locationLat;
+      contentDiv.push(d);
+      contentlng.push(lng);
+      contentlat.push(lat);
+    }
+
+    const parklen = parkkeys.length;
+
+    for (let i = foodlen + cafelen + parklen; i < contentDiv.length; i++) {
+      // console.log(contentDiv[i], contentlat[i], contentlng[i]);
+
+      positionContent = {
+        title: contentDiv[i],
+        content:
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-hotel" style="display:block;margin: 5px;color:#77B559"></i>' +
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
+          "</div>",
+        latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+      };
+      positions.push(positionContent);
+      // setLoading(false);
+    }
+
+    // 병원
+
+    const hospitalkeys = Object.keys(hospitalitems);
+    for (let i = 0; i < hospitalkeys.length; i++) {
+      const k = hospitalkeys[i];
+      const d = hospitalitems[k].locationName;
+      const lng = hospitalitems[k].locationLng;
+      const lat = hospitalitems[k].locationLat;
+      contentDiv.push(d);
+      contentlng.push(lng);
+      contentlat.push(lat);
+    }
+
+    const houselen = housekeys.length;
+
+    for (let i = foodlen + cafelen + parklen + houselen; i < contentDiv.length; i++) {
+      // console.log(contentDiv[i], contentlat[i], contentlng[i]);
+
+      positionContent = {
+        title: contentDiv[i],
+        content:
+          "<div style='font-size:14px; word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-briefcase-medical" style="display:block;margin: 5px;color:rgb(116, 192, 252)"></i>' +
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
           "</div>",
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
       };
@@ -151,7 +287,7 @@ export default function Map(props) {
 
   useEffect(() => {
     fetchF();
-  }, []);
+  }, [inputValue]);
 
   useEffect(() => {
     start();
