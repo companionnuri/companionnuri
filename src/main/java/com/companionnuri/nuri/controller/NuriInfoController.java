@@ -81,6 +81,7 @@ public class NuriInfoController {
     @ApiOperation(value = "입력된 검색어(query)에 대해, 장소이름에 해당 검색어가 포함되는 Location의 목록을 반환한다.", notes = "각 Location은 카테고리(cafe, restaurant, hospital, house, park)로 분류되며, 배열의 형태로 반환된다. \n  좌표 정보는 검색결과에 필요하지 않을 것 같아 일단 비워둠.")
     @GetMapping("/search/{query}")
     public ResponseEntity<?> searchByQuery(@PathVariable String query) {
+        // 검색어 정제 로직 추가
         List<LocationListDto> list = nuriInfoService.searchByQuery(query);
         validateSearchList(list);
         Map<String, Object> resultMap = searchResult(list);
@@ -93,6 +94,7 @@ public class NuriInfoController {
         }
     }
 
+    // 이거 서비스로 옮기기
     private Map<String, Object> searchResult(List<LocationListDto> list) {
         List<LocationListDto> cafes = new ArrayList<>();
         List<LocationListDto> foods = new ArrayList<>();
