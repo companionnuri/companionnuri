@@ -5,10 +5,10 @@ const { kakao } = window;
 
 function Searchmap(props) {
   console.log(props.keyword)
-  const key = props.keyword
+  const keyword = props.keyword
   return (
     <div className="kakaomap">
-      <SearchKakaoMapScript keyword={key} />
+      <SearchKakaoMapScript keyword={keyword} />
     </div>
   );
 }

@@ -1,38 +1,44 @@
-import React from "react";
-import styles from "./css/SearchContent.module.css";
-
-const SearchContentUl = {
-  width: "475px",
-  marginLeft: "103px",
-  listType: "none",
-};
-const SearchContentLi = {
-  listType: "none",
-  padding: "18px 0px",
-  borderBottom: "1px solid",
-  borderColor: "#ecf0f2",
-  cursor: "pointer",
-};
-const contentP = {
-  fontSize: "15px",
-  margin: "5px 0",
-};
+import React, { useState, useEffect } from "react";
 
 function SearchContent(props) {
-  let users = [];
-  users = props.fooditems;
+  
+  const [inputValue, setinputValue] = useState(props.ckValue);
+
+  const [name, setName] = useState("");
+  const [addr, setAddr] = useState("");
+  const [raddr, setRaddr] = useState("");
+  const [tel, setTel] = useState("");
+  
+
+  const fetchF = () => {
+    if (inputValue) {
+
+      fetch(
+        `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/detail/${inputValue}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          setName(res["location"].locationName);
+          setAddr(res["location"].locationAddr);
+          setRaddr(res["location"].locationRoadAddr);
+          setTel(res["location"].locationTel);
+          
+        });
+    }
+  };
+
+  useEffect(() => {
+    fetchF();
+  }, [inputValue]);
+
+  console.log(props.ckValue);
   return (
     <div>
-      <div style={SearchContentUl}>
-        <div style={SearchContentLi}>
-          {/* {users.map((user) => (
-            <button value={user.locationName}>{user.locationName}</button>
-          ))} */}
-          {/* <p className={styles.SearchContentTit}>화미주아티클헤어 구미점</p>
-          <p className="mb-0 d-flex" style={contentP}><p className={styles.categoryLabel}>카테고리</p>미용실</p>
-          <p className="mb-0 d-flex" style={contentP}><p className={styles.categoryLabel}>위치</p> 구미 원평동</p> */}
-        </div>
-      </div>
+      <h1>{name}</h1>
+      <h1>{addr}</h1>
+      <h1>{raddr}</h1>
+      <h1>{tel}</h1>
     </div>
   );
 }
