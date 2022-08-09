@@ -5,7 +5,7 @@ const { kakao } = window;
 
 function Searchmap(props) {
   console.log(props.searchmapkeyword);
-  const kakaopropskeyword = props.keyword
+  const kakaopropskeyword = props.searchmapkeyword;
   return (
     <div className="kakaomap">
       <SearchKakaoMapScript kakaovalue={kakaopropskeyword} />

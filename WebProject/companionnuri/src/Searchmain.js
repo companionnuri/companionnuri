@@ -6,7 +6,8 @@ import React, { useState, useEffect } from "react";
 
 function Searchmain() {
   const location = useLocation();
-  const mainkeyword = location.state.keyword;
+  console.log(location)
+  const mainkeyword = location.state;
   console.log(mainkeyword);
   
   return (
