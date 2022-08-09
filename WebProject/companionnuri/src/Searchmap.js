@@ -4,11 +4,11 @@ import styles from "./css/Map.module.css";
 const { kakao } = window;
 
 function Searchmap(props) {
-  console.log(props.keyword)
-  const keyword = props.keyword
+  console.log(props.searchmapkeyword);
+  const kakaopropskeyword = props.keyword
   return (
     <div className="kakaomap">
-      <SearchKakaoMapScript keyword={keyword} />
+      <SearchKakaoMapScript kakaovalue={kakaopropskeyword} />
     </div>
   );
 }

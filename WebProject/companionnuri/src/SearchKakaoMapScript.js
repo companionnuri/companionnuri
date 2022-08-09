@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const { kakao } = window;
 
 export default function Map(props) {
-  const inputValue = props.keyword
+  const inputValue = props.kakaovalue;
   const [locName, setlocName] = useState("");
     const [fooditems, setFooditems] = useState("");
     const [cafeitems, setCafeitems] = useState("");
@@ -23,7 +23,7 @@ export default function Map(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res.json());
+        console.log(res);
         if (
           res["restaurant"] === undefined &&
           res["cafe"] === undefined &&
