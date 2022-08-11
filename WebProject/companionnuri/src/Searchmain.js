@@ -1,5 +1,4 @@
 import Searchmap from "./Searchmap";
-import SearchClickmap from "./SearchClickmain";
 import Top from "./Top";
 import styles from "./css/Main.module.css";
 import { useLocation } from "react-router-dom";
