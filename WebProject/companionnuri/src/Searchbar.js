@@ -31,8 +31,10 @@ const hd_search_input = {
 };
 
 function Searchbar(props) {
+
   const [keyword, setKeyword] = useState(null);
   const navigate = useNavigate();
+  const [later, setLater] = useState(0)
 
   const clickButton = (e) => {
     console.log(e)
@@ -47,7 +49,8 @@ function Searchbar(props) {
       setKeyword(e)
       navigate("/Searchmain", {
         state: {
-          keyword,
+          keyword: keyword,
+          later: later,
         },
       });
     }
@@ -64,7 +67,8 @@ function Searchbar(props) {
       console.log(keyword)
       navigate("/Searchmain", {
         state: {
-          keyword,
+          keyword: keyword,
+          later : later
         },
       });
     }
@@ -77,14 +81,20 @@ function Searchbar(props) {
       setKeyword("글자가 없쪄용input");
       navigate("/Searchmain", {
         state: {
-          keyword,
+          keyword: keyword,
+          later: later,
         },
       });
     } else {
       setKeyword(e.target.value)
       console.log(e.target.value)
       clickButton(e.target.value);
-      navigate("/Searchmain", { state: e.target.value });
+      navigate("/Searchmain", {
+        state: {
+          keyword: e.target.value,
+          later: later,
+        },
+      });
     }
     
   };
@@ -95,16 +105,18 @@ function Searchbar(props) {
     if (keyword === null) {
       console.log("처음")
       navigate("/Searchmain", {
-      state: {
-        keyword,
-      },
-    });
+        state: {
+          keyword: keyword,
+          later: later,
+        },
+      });
     }
     else {
       console.log("start의 else");
       navigate("/Searchmain", {
         state: {
-          keyword,
+          keyword: keyword,
+          later: later,
         },
       });
     }

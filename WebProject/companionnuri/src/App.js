@@ -13,7 +13,8 @@ import Housemain from "./Housemain";
 import Hospitalmain from "./Hospitalmain";
 import Parkmain from "./Parkmain";
 import Regionmain from "./Regionmain";
-import Searchmain from "./Searchmain"
+import Searchmain from "./Searchmain";
+import SearchClickmain from "./SearchClickmain";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/Parkmain" element={<Parkmain />} />
         <Route path="/Regionmain" element={<Regionmain />} />
         <Route path="/Searchmain" element={<Searchmain />} />
+        <Route path="/SearchClickmain" element={<SearchClickmain />} />
         <Route path="/Region" element={<Region />} />
         <Route path="/Detail" element={<Detail />} />
         <Route path="/Info" element={<Info />} />
