@@ -16,10 +16,11 @@ export default function Map() {
       });
   };
 
-  const start = () => {
+  const start = (props) => {
     let contentDiv = [];
     let contentlng = [];
     let contentlat = [];
+    let contentid = [];
 
     const keys = Object.keys(locName);
     for (let i = 0; i < keys.length; i++) {
@@ -27,9 +28,11 @@ export default function Map() {
       const d = locName[k].locationName;
       const lng = locName[k].locationLng;
       const lat = locName[k].locationLat;
+      const id = locName[k].locationId;
       contentDiv.push(d);
       contentlng.push(lng);
       contentlat.push(lat);
+      contentid.push(id);
     }
 
     var positions = [
@@ -50,9 +53,12 @@ export default function Map() {
         content:
           "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
           "<i class='fa-solid fa-mug-saucer' style='display:block;margin: 5px;color:#F3887C'></i>" +
-          "<p style='margin-bottom:0px'>"+contentDiv[i] +"</p>"+
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
           "</div>",
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+        id: contentid[i],
       };
       positions.push(positionContent);
       // setLoading(false);
@@ -102,6 +108,12 @@ export default function Map() {
         "mouseout",
         makeOutListener(infowindow)
       );
+      kakao.maps.event.addListener(marker, "click", function () {
+        // 마커 위에 인포윈도우를 표시합니다
+
+        console.log(positions[i].id);
+        props.setclicksearchValue(positions[i].id);
+      });
     }
 
     // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
