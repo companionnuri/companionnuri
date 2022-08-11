@@ -5,7 +5,6 @@ const { kakao } = window;
 
 function Searchmap(props) {
   console.log(props.searchmapkeyword);
-  // console.log(props.later)
   console.log(props.searchmapinputvalue);
   const [clicksearchValue, setclicksearchValue] = useState("");
   console.log(clicksearchValue)
