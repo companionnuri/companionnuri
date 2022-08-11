@@ -68,7 +68,10 @@ function Open(props) {
   const [resultmessage, setResultmessage] = useState("");
 
   const [clickValue, setClickValue] = useState("")
-
+  const [name, setName] = useState("");
+  const [addr, setAddr] = useState("");
+  const [raddr, setRaddr] = useState("");
+  const [tel, setTel] = useState("");
   let food = [];
   let cafe = [];
   let park = [];
@@ -85,6 +88,8 @@ function Open(props) {
 
   let result;
   const [message, setMessage] = useState();
+
+  // console.log(props.kakaoclick);
 
   // if (props.topValue) {
   //   result = (
@@ -129,8 +134,8 @@ function Open(props) {
             setHouseitems(res["house"]);
           }
         });
+      
     }
-    
   };
 
   const fetchF = () => {
@@ -145,7 +150,7 @@ function Open(props) {
       );
 
       // console.log(inputValue);
-
+      
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
       )
@@ -162,6 +167,7 @@ function Open(props) {
             setResultmessage("검색 결과가 없습니다.");
             setMessage(0);
           } else {
+            console.log("여기")
             setMessage(1);
             setFooditems(res["restaurant"]);
             setCafeitems(res["cafe"]);
@@ -170,8 +176,34 @@ function Open(props) {
             setHouseitems(res["house"]);
           }
         });
+      
+      
     }
   };
+
+  // const fetchF3 = () => {
+  //   console.log("f3")
+  //   console.log(props.kakaoclick)
+  //   if (props.kakaoclick) {
+  //     // result = (
+  //     //   <h1 style={searchResultP} className="my-2">
+  //     //     <b>{props.keyword}</b>의 검색 결과는 다음과 같다
+  //     //   </h1>
+  //     // );
+  //     let k = props.kakaoclick;
+  //     fetch(
+  //       `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/detail/${k}`
+  //     )
+  //       .then((res) => res.json())
+  //       .then((res) => {
+  //         setName(res["location"].locationName);
+  //         setAddr(res["location"].locationAddr);
+  //         setRaddr(res["location"].locationRoadAddr);
+  //         setTel(res["location"].locationTel);
+  //         // setClickValue(res["location"].locationId);
+  //       });
+  //   }
+  // }
 
   // if (fooditems.prop === undefined) { console.log("undefinend") }
   // console.log(fooditems);
@@ -226,6 +258,15 @@ function Open(props) {
   useEffect(() => {
     fetchF2();
   }, []);
+
+  // useEffect(() => {
+  //   fetchF3();
+  // }, [fetchF])
+
+  // useEffect(() => {
+  //   fetchF3();
+  // }, []);
+
 
   const foodButtonClick = (e) => {
     setClickCheck(1);
@@ -308,6 +349,9 @@ function Open(props) {
     </button>
   ));
 
+  
+  const [color, setColor] = useState('black')
+
   const backresult = () => {
     setClickCheck(0)
   }
@@ -325,8 +369,16 @@ function Open(props) {
         </div>
         <div style={resultBox}>{result}</div>
         <div>
+          <div>
+            {/* <div>
+              <h1>{name}</h1>
+              <h1>{addr}</h1>
+              <h1>{raddr}</h1>
+              <h1>{tel}</h1>
+            </div> */}
+          </div>
           <div style={searchResultBox}>
-            {clickCheck === 1 ? (
+            {clickCheck === 1 && clickValue ? (
               <div>
                 <button onClick={backresult}>뒤로 가기</button>
                 <SearchContent ckValue={clickValue} />
