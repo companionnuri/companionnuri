@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SearchKakaoMapScript from "./SearchKakaoMapScript";
-import SearchClickKakaoMapScript from "./SearchClickKakaoMapScript";
 import styles from "./css/Map.module.css";
 const { kakao } = window;
 
