@@ -3,10 +3,13 @@ import HouseKakaoMapScript from "./HouseKakaoMapScript";
 import styles from "./css/Map.module.css";
 const { kakao } = window;
 
-function Housemap() {
+function Housemap(props) {
+  const [clicksearchValue, setclicksearchValue] = useState("");
+  console.log(clicksearchValue);
+  props.setClicksearch(clicksearchValue);
   return (
     <div className="kakaomap">
-      <HouseKakaoMapScript />
+      <HouseKakaoMapScript setclicksearchValue={setclicksearchValue} />
     </div>
   );
 }
