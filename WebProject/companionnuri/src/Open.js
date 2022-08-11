@@ -97,14 +97,14 @@ function Open(props) {
   // console.log(props.keyword)
 
   const fetchF2 = () => {
-    if (props.keyword) {
+    if (props.keyword && clickValue === 0) {
       cnt++;
       result = (
         <h1 style={searchResultP} className="my-2">
           <b>{props.keyword}</b>의 검색 결과는 다음과 같다
         </h1>
       );
-      let k = props.keyword
+      let k = props.keyword;
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${k}`
       )
@@ -130,7 +130,8 @@ function Open(props) {
           }
         });
     }
-  }
+    
+  };
 
   const fetchF = () => {
 
@@ -315,13 +316,14 @@ function Open(props) {
             setinputValue={setinputValue}
             setOpen={setOpen}
             style={searchInput}
+            clickResultBox={clickCheck}
           />
         </div>
         <div style={resultBox}>{result}</div>
         <div>
           <div style={searchResultBox}>
             {clickCheck === 1 ? (
-              <SearchContent ckValue={clickValue}/>
+              <SearchContent ckValue={clickValue} />
             ) : message === 0 ? (
               <p>{resultmessage}</p>
             ) : (

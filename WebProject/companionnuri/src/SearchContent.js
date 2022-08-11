@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SearchContent(props) {
-  
   const [inputValue, setinputValue] = useState(props.ckValue);
 
   const [name, setName] = useState("");
   const [addr, setAddr] = useState("");
   const [raddr, setRaddr] = useState("");
   const [tel, setTel] = useState("");
-  
+  const navigate = useNavigate();
 
   const fetchF = () => {
     if (inputValue) {
-
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/detail/${inputValue}`
       )
@@ -23,8 +22,12 @@ function SearchContent(props) {
           setAddr(res["location"].locationAddr);
           setRaddr(res["location"].locationRoadAddr);
           setTel(res["location"].locationTel);
-          
         });
+      navigate("/Searchmain", {
+        state: {
+          inputValue : inputValue,
+        },
+      });
     }
   };
 
@@ -32,7 +35,7 @@ function SearchContent(props) {
     fetchF();
   }, [inputValue]);
 
-  console.log(props.ckValue);
+  // console.log(props.ckValue);
   return (
     <div>
       <h1>{name}</h1>

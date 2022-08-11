@@ -33,6 +33,7 @@ function Top(props) {
   const [open, setOpen] = useState(props.op);
   const [topinputValue, settopinputValue] = useState(props.regionValue);
   const [keyword, setkey] = useState(props.keyword);
+  const [keyword1, setkey1] = useState(props.keyword1);
 
   return (
     <div>
@@ -52,7 +53,7 @@ function Top(props) {
       <div style={searchFloatingBox}>
         {/* <Topsearchbar settopinputValue={settopinputValue} setOpen={setOpen} /> */}
       </div>
-      {open ? <Open topValue={topinputValue} keyword={keyword} /> : null}
+      {open ? <Open topValue={topinputValue} keyword={keyword} keyword1={keyword1} /> : null}
     </div>
   );
 }
