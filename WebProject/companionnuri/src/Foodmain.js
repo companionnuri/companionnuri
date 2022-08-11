@@ -5,10 +5,13 @@ import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 function Foodmain() {
+  const [clicksearch, setClicksearch] = useState("");
+  console.log(clicksearch);
+
   return (
     <div className="d-flex flex-column align-items-center">
-      <Top />
-      <Foodmap />
+      <Top kakaoclickresult={clicksearch} detailop="true" />
+      <Foodmap setClicksearch={setClicksearch} />
     </div>
   );
 }

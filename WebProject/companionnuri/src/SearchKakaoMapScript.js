@@ -400,14 +400,6 @@ export default function Map(props) {
           content: positions[i].content, // 인포윈도우에 표시할 내용
         });
 
-        // var bounds = new kakao.maps.LatLngBounds();
-
-        // function setBounds() {
-        //   // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-        //   // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-        //   map.setBounds(positions[i].latlng);
-        // }
-
         // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
         // 이벤트 리스너로는 클로저를 만들어 등록합니다
         // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
