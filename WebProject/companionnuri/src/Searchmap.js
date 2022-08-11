@@ -7,10 +7,17 @@ function Searchmap(props) {
   console.log(props.searchmapkeyword);
   // console.log(props.later)
   console.log(props.searchmapinputvalue);
+  const [clicksearchValue, setclicksearchValue] = useState("");
+  console.log(clicksearchValue)
+  props.setClicksearch(clicksearchValue);
+
   return (
     <div className="kakaomap">
       {props.searchmapinputvalue === undefined ? (
-        <SearchKakaoMapScript kakaovalue={props.searchmapkeyword} />
+        <SearchKakaoMapScript
+          kakaovalue={props.searchmapkeyword}
+          setclicksearchValue={setclicksearchValue}
+        />
       ) : (
         <SearchKakaoMapScript kakaoinputvalue={props.searchmapinputvalue} />
       )}

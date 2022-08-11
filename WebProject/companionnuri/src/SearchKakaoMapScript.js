@@ -59,14 +59,15 @@ export default function Map(props) {
       let contentDiv = [];
       let contentlng = [];
       let contentlat = [];
+      let contentid = [];
 
       var positions = [
-        {
-          // title: "카카오123",
-          // content: "<div>33333</div>",
-          // latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
-        },
-      ];
+          {
+            // title: "카카오123",
+            // content: "<div>33333</div>",
+            // latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
+          },
+        ]
 
       let positionContent = {};
 
@@ -78,9 +79,11 @@ export default function Map(props) {
         const d = fooditems[k].locationName;
         const lng = fooditems[k].locationLng;
         const lat = fooditems[k].locationLat;
+        const id = fooditems[k].locationId;
         contentDiv.push(d);
         contentlng.push(lng);
         contentlat.push(lat);
+        contentid.push(id);
       }
 
       for (let i = 0; i < foodkeys.length; i++) {
@@ -96,6 +99,7 @@ export default function Map(props) {
             "</p>" +
             "</div>",
           latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+          id: contentid[i],
         };
         positions.push(positionContent);
         // setLoading(false);
@@ -109,9 +113,11 @@ export default function Map(props) {
         const d = cafeitems[k].locationName;
         const lng = cafeitems[k].locationLng;
         const lat = cafeitems[k].locationLat;
+        const id = cafeitems[k].locationId;
         contentDiv.push(d);
         contentlng.push(lng);
         contentlat.push(lat);
+        contentid.push(id);
       }
 
       const foodlen = foodkeys.length;
@@ -129,6 +135,7 @@ export default function Map(props) {
             "</p>" +
             "</div>",
           latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+          id: contentid[i],
         };
         positions.push(positionContent);
         // setLoading(false);
@@ -142,9 +149,11 @@ export default function Map(props) {
         const d = parkitems[k].locationName;
         const lng = parkitems[k].locationLng;
         const lat = parkitems[k].locationLat;
+        const id = parkitems[k].locationId;
         contentDiv.push(d);
         contentlng.push(lng);
         contentlat.push(lat);
+        contentid.push(id);
       }
 
       const cafelen = cafekeys.length;
@@ -162,6 +171,7 @@ export default function Map(props) {
             "</p>" +
             "</div>",
           latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+          id: contentid[i],
         };
         positions.push(positionContent);
         // setLoading(false);
@@ -175,9 +185,11 @@ export default function Map(props) {
         const d = houseitems[k].locationName;
         const lng = houseitems[k].locationLng;
         const lat = houseitems[k].locationLat;
+        const id = houseitems[k].locationId;
         contentDiv.push(d);
         contentlng.push(lng);
         contentlat.push(lat);
+        contentid.push(id);
       }
 
       const parklen = parkkeys.length;
@@ -195,6 +207,7 @@ export default function Map(props) {
             "</p>" +
             "</div>",
           latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+          id: contentid[i],
         };
         positions.push(positionContent);
         // setLoading(false);
@@ -208,9 +221,11 @@ export default function Map(props) {
         const d = hospitalitems[k].locationName;
         const lng = hospitalitems[k].locationLng;
         const lat = hospitalitems[k].locationLat;
+        const id = hospitalitems[k].locationId;
         contentDiv.push(d);
         contentlng.push(lng);
         contentlat.push(lat);
+        contentid.push(id);
       }
 
       const houselen = housekeys.length;
@@ -232,11 +247,11 @@ export default function Map(props) {
             "</p>" +
             "</div>",
           latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
+          id: contentid[i],
         };
         positions.push(positionContent);
         // setLoading(false);
       }
-
       let container = document.getElementById("map");
       let options = {
         center: new kakao.maps.LatLng(37.551425, 126.988),
@@ -281,6 +296,13 @@ export default function Map(props) {
           "mouseout",
           makeOutListener(infowindow)
         );
+        // eslint-disable-next-line no-loop-func
+        kakao.maps.event.addListener(marker, "click", function () {
+          // 마커 위에 인포윈도우를 표시합니다
+
+          console.log(positions[i].id);
+          props.setclicksearchValue(positions[i].id);
+        });
       }
 
       // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
@@ -298,7 +320,7 @@ export default function Map(props) {
       }
 
       marker.setMap(map);
-    };
+    };;
   }
   else {
     fetchF = () => {
@@ -399,6 +421,12 @@ export default function Map(props) {
           "mouseout",
           makeOutListener(infowindow)
         );
+
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, "click", function () {
+          // 마커 위에 인포윈도우를 표시합니다
+          console.log("클릭됨")
+        });
       }
 
       // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
@@ -414,6 +442,7 @@ export default function Map(props) {
           infowindow.close();
         };
       }
+
       marker.setMap(map);
     }    
   }

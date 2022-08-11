@@ -6,6 +6,7 @@ import styles from "./css/Top.module.css";
 import CategoryFloating from "./CategoryFloating";
 import Open from "./Open";
 import Topsearchbar from "./Topsearchbar";
+import Detail from "./Detail"
 
 import React, { useState, useContext, useRef, useEffect } from "react";
 
@@ -33,7 +34,20 @@ function Top(props) {
   const [open, setOpen] = useState(props.op);
   const [topinputValue, settopinputValue] = useState(props.regionValue);
   const [keyword, setkey] = useState(props.keyword);
-  const [keyword1, setkey1] = useState(props.keyword1);
+  const [detailopen, setDetailopen] = useState(props.detailop)
+  const [detailValue, setDetailValue] = useState(props.kakaoclickresult);
+
+  // const detailValue = props.kakaoclickresult
+  console.log(detailValue);
+  // console.log(detailopen);
+
+  console.log(detailopen);
+  
+  useEffect(() => {
+    setDetailValue(props.kakaoclickresult);
+    setDetailopen(props.detailop);
+    setOpen(props.op);
+  }, [props.kakaoclickresult, props.detailop, props.op]);
 
   return (
     <div>
@@ -53,7 +67,14 @@ function Top(props) {
       <div style={searchFloatingBox}>
         {/* <Topsearchbar settopinputValue={settopinputValue} setOpen={setOpen} /> */}
       </div>
-      {open ? <Open topValue={topinputValue} keyword={keyword} keyword1={keyword1} /> : null}
+      <div>
+        {open ? <Open topValue={topinputValue} keyword={keyword} /> : null}
+      </div>
+      <div>
+        {detailopen && detailValue > 0 ? (
+          <Detail kakaoclick={detailValue} setDetailopen={setDetailopen} />
+        ) : null}
+      </div>
     </div>
   );
 }
