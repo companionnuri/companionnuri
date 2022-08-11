@@ -308,6 +308,10 @@ function Open(props) {
     </button>
   ));
 
+  const backresult = () => {
+    setClickCheck(0)
+  }
+
   return (
     <div className={styles.searchDiv}>
       <div>
@@ -323,7 +327,10 @@ function Open(props) {
         <div>
           <div style={searchResultBox}>
             {clickCheck === 1 ? (
-              <SearchContent ckValue={clickValue} />
+              <div>
+                <button onClick={backresult}>뒤로 가기</button>
+                <SearchContent ckValue={clickValue} />
+              </div>
             ) : message === 0 ? (
               <p>{resultmessage}</p>
             ) : (
