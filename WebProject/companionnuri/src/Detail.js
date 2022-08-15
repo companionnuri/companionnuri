@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from './css/Detail.module.css';
 
 function Detail(props) {
 
@@ -43,13 +44,21 @@ function Detail(props) {
     };
 
     return (
-      <div style={{marginLeft:800
-      }}>
-        <h1>{name}</h1>
-        <h1>{addr}</h1>
-        <h1>{raddr}</h1>
-        <h1>{tel}</h1>
-        <button onClick={backresult}>취소</button>
+      <div className={styles.detailBox}>
+        <h1 className={styles.detailTitle}>{name}</h1>
+        <button className={styles.detailBackBtn} onClick={backresult}><i class="fa-solid fa-x"></i></button>
+        <div className={styles.detailAddrBox}>
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <p>{addr} ({raddr})</p>
+          </div>
+        </div>
+        {tel ? 
+        <div className={styles.detailTelBox}>
+          <i class="fa-solid fa-phone-flip"></i>
+          <p>{tel}</p>
+        </div>
+        : ''}
       </div>
     );
 };

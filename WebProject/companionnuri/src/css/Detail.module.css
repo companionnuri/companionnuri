@@ -1,0 +1,43 @@
+.detailBox {
+  width: 527px;
+  margin-left: 83px;
+  height: 100vh;
+  z-index: 100;
+  position: absolute;
+  background: #fff;
+  padding: 100px 20px 0;
+}
+.detailTitle {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.detailBackBtn {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+.detailAddrBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.detailAddrBox i {
+  margin-right: 6px;
+  color: #a4a4a4;
+}
+.detailAddrBox p {
+  margin-bottom: 0px;
+}
+.detailTelBox {
+  display: flex;
+  align-items: center;
+}
+.detailTelBox p {
+  margin-bottom: 0px;
+}
+.detailTelBox i {
+  margin-right: 6px;
+  color: #a4a4a4;
+}
