@@ -5,11 +5,13 @@ const { kakao } = window;
 export default function Map(props) {
   const inputValue = props.kakaovalue;
   const searchinputvalue = props.kakaoinputvalue;
-  console.log(inputValue)
-  console.log(searchinputvalue)
+  console.log(inputValue);
+  console.log(searchinputvalue);
 
-  let fetchF = () => { }
-  let start = () => { }
+  let fetchF = () => {};
+  let start = () => {};
+  let fetchF2 = () => {};
+  let start2 = () => {};
   const [locName, setlocName] = useState("");
   const [fooditems, setFooditems] = useState("");
   const [cafeitems, setCafeitems] = useState("");
@@ -22,13 +24,14 @@ export default function Map(props) {
   const [addr, setAddr] = useState("");
   const [raddr, setRaddr] = useState("");
   const [tel, setTel] = useState("");
-  const [lat, setLat] = useState("")
-  const [lng, setLng] = useState("")
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
 
   let result;
   const [message, setMessage] = useState();
 
   if (searchinputvalue === undefined) {
+    console.log(1);
     fetchF = () => {
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
@@ -67,7 +70,8 @@ export default function Map(props) {
             // content: "<div>33333</div>",
             // latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
           },
-        ]
+        ],
+        selectedMarker = null;
 
       let positionContent = {};
 
@@ -252,16 +256,18 @@ export default function Map(props) {
         positions.push(positionContent);
         // setLoading(false);
       }
-      let container = document.getElementById("map");
+      let container1 = document.getElementById("map");
       let options = {
         center: new kakao.maps.LatLng(37.551425, 126.988),
         level: 7,
       };
       //map
-      const map = new kakao.maps.Map(container, options);
+      const map = new kakao.maps.Map(container1, options);
 
       const imageSrc =
         "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+      const imageSrc2 =
+        "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markers_sprites2.png";
 
       let marker;
 
@@ -281,6 +287,7 @@ export default function Map(props) {
         // 마커에 표시할 인포윈도우를 생성합니다
         const infowindow = new kakao.maps.InfoWindow({
           content: positions[i].content, // 인포윈도우에 표시할 내용
+          removable: true,
         });
 
         // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
@@ -291,11 +298,12 @@ export default function Map(props) {
           "mouseover",
           makeOverListener(map, marker, infowindow)
         );
-        kakao.maps.event.addListener(
-          marker,
-          "mouseout",
-          makeOutListener(infowindow)
-        );
+        // kakao.maps.event.addListener(
+        //   marker,
+        //   "mouseout",
+        //   makeOutListener(infowindow)
+        // );
+
         // eslint-disable-next-line no-loop-func
         kakao.maps.event.addListener(marker, "click", function () {
           // 마커 위에 인포윈도우를 표시합니다
@@ -312,24 +320,41 @@ export default function Map(props) {
         };
       }
 
-      // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-      function makeOutListener(infowindow) {
-        return function () {
-          infowindow.close();
-        };
-      }
+      // // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+      // function makeOutListener(infowindow) {
+      //   return function () {
+      //     infowindow.close();
+      //   };
+      // }
 
       marker.setMap(map);
-    };;
-  }
-  else {
-    fetchF = () => {
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  } else {
+    fetchF2 = () => {
+      console.log(222222222);
+      console.log(searchinputvalue);
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/detail/${searchinputvalue}`
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log("성공");
+          console.log(res["location"].locationName);
           setName(res["location"].locationName);
           setAddr(res["location"].locationAddr);
           setRaddr(res["location"].locationRoadAddr);
@@ -339,45 +364,45 @@ export default function Map(props) {
         });
     };
 
-    start = () => {
+    start2 = () => {
       //   let contentDiv = [];
       //   let contentlng = [];
       //   let contentlat = [];
+      console.log(222);
 
-        var positions = [
-          {
-            // title: "카카오123",
-            // content: "<div>33333</div>",
-            // latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
-          },
-        ];
+      var positions = [
+        {
+          // title: "카카오123",
+          // content: "<div>33333</div>",
+          // latlng: new kakao.maps.LatLng(37.5642135, 127.0016985),
+        },
+      ];
 
       let positionContent = {};
-      
-        positionContent = {
-            title: name,
-            content:
-              "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
-              "<p style='margin-bottom:0px'>" +
-              name +
-              "</p>" +
-              "</div>",
-            latlng: new kakao.maps.LatLng(lat, lng),
-          };
-          positions.push(positionContent);
-          // setLoading(false);
-        
 
-        let container = document.getElementById("map");
-        let options = {
-          center: new kakao.maps.LatLng(lat, lng),
-          level: 7,
-        };
-        //map
-      
-      console.log(lat, lng)
-      let map = new kakao.maps.Map(container, options);
-      
+      positionContent = {
+        title: name,
+        content:
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
+          "<p style='margin-bottom:0px'>" +
+          name +
+          "</p>" +
+          "</div>",
+        latlng: new kakao.maps.LatLng(lat, lng),
+      };
+      positions.push(positionContent);
+      // setLoading(false);
+
+      let container2 = document.getElementById("map");
+      let options = {
+        center: new kakao.maps.LatLng(lat, lng),
+        level: 7,
+      };
+      //map
+
+      // console.log(lat, lng)
+      let map = new kakao.maps.Map(container2, options);
+
       let marker;
       const imageSrc =
         "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -417,7 +442,7 @@ export default function Map(props) {
         // 마커에 클릭이벤트를 등록합니다
         kakao.maps.event.addListener(marker, "click", function () {
           // 마커 위에 인포윈도우를 표시합니다
-          console.log("클릭됨")
+          console.log("클릭됨");
         });
       }
 
@@ -436,16 +461,23 @@ export default function Map(props) {
       }
 
       marker.setMap(map);
-    }    
+    };
   }
-  
 
   useEffect(() => {
     fetchF();
   }, [inputValue, searchinputvalue]);
 
   useEffect(() => {
+    fetchF2();
+  }, [searchinputvalue]);
+
+  useEffect(() => {
     start();
+  }, [fetchF]);
+
+  useEffect(() => {
+    start2();
   }, [fetchF]);
 
   return <div id="map" style={{ width: "100vw", height: "100vh" }}></div>;
