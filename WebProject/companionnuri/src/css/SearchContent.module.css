@@ -14,3 +14,34 @@
   letter-spacing: -0.2px;
   width:65px;
 }
+.SearchContentAddrBox {
+  display:flex;
+  margin-bottom: 5px;
+}
+.SearchContentAddrBox i {
+  margin-top: 4px;
+  margin-right: 6px;
+  color: #A4A4A4;
+}
+.SearchContentTitle {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.SearchContentAddr {
+  margin-bottom: 0px;
+}
+.SearchContentRaddr {}
+.SearchContentTelBox {
+  display:flex;
+  align-items:center;
+}
+.SearchContentTelBox i {
+  margin-right: 6px;
+  color: #A4A4A4;
+}
+.SearchContentTel {
+  margin-bottom: 0px;
+}

@@ -1,5 +1,7 @@
+import Search from "antd/lib/transfer/search";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./css/SearchContent.module.css";
 
 function SearchContent(props) {
   const [inputValue, setinputValue] = useState(props.ckValue);
@@ -37,11 +39,21 @@ function SearchContent(props) {
 
   // console.log(props.ckValue);
   return (
-    <div>
-      <h1>{name}</h1>
-      <h1>{addr}</h1>
-      <h1>{raddr}</h1>
-      <h1>{tel}</h1>
+    <div className={styles.SearchContent}>
+      <h1 className={styles.SearchContentTitle}>{name}</h1>
+      <div className={styles.SearchContentAddrBox}>
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <p className={styles.SearchContentAddr}>{addr} ({raddr})</p>
+          {/* <p className={styles.SearchContentRaddr}>{raddr}</p> */}
+        </div>
+      </div>
+      {tel ? 
+      <div className={styles.SearchContentTelBox}>
+        <i class="fa-solid fa-phone-flip"></i>
+        <p className={styles.SearchContentTel}>{tel}</p>
+      </div>
+       : ''}
     </div>
   );
 }

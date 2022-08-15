@@ -379,14 +379,14 @@ function Open(props) {
           </div>
           <div style={searchResultBox}>
             {clickCheck === 1 && clickValue ? (
-              <div>
-                <button onClick={backresult}>뒤로 가기</button>
+              <div className={styles.searchResultBox}>
+                <button onClick={backresult} className={styles.backBtn}><i class="fa-solid fa-arrow-left"></i></button>
                 <SearchContent ckValue={clickValue} />
               </div>
             ) : message === 0 ? (
               <p>{resultmessage}</p>
             ) : (
-              <div>
+              <div className={styles.searchWordBox}>
                 {foodList}
                 {cafeList}
                 {parkList}
