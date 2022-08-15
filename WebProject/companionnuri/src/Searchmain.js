@@ -8,10 +8,11 @@ function Searchmain() {
   const location = useLocation();
   // console.log(location);
   const mainkeyword = location.state.keyword;
-  // console.log(mainkeyword);
+  console.log(mainkeyword);
   const later = location.state.later;
   // console.log(later)
   const inputValue = location.state.inputValue
+  console.log(inputValue)
 
   const [clicksearch, setClicksearch] = useState("")
   console.log(clicksearch)
