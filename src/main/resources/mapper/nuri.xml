@@ -33,7 +33,9 @@
                locName     locationName,
                locAddr     locationAddr,
                locRoadAddr locationRoadAddr,
-               locTel      locationTel
+               locTel      locationTel,
+               locLat      locationLat,
+               locLng      locationLng
         from location
         where locId = #{locationId};
     </select>
