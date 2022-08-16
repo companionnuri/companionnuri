@@ -5,11 +5,18 @@ const { kakao } = window;
 
 function Regionmap(props) {
   let regionItem = props.item;
-  //   console.log(regionItem);
+  console.log(regionItem);
+  
+  const [clicksearchValue, setclicksearchValue] = useState("");
+  console.log(clicksearchValue);
+  props.setClicksearch(clicksearchValue);
 
   return (
     <div className="kakaomap">
-      <RegionKakaoMapScript kakaoRegion={regionItem} />
+      <RegionKakaoMapScript
+        kakaoRegion={regionItem}
+        setclicksearchValue={setclicksearchValue}
+      />
     </div>
   );
 }

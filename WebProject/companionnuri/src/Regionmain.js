@@ -9,10 +9,13 @@ function Regionmain() {
   console.log(state.data);
   let regionValue = state.data;
 
+  const [clicksearch, setClicksearch] = useState("");
+  console.log(clicksearch);
+
   return (
     <div className="d-flex flex-column align-items-center">
-      <Top />
-      <Regionmap item={regionValue} />
+      <Top kakaoclickresult={clicksearch} detailop="true" />
+      <Regionmap item={regionValue} setClicksearch={setClicksearch} />
     </div>
   );
 }
