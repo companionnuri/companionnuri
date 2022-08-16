@@ -8,7 +8,7 @@ export default function Map(props) {
 
   const fetchF = () => {
     let regionItem = props.kakaoRegion;
-    console.log(regionItem);
+    // console.log(regionItem);
     let code;
 
     if (regionItem === "종로구") {
@@ -68,7 +68,7 @@ export default function Map(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(`${res}`);
+        // console.log(`${res}`);
         setRegionproj(res.regionProj);
         // console.log(res.locations)
         setlocName(res.locations);
@@ -80,6 +80,7 @@ export default function Map(props) {
     let contentlng = [];
     let contentlat = [];
     let contentid = [];
+    let contentcid = [];
 
     const keys = Object.keys(locName);
     for (let i = 0; i < keys.length; i++) {
@@ -88,10 +89,12 @@ export default function Map(props) {
       const lng = locName[k].locationLng;
       const lat = locName[k].locationLat;
       const id = locName[k].locationId;
+      const cid = locName[k].categoryId;
       contentDiv.push(d);
       contentlng.push(lng);
       contentlat.push(lat);
       contentid.push(id);
+      contentcid.push(cid)
     }
     var positions = [
       {
@@ -102,10 +105,43 @@ export default function Map(props) {
     ];
     let positionContent = {};
     for (let i = 0; i < keys.length; i++) {
-      console.log(contentDiv[i], contentlat[i], contentlng[i]);
+      // console.log(contentDiv[i], contentlat[i], contentlng[i]);
+      let realcontent
+      if (contentcid[i] === 1) {
+        realcontent = "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;'>" +
+          "<i class='fa-solid fa-mug-saucer' style='display:block;margin: 5px;color:#F3887C'></i>" +
+          "<p style='margin-bottom:0px'>" +
+          contentDiv[i] +
+          "</p>" +
+          "</div>"
+      } else if (contentcid[i] === 2) {
+        realcontent =
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-utensils" style="display:block;margin: 5px;color:#F3887C"></i>' +
+          contentDiv[i] +
+          "</div>"
+      } else if (contentcid[i] === 3) {
+        realcontent =
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-tree" style="display:block;margin: 5px;color:#77B559"></i>' +
+          contentDiv[i] +
+          "</div>";
+      } else if (contentcid[i] === 4) {
+        realcontent =
+          "<div style='font-size:14px;word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-hotel" style="display:block;margin: 5px;color:#77B559"></i>' +
+          contentDiv[i] +
+          "</div>";
+      } else if (contentcid[i] === 5) {
+        realcontent =
+          "<div style='font-size:14px; word-break:keep-all;background:#fff;text-align:center;display:flex;align-items:center;border-bottom:1px solid rgb(118, 129, 168)'>" +
+          '<i class="fa-solid fa-briefcase-medical" style="display:block;margin: 5px;color:rgb(116, 192, 252)"></i>' +
+          contentDiv[i] +
+          "</div>"
+      }
       positionContent = {
         title: contentDiv[i],
-        content: "<div>" + contentDiv[i] + "</div>",
+        content: realcontent,
         latlng: new kakao.maps.LatLng(contentlat[i], contentlng[i]),
         id: contentid[i],
       };
@@ -153,7 +189,7 @@ export default function Map(props) {
       kakao.maps.event.addListener(marker, "click", function () {
         // 마커 위에 인포윈도우를 표시합니다
 
-        console.log(positions[i].id);
+        // console.log(positions[i].id);
         props.setclicksearchValue(positions[i].id);
       });
     }
