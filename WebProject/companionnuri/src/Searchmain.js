@@ -1,21 +1,20 @@
 import Searchmap from "./Searchmap";
 import Top from "./Top";
-import styles from "./css/Main.module.css";
 import { useLocation } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function Searchmain() {
   const location = useLocation();
   // console.log(location);
   const mainkeyword = location.state.keyword;
-  console.log(mainkeyword);
+  // console.log(mainkeyword);
   const later = location.state.later;
   // console.log(later)
-  const inputValue = location.state.inputValue
-  console.log(inputValue)
+  const inputValue = location.state.inputValue;
+  // console.log(inputValue)
 
-  const [clicksearch, setClicksearch] = useState("")
-  console.log(clicksearch)
+  const [clicksearch, setClicksearch] = useState("");
+  // console.log(clicksearch)
 
   return (
     <div className="d-flex flex-column align-items-center">

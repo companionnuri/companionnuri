@@ -1,14 +1,11 @@
-import Navbar from "./Navbar";
 import SubsideMenu from "./SubsideMenu";
 import Logo from "./Logo";
-import Searchbar from "./Searchbar";
 import styles from "./css/Top.module.css";
 import CategoryFloating from "./CategoryFloating";
 import Open from "./Open";
-import Topsearchbar from "./Topsearchbar";
-import Detail from "./Detail"
+import Detail from "./Detail";
 
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const CategoryFloatingBox = {
   position: "fixed",
@@ -34,15 +31,15 @@ function Top(props) {
   const [open, setOpen] = useState(props.op);
   const [topinputValue, settopinputValue] = useState(props.regionValue);
   const [keyword, setkey] = useState(props.keyword);
-  const [detailopen, setDetailopen] = useState(props.detailop)
+  const [detailopen, setDetailopen] = useState(props.detailop);
   const [detailValue, setDetailValue] = useState(props.kakaoclickresult);
 
   // const detailValue = props.kakaoclickresult
-  console.log(detailValue);
+  // console.log(detailValue);
   // console.log(detailopen);
 
-  console.log(detailopen);
-  
+  // console.log(detailopen);
+
   useEffect(() => {
     setDetailValue(props.kakaoclickresult);
     setDetailopen(props.detailop);

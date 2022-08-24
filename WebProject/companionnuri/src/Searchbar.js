@@ -1,9 +1,7 @@
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 import React, { useState, useEffect } from "react";
 // import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import styles from "./css/Floating.module.css";
-import SearchContent from "./SearchContent";
 
 const hd_search_box = {
   width: "100%",
@@ -31,22 +29,20 @@ const hd_search_input = {
 };
 
 function Searchbar(props) {
-
   const [keyword, setKeyword] = useState(null);
   const navigate = useNavigate();
-  const [later, setLater] = useState(0)
+  const [later, setLater] = useState(0);
 
   const clickButton = (e) => {
-    console.log(e)
+    // console.log(e)
     props.setinputValue(e);
     props.setOpen(true);
 
     if (e.length === 0 || e === null || e === "") {
-      console.log("글자가 없쪄용click")
+      // console.log("글자가 없쪄용click")
       setKeyword("글자가 없쪄용click");
-    }
-    else {
-      setKeyword(e)
+    } else {
+      setKeyword(e);
       navigate("/Searchmain", {
         state: {
           keyword: keyword,
@@ -58,26 +54,30 @@ function Searchbar(props) {
 
   const inputPress = (e) => {
     setKeyword(e.target.value);
-    console.log(keyword);
+    // console.log(keyword);
     clickButton(e.target.value);
-    
+
     if (e.key === "Enter") {
       setKeyword(e.target.value);
       clickButton(e.target.value);
-      console.log(keyword)
+      // console.log(keyword);
       navigate("/Searchmain", {
         state: {
           keyword: keyword,
-          later : later
+          later: later,
         },
       });
     }
   };
 
   const inputChange = (e) => {
-    console.log(e.target.value)
-    if (e.target.value.length === 0 || e.target.value === null || e.target.value === "") {
-      console.log("글자가 없쪄용input")
+    // console.log(e.target.value);
+    if (
+      e.target.value.length === 0 ||
+      e.target.value === null ||
+      e.target.value === ""
+    ) {
+      // console.log("글자가 없쪄용input");
       setKeyword("글자가 없쪄용input");
       navigate("/Searchmain", {
         state: {
@@ -86,8 +86,8 @@ function Searchbar(props) {
         },
       });
     } else {
-      setKeyword(e.target.value)
-      console.log(e.target.value)
+      setKeyword(e.target.value);
+      // console.log(e.target.value);
       clickButton(e.target.value);
       navigate("/Searchmain", {
         state: {
@@ -96,14 +96,21 @@ function Searchbar(props) {
         },
       });
     }
-    
   };
 
   // console.log(keyword);
-  
+
   const start = () => {
     if (keyword === null) {
-      console.log("처음")
+      // console.log("처음");
+      navigate("/Searchmain", {
+        state: {
+          keyword: keyword,
+          later: later,
+        },
+      });
+    } else {
+      // console.log("start의 else");
       navigate("/Searchmain", {
         state: {
           keyword: keyword,
@@ -111,16 +118,7 @@ function Searchbar(props) {
         },
       });
     }
-    else {
-      console.log("start의 else");
-      navigate("/Searchmain", {
-        state: {
-          keyword: keyword,
-          later: later,
-        },
-      });
-    }
-  }
+  };
 
   useEffect(() => {
     start();
@@ -134,8 +132,6 @@ function Searchbar(props) {
   //     },
   //   });
   // }
-
-  
 
   return (
     <div className="d-flex justify-content-end">
