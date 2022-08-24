@@ -11,7 +11,7 @@ export default function Map(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(`${res.locations}`);
+        // console.log(`${res.locations}`);
         setlocName(res.locations);
       });
   };
@@ -46,7 +46,7 @@ export default function Map(props) {
     let positionContent = {};
 
     for (let i = 0; i < keys.length; i++) {
-      console.log(contentDiv[i], contentlat[i], contentlng[i]);
+      // console.log(contentDiv[i], contentlat[i], contentlng[i]);
 
       positionContent = {
         title: contentDiv[i],
@@ -109,7 +109,7 @@ export default function Map(props) {
       kakao.maps.event.addListener(marker, "click", function () {
         // 마커 위에 인포윈도우를 표시합니다
 
-        console.log(positions[i].id);
+        // console.log(positions[i].id);
         props.setclicksearchValue(positions[i].id);
       });
     }

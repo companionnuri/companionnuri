@@ -33,7 +33,7 @@ const searchResultBox = {
 };
 const searchResultBox2 = {
   paddingLeft: "103px",
-  display:"none"
+  display: "none",
 };
 const contentText = {
   margin: "0",
@@ -44,7 +44,7 @@ const contentText = {
 };
 
 const categoryItemFoodIcon = {
-  marginRight : "10px",
+  marginRight: "10px",
   color: "#F3887C",
 };
 const categoryItemPlaceIcon = {
@@ -67,7 +67,7 @@ function Open(props) {
 
   const [resultmessage, setResultmessage] = useState("");
 
-  const [clickValue, setClickValue] = useState("")
+  const [clickValue, setClickValue] = useState("");
   const [name, setName] = useState("");
   const [addr, setAddr] = useState("");
   const [raddr, setRaddr] = useState("");
@@ -78,8 +78,8 @@ function Open(props) {
   let house = [];
   let hospital = [];
 
-  let cnt = 0
-  const [clickCheck, setClickCheck] = useState(0)
+  let cnt = 0;
+  const [clickCheck, setClickCheck] = useState(0);
 
   const [inputValue, setinputValue] = useState(null);
   // const [topValue, settopValue] = useState(null);
@@ -134,12 +134,10 @@ function Open(props) {
             setHouseitems(res["house"]);
           }
         });
-      
     }
   };
 
   const fetchF = () => {
-
     // console.log(inputValue)
     if (inputValue) {
       // console.log(props.keyword);
@@ -150,7 +148,7 @@ function Open(props) {
       );
 
       // console.log(inputValue);
-      
+
       fetch(
         `http://ec2-13-209-237-25.ap-northeast-2.compute.amazonaws.com:8081/nuri/search/${inputValue}`
       )
@@ -167,7 +165,7 @@ function Open(props) {
             setResultmessage("검색 결과가 없습니다.");
             setMessage(0);
           } else {
-            console.log("여기")
+            // console.log("여기")
             setMessage(1);
             setFooditems(res["restaurant"]);
             setCafeitems(res["cafe"]);
@@ -176,8 +174,6 @@ function Open(props) {
             setHouseitems(res["house"]);
           }
         });
-      
-      
     }
   };
 
@@ -267,7 +263,6 @@ function Open(props) {
   //   fetchF3();
   // }, []);
 
-
   const foodButtonClick = (e) => {
     setClickCheck(1);
     console.log(e.target.value);
@@ -299,7 +294,11 @@ function Open(props) {
   };
 
   const foodList = food.map((user) => (
-    <button value={user.locationId} style={contentText} onClick={foodButtonClick}>
+    <button
+      value={user.locationId}
+      style={contentText}
+      onClick={foodButtonClick}
+    >
       <i class="fa-solid fa-utensils" style={categoryItemFoodIcon}></i>
       {user.locationName}
     </button>
@@ -349,12 +348,11 @@ function Open(props) {
     </button>
   ));
 
-  
-  const [color, setColor] = useState('black')
+  const [color, setColor] = useState("black");
 
   const backresult = () => {
-    setClickCheck(0)
-  }
+    setClickCheck(0);
+  };
 
   return (
     <div className={styles.searchDiv}>
@@ -380,7 +378,9 @@ function Open(props) {
           <div style={searchResultBox}>
             {clickCheck === 1 && clickValue ? (
               <div className={styles.searchResultBox}>
-                <button onClick={backresult} className={styles.backBtn}><i class="fa-solid fa-arrow-left"></i></button>
+                <button onClick={backresult} className={styles.backBtn}>
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
                 <SearchContent ckValue={clickValue} />
               </div>
             ) : message === 0 ? (

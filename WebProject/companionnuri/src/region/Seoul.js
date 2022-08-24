@@ -14,7 +14,7 @@ function Seoul(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  console.log(users);
+  // console.log(users);
 
   useEffect(() => {
     const fetchUsers = async () => {

@@ -29,7 +29,7 @@ function SubsideMenu(props) {
 
   const searchButtonClick = () => {
     setValue(!value);
-    console.log(value);
+    // console.log(value);
     props.setOpen(value);
   };
 
@@ -42,9 +42,9 @@ function SubsideMenu(props) {
             className="d-flex flex-column align-items-center justify-content-center w-100 h-100 "
             style={subMenuItemBtn}
           >
-            <i class="fa-solid fa-arrow-pointer" style={submenuItemIcon}></i>
+            <i class="fa-solid fa-question" style={submenuItemIcon}></i>
             <span className="mt-1" style={submenuItemTitle}>
-              궁금해
+              Q&A
             </span>
           </button>
         </li>

@@ -6,11 +6,11 @@ import React, { useState, useEffect } from "react";
 
 function Regionmain() {
   const { state } = useLocation();
-  console.log(state.data);
+  // console.log(state.data);
   let regionValue = state.data;
 
   const [clicksearch, setClicksearch] = useState("");
-  console.log(clicksearch);
+  // console.log(clicksearch);
 
   return (
     <div className="d-flex flex-column align-items-center">

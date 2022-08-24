@@ -1,4 +1,3 @@
-import Search from "antd/lib/transfer/search";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/SearchContent.module.css";
@@ -19,7 +18,7 @@ function SearchContent(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setName(res["location"].locationName);
           setAddr(res["location"].locationAddr);
           setRaddr(res["location"].locationRoadAddr);
@@ -27,7 +26,7 @@ function SearchContent(props) {
         });
       navigate("/Searchmain", {
         state: {
-          inputValue : inputValue,
+          inputValue: inputValue,
         },
       });
     }
@@ -44,16 +43,20 @@ function SearchContent(props) {
       <div className={styles.SearchContentAddrBox}>
         <i class="fa-solid fa-location-dot"></i>
         <div>
-          <p className={styles.SearchContentAddr}>{addr} ({raddr})</p>
+          <p className={styles.SearchContentAddr}>
+            {addr} ({raddr})
+          </p>
           {/* <p className={styles.SearchContentRaddr}>{raddr}</p> */}
         </div>
       </div>
-      {tel ? 
-      <div className={styles.SearchContentTelBox}>
-        <i class="fa-solid fa-phone-flip"></i>
-        <p className={styles.SearchContentTel}>{tel}</p>
-      </div>
-       : ''}
+      {tel ? (
+        <div className={styles.SearchContentTelBox}>
+          <i class="fa-solid fa-phone-flip"></i>
+          <p className={styles.SearchContentTel}>{tel}</p>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
