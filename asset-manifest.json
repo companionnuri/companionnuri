@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/companionnuri/static/css/main.6309eb39.css",
+    "main.js": "/companionnuri/static/js/main.aad73dc5.js",
+    "index.html": "/companionnuri/index.html",
+    "main.6309eb39.css.map": "/companionnuri/static/css/main.6309eb39.css.map",
+    "main.aad73dc5.js.map": "/companionnuri/static/js/main.aad73dc5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6309eb39.css",
+    "static/js/main.aad73dc5.js"
+  ]
+}
