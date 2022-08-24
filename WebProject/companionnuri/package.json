@@ -29,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,5 +51,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:3000",
+  "homepage": "http://companionnuri.github.io/companionnuri",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  }
 }
