@@ -4,7 +4,7 @@
 ## 팀 구성
 | 강성엽 | 이수은 | 임승민 | 정연휘 |
 |---|---|---|---|
-|[yyeopp](https://github.com/yyeopp)||[beeee2](https://github.com/beeee2)|[Winmini](https://github.com/Winmini)|[JungYeonHwi](https://github.com/JungYeonHwi)|
+|[yyeopp](https://github.com/yyeopp)|[beeee2](https://github.com/beeee2)|[Winmini](https://github.com/Winmini)|[JungYeonHwi](https://github.com/JungYeonHwi)|
 
 
 ## 주요 기능
